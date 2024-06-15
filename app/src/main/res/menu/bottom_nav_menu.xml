@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/selector_main_menu1"
+        android:title="推荐" />
+
+    <item
+        android:id="@+id/menu_type"
+        android:icon="@drawable/selector_main_menu2"
+        android:title="分类" />
+
+    <item
+        android:id="@+id/menu_mine"
+        android:icon="@drawable/selector_main_menu3"
+        android:title="我的" />
+
+</menu>

@@ -1,0 +1,51 @@
+```
+apply plugin: LazyxuPlugin
+class LazyxuPlugin implements Plugin<Project> {
+    @Override
+    void apply(Project target) {//target为当前项目目录
+        def extension = target.extensions.create("lazyxu", LazyXuExtension)
+        target.afterEvaluate {
+            GLog.d("Hello ${extension.name}")
+        }
+    }
+}
+class LazyXuExtension {
+    def name = "lazy_xu"
+}
+lazyxu {
+    name="lazy_chen"
+}
+```
+build.gradle中的
+```
+android {
+    defaultConfig {
+    }
+}
+```
+这里的android就是类似上面的,apply plugin: 'com.android.application'中com.android.application是插件，android{}是扩展
+```
+lazyxu {
+    name="lazy_chen"
+}
+```
+
+buildSrc(插件)执行顺序仅次于setting.gradle，不然无法给别的build.gradle使用
+
+apply from: buildSrc文件夹下的xxx.properties前的xxx
+
+Transform
+是什么：
+是由
+Android
+提供了，
+在项⽬构建过程中把编译后的⽂件
+（
+jar
+⽂件和
+class
+⽂件）
+添加⾃定义的中间处理过程的⼯具
+
+
+https://www.jianshu.com/p/1cb5462b7c64

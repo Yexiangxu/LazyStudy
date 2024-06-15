@@ -1,0 +1,29 @@
+1. 基本属性使用
+2. [遇到问题](#problem)
+
+------------------
+
+```agsl
+setHasFixedSize(true)//当RecyclerView 的内容大小不会影响它本身的宽度或高度时，可以调用这个方法
+```
+
+-----------------
+
+### <span id = "problem">遇到问题</span>
+
+1. 间距问题
+
+- 问题出现场景
+  `recyclerview中嵌套recyclerview，反复刷新数据出现item间距越变越大`
+
+> 一般下拉刷新没遇到是因为仅刷新了数据没有重复设置 `addItemDecoration`，而嵌套刷新每次都在`Adapter`
+> 中设置了`addItemDecoration`所以很容易出现
+
+- 解决方案：避免重复设置`addItemDecoration`
+
+```agsl
+if (recyclerView.itemDecorationCount==0) {
+    recyclerView.addItemDecoration(xxx)
+}
+```
+

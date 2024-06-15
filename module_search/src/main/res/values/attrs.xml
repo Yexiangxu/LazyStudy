@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SearchHistoryView">
+        <attr name="title" format="reference|string" />
+        <!--搜索右侧图标，可能是刷新，可能是删除-->
+        <attr name="draw_search_end" format="reference" />
+    </declare-styleable>
+</resources>

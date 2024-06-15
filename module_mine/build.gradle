@@ -1,0 +1,7 @@
+dependencies {
+
+
+
+    compileOnly project(path: ':lib_network')
+    api project(':lib_common')
+}

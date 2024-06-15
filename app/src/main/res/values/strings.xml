@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="splash_skip">%1$ds跳过</string>
+    <string name="exit_tips">再按一次退出程序</string>
+</resources>

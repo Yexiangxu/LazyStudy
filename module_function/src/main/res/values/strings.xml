@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="function">功能主页面</string>
+    <string name="function_dragrecyclerview">DragRecyclerview</string>
+    <string name="function_deleterecyclerview">DeleteRecyclerview</string>
+
+
+
+    <string name="function_dispatch">事件分发</string>
+</resources>

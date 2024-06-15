@@ -1,0 +1,4 @@
+object OutputConfig {
+    var SDKVERSION = ""
+
+}

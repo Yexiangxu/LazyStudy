@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景颜色 -->
+    <item
+        android:drawable="@color/splash_color"
+        android:gravity="fill" />
+
+    <item
+        android:bottom="@dimen/dp_30"
+        android:drawable="@drawable/splash_bottom"
+        android:gravity="bottom|center_horizontal"/>
+        <!-- 此处放一个带有项目icon图加描述的底部图-->
+
+</layer-list>

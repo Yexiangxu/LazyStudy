@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_textView"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_margin="6dp"
+    android:gravity="center"
+    android:insetTop="0dp"
+    android:insetBottom="0dp"
+    android:paddingStart="6dp"
+    android:paddingEnd="6dp"
+    android:background="@color/colorAccent"
+    android:text="@string/app_name"
+    android:textAllCaps="false"
+    android:textColor="@color/white" />

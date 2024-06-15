@@ -1,0 +1,10 @@
+
+dependencies {
+
+
+    //==========xml ui布局经常用到======================
+    api CommonDeps.recyclerview
+    api CommonDeps.constraintlayout
+    api CommonDeps.appcompat
+    api CommonDeps.material
+}

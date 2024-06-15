@@ -1,0 +1,149 @@
+apply plugin: 'com.android.application'
+apply from: "${rootDir.path}/buildCommon.gradle"// ./同级目录; ../上级目录; 上上级 ../../
+
+//apply plugin: 'com.lazyxu.testplugin'
+configSigning()
+//configApkName()
+android {
+    defaultConfig {
+        applicationId "com.lazyxu.lazystudy"
+        versionCode BuildConfig.versionCode
+        versionName BuildConfig.versionName
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false //代码混淆
+            shrinkResources false  //移除无用的resource文件
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "xml", "network_security_config", "@xml/network_security_config_debug"
+
+        }//buildTypes针对开发测
+        release {
+            minifyEnabled true //代码混淆
+            shrinkResources true  //移除无用的resource文件
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            resValue "xml", "network_security_config", "@xml/network_security_config_release"
+
+        }
+    }
+    flavorDimensions("app", "channel")//二维
+    productFlavors {//免费版、付费版 productFlavors针对用户
+        app1 {
+            dimension "app"
+            manifestPlaceholders = ["appName": "定制1"]
+        }
+        app2 {
+            dimension "app"
+        }
+        normal {
+            dimension "channel"
+        }
+        yunkong {
+            dimension "channel"
+        }
+    }
+
+}
+
+dependencies {
+    implementation project(path: ':lib_database')
+    implementation project(path: ':lib_network')
+    implementation CommonDeps.refreshLayout
+    implementation CommonDeps.refreshHeader
+    implementation CommonDeps.refreshFooter
+
+//    compileOnly GradleDeps.gradlePlugin//用来查看gradle jar的源码(在项目的External Libraries中)
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
+    implementation 'android.arch.navigation:navigation-ui:1.0.0'
+    implementation "android.arch.navigation:navigation-ui-ktx:1.0.0"
+    implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
+
+    implementation project(':module_search')
+
+    implementation project(':lib_common')
+    implementation project(':lib_music')
+    implementation project(':module_mine')
+    implementation project(':module_function')
+    runtimeOnly project(':module_login')
+    //runtimeOnly用于解耦，比如组件化壳子工程app依赖其他module时就可以用 runtimeOnly，这样在壳子工程app里面不会错误使用 子module代码，防止低级错误耦
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
+//    implementation 'magicx.device:device:1.5.5-SNAPSHOT'
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
+//    implementation "com.android.tools.build:gradle:4.1.1"
+}
+
+
+def configSigning() {
+    File signKeystoreFile = file("${rootDir.path}/sign/keystore.jks")
+    if (!signKeystoreFile.exists()) throw new FileNotFoundException("keystore.jks file is empty")
+    File signPropertiesFile = file("${rootDir.path}/sign/keystore.properties")
+    if (!signPropertiesFile.exists()) throw new FileNotFoundException("keystore.properties file is empty")
+    GLog.d("${project.toString()}sign start...")
+    project.android {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream(signPropertiesFile))
+        signingConfigs {
+            release {
+                storeFile new File(signPropertiesFile.getParent(), properties['KEYSTORE_FILE'])
+                storePassword properties['KEYSTORE_PWD']
+                keyAlias properties['KEY_ALIAS']
+                keyPassword properties['KEY_PWD']
+            }
+        }
+        buildTypes.release.signingConfig signingConfigs.release
+    }
+    GLog.d("${project.toString()} sign end...")
+}
+
+def configApkName() {
+    project.android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = "app-${variant.productFlavors[0].name.toLowerCase()}-v${variant.versionName}_${variant.buildType.name}-${buildApkTime()}.apk"
+                variant.getPackageApplication().outputDirectory = new File("${rootDir.path}/apk")
+                output.outputFileName = fileName
+            }
+        }
+    }
+}
+
+static def buildApkTime() {
+    return new Date().format("yyyy-MMdd-HH-mm", TimeZone.getTimeZone("GMT+08:00"))
+}
+
+
+task A {
+
+    println "configuration A.."
+
+    doFirst {
+        println "doLast A1.."
+    }
+
+}
+
+task B {
+    println "configuration B.."
+
+    doFirst {
+        println "doLast B1.."
+    }
+}
+
+
+String removeYinHao(String str) {
+    return str.replaceFirst('"', '').replaceAll('"$', '')
+}
+
+A.mustRunAfter(B)
+
+
+
+
+
+

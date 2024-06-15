@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="developDeviceId">
+        <item type="meizu_pro7">e1e30986d1700f62</item>
+        <item type="samsung_galaxy_c7">faf2d0ff3636b6cb</item>
+
+    </string-array>
+</resources>

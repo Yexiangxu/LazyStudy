@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/testconst_scene">
+
+    <ImageView
+        android:id="@+id/iv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:background="@color/colorAccent"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintLeft_toRightOf="@+id/iv1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.helper.widget.Layer
+        android:id="@+id/layer"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:constraint_referenced_ids="iv1,iv2"
+        tools:ignore="MissingConstraints" />
+
+    <!--    <com.lazyxu.lazystudy.test.CircularRevealHelper-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:constraint_referenced_ids="iv1,iv2"-->
+    <!--        tools:ignore="MissingConstraints" />-->
+
+    <!--    <androidx.constraintlayout.widget.Placeholder-->
+    <!--        android:id="@+id/placeHolder"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+    <Button
+        android:id="@+id/btnLayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Layer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv1" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

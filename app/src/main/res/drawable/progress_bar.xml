@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/progress">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="180"
+                android:endColor="#3A71FE"
+                android:startColor="#3A71FE"
+                android:type="linear" />
+            <corners
+                android:bottomLeftRadius="@dimen/dp_10"
+                android:bottomRightRadius="@dimen/dp_10" />
+        </shape>
+    </item>
+    <item android:id="@android:id/secondaryProgress">
+        <scale
+            android:drawable="@drawable/shape_secondprogressbar_bg"
+            android:scaleWidth="0%"
+            android:scaleHeight="100%"
+            android:scaleGravity="bottom" />
+    </item>
+    <item android:id="@android:id/progress">
+        <scale
+            android:drawable="@drawable/shape_progress_bar_bg"
+            android:scaleWidth="0%"
+            android:scaleHeight="100%"
+            android:scaleGravity="bottom" />
+    </item>
+
+</layer-list><!--    <?xml version="1.0" encoding="utf-8"?>-->
+    <!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+    <!--&lt;!&ndash;未加载的进度区域&ndash;&gt;-->
+    <!--<item android:id="@android:id/background">-->
+    <!--    <shape android:shape="rectangle">-->
+    <!--        <gradient-->
+    <!--            android:angle="180"-->
+    <!--            android:endColor="#3A71FE"-->
+    <!--            android:startColor="#3A71FE"-->
+    <!--            android:type="linear" />-->
+    <!--        <corners-->
+    <!--            android:bottomLeftRadius="@dimen/dp_10"-->
+    <!--            android:bottomRightRadius="@dimen/dp_10" />-->
+    <!--    </shape>-->
+    <!--</item>-->
+    <!--&lt;!&ndash;缓冲的进度的颜色，一般视频播放的缓冲区域&ndash;&gt;-->
+    <!--<item android:id="@android:id/secondaryProgress">-->
+    <!--    <clip>-->
+    <!--        <shape android:shape="rectangle">-->
+    <!--            <gradient android:type="linear"  android:startColor="#FFD076"  android:endColor="#FFD076" android:angle="270"/>-->
+    <!--            <corners android:bottomLeftRadius="@dimen/dp_10" android:bottomRightRadius="@dimen/dp_10" />-->
+    <!--        </shape>-->
+    <!--    </clip>-->
+    <!--</item>-->
+    <!--&lt;!&ndash;已经加载完的进度的区域&ndash;&gt;-->
+    <!--<item android:id="@android:id/progress">-->
+    <!--    <clip>-->
+    <!--        <shape android:shape="rectangle">-->
+    <!--            <gradient android:type="linear"  android:startColor="#85fed7"  android:endColor="#85fed7" android:angle="270"/>-->
+    <!--            <corners android:bottomLeftRadius="@dimen/dp_10" android:bottomRightRadius="@dimen/dp_10" />-->
+    <!--        </shape>-->
+    <!--    </clip>-->
+    <!--</item>-->
+    <!--</layer-list>-->

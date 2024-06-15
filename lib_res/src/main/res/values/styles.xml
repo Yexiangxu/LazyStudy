@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!--状态栏(电池显示)颜色-->
+        <item name="colorPrimaryDark">@color/colorAccent</item>
+        <!--Toolbar导航栏的底色-->
+        <item name="colorPrimary">@color/colorAccent</item>
+        <!--CheckBox、RadioButton等控件选中效果默认采用颜色-->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--CheckBox，RadioButton等默认状态颜色-->
+        <item name="android:colorControlNormal">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:textColor">@color/black_333333</item>
+        <item name="android:textAllCaps">false</item> <!--全部字母是否大些-->
+        <item name="editTextColor">@android:color/black</item><!--EditText 输入框中字体的颜色-->
+        <item name="android:divider">@android:color/darker_gray</item> <!--分割线颜色-->
+        <item name="android:textColorHint">@android:color/darker_gray</item><!--hint 颜色-->
+        <!--        <item name="android:typeface">@font/tvcommon</item>  &lt;!&ndash;字体样式设置&ndash;&gt;-->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:includeFontPadding">false</item><!--默认为 true，表示 TextView 的文本行高度将包括字体的推荐高度-->
+        <item name="toolbarNavigationButtonStyle">@style/TbNavBtnStyle</item><!--设置toolbar通用样式-->
+        <!--        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>&lt;!&ndash;之前遇到过不同手机页面跳转动画不一样，该设置可统一&ndash;&gt;-->
+    </style>
+    <!--    <style name="AnimationActivity" parent="@android:style/Animation.Activity">-->
+    <!--        <item name="android:activityOpenEnterAnimation">@anim/slide_in_left</item>-->
+    <!--        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>-->
+    <!--        <item name="android:activityCloseEnterAnimation">@anim/slide_in_right</item>-->
+    <!--        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>-->
+    <!--    </style>-->
+
+    <!--启动页主题-->
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+    <!--ToolBar 标题-->
+    <style name="ToolBarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--横线-->
+    <style name="LineHorizontalStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_1</item>
+        <item name="android:background">@color/gray_FFE8E8E8</item>
+    </style>
+
+
+    <style name="DialogCommon" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowBackground">@android:color/transparent
+        </item> <!--设置dialog的背景，此处为系统给定的透明值-->
+        <item name="android:windowIsFloating">false</item>            <!--是否浮现在activity之上-->
+        <item name="android:windowContentOverlay">@null</item>       <!--是否有覆盖-->
+        <item name="android:backgroundDimEnabled">true</item>       <!--是否背景遮罩效果（遮罩效果）-->
+        <item name="android:windowIsTranslucent">true</item>         <!--是否半透明（透明度）-->
+    </style>
+
+    <style name="DialogBottomStyle" parent="DialogCommon">
+        <item name="android:windowAnimationStyle">@style/DialogBottomAnimation</item>
+    </style>
+
+    <style name="DialogBottomAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom_out</item>
+    </style>
+
+
+    <style name="TbNavBtnStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
+        <!--设置toolbar中图标距离左边距离-->
+        <item name="android:padding">@dimen/dp_10</item>
+    </style>
+
+
+</resources>

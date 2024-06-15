@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pls_input_search">请输入您想要搜索的内容</string>
+    <string name="search_history">搜索历史</string>
+    <string name="search_recommend">猜你喜欢</string>
+</resources>

@@ -1,0 +1,10 @@
+
+dependencies {
+    implementation NetWorkDeps.retrofit//每个module都需要用到网络请求，用api
+    implementation NetWorkDeps.converterGson
+    implementation NetWorkDeps.okhttp
+    implementation NetWorkDeps.loggingInterceptor
+    //协程相关
+    compileOnly project(path: ':lib_common')
+
+}

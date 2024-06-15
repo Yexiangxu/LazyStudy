@@ -1,0 +1,1 @@
+data class DepConfig(val libName: String,val isApply:Boolean=true)

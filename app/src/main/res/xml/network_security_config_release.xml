@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config xmlns:tools="http://schemas.android.com/tools">
+    <!-- cleartextTrafficPermitted：是否允许使用明文流量（默认情况下不允许明文流量） -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates
+                    src="user"
+                    tools:ignore="AcceptsUserCertificates" />
+        </trust-anchors>
+    </base-config>
+    <!-- 配置特定域名允许明文流量 -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">example.com</domain>
+    </domain-config>
+</network-security-config>

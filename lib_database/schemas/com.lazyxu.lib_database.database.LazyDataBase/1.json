@@ -1,0 +1,40 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "0807d5257e8cdb1be831272b215b32db",
+    "entities": [
+      {
+        "tableName": "table_search",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`keyTag` TEXT NOT NULL, `createTime` INTEGER NOT NULL, PRIMARY KEY(`keyTag`))",
+        "fields": [
+          {
+            "fieldPath": "keyTag",
+            "columnName": "keyTag",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createTime",
+            "columnName": "createTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "keyTag"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0807d5257e8cdb1be831272b215b32db')"
+    ]
+  }
+}

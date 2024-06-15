@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这里必须要嵌套一层，因为 include 中也要设置id，直接通过 findViewById<Toolbar>(R.id.tb_title)找会报错-->
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@color/colorAccent"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp_10"
+        app:buttonGravity="center_vertical"
+        app:layout_scrollFlags="enterAlways|scroll"
+        app:navigationIcon="@drawable/svg_back_white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="@string/app_name"
+        app:titleMarginStart="@dimen/dp_30"
+        app:titleTextAppearance="@style/ToolBarTitle">
+
+    </androidx.appcompat.widget.Toolbar>
+
+</com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+
+
