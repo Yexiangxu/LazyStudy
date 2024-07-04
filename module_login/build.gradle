@@ -1,5 +1,10 @@
+apply from: "${rootDir.path}/buildModule.gradle"
+android {
+    namespace 'com.lazyxu.login'
+}
+
 dependencies {
-    compileOnly project(path: ':lib_network')
+    compileOnly project(path: ':lib:network')
 
 
     implementation project(':lib_common')

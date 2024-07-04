@@ -19,14 +19,14 @@ abstract class BaseVbFragment<VB : ViewBinding> : BaseFragment() {
     override fun initContentView(inflater: LayoutInflater, container: ViewGroup?): View {
         //actualTypeArguments[0]是通过反射获取第一个，如果 VB是在第二个就是用[1]
         val vbClass: Class<VB> =
-            (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0].saveAsUnChecked()
+            (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VB>
         val method = vbClass.getDeclaredMethod(
             "inflate",
             LayoutInflater::class.java,
             ViewGroup::class.java,
             Boolean::class.java
         )
-        mViewBinding = method.invoke(this, inflater, container, false)!!.saveAsUnChecked()
+        mViewBinding = method.invoke(this, inflater, container, false) as VB
 //        val method = vbClass.getDeclaredMethod("inflate", LayoutInflater::class.java)//需要在混淆文件中添加免混淆
 //        mViewBinding = method.invoke(this, inflater)!!.saveAsUnChecked()
         return mViewBinding.root

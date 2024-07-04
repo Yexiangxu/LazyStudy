@@ -38,7 +38,7 @@ import com.lazyxu.base.utils.layoutmanager.PagerLayoutManager
 import com.lazyxu.lib_database.entity.VideoEntity
 import com.lazyxu.video.adapter.VideoAdapter
 import com.lazyxu.video.databinding.ActivityPlayVideoBinding
-
+import com.lazyxu.video.R
 /**
  * User:Lazy_xu
  * Date:2024/05/29
@@ -91,9 +91,9 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
         mViewBinding.refreshBest.setOnRefreshListener {
         }
         mViewBinding.refreshBest.setColorSchemeResources(
-            R.color.colorAccent,
-            R.color.colorAccent,
-            R.color.colorAccent
+            com.lazyxu.base.R.color.colorAccent,
+            com.lazyxu.base.R.color.colorAccent,
+            com.lazyxu.base.R.color.colorAccent
         )
     }
 

@@ -20,7 +20,6 @@ import com.lazyxu.base.utils.ProcessUtils
 import com.lazyxu.base.utils.SpUtils
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
-import com.squareup.leakcanary.LeakCanary
 import com.tencent.bugly.crashreport.CrashReport
 
 
@@ -89,10 +88,6 @@ abstract class BaseApplication : Application() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 WebView.setDataDirectorySuffix(ProcessUtils.getProcessName(Process.myPid()))
             }
-        }
-        //LeakCanary
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return
         }
     }
 

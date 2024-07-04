@@ -32,7 +32,7 @@ class MediaPlayActivity : BaseVbActivity<ActivityPlayBinding>() {
         ImmersionBar.with(this)
             .autoDarkModeEnable(true)
             .statusBarDarkFont(true, 0.2f)
-            .navigationBarColor(R.color.black)
+            .navigationBarColor(com.lazyxu.base.R.color.black)
             .navigationBarDarkIcon(true)
             .keyboardEnable(false)
             .init()

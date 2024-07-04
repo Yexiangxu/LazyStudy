@@ -29,17 +29,7 @@ class LoginActivity : BaseVbVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
     @SuppressLint("ResourceType")
     override fun initView() {
-        mRightOutSet = AnimatorInflater.loadAnimator(this, R.anim.anim_out) as AnimatorSet
-        mLeftInSet = AnimatorInflater.loadAnimator(this, R.anim.anim_out) as AnimatorSet
-//        mRightOutSet.setTarget(holder.fontLayout)
-//        mLeftInSet.setTarget(holder.backLayout)
-//        mRightOutSet.start()
-//        mLeftInSet.start()
         isPackageExist(this, this.packageName)
-
-        GlobalScope.launch {
-
-        }
 
     }
 

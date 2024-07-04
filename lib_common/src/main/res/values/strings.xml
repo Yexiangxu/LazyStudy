@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Lazyxu</string>
     <string name="res_cache">存储功能</string>
+    <string name="login">登录</string>
 </resources>

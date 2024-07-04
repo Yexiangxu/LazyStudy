@@ -1,9 +1,7 @@
 <resources>
+    <string name="app_name">Lazyxu</string>
     <string name="net_disconnect">网络已断开，请检查网络</string>
-
-
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="login">登录</string>
     <string name="loaderr_tip">加载失败，请稍后重试</string>
+
+
 </resources>

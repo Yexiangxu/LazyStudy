@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.lazyxu.base.R.*
 import com.lazyxu.function.R
 import com.lazyxu.function.adapter.DragAdapter
 import java.util.*
@@ -116,7 +117,7 @@ class DragCallBack(adapter: DragAdapter, data: MutableList<String>) : ItemTouchH
                 if (it.itemView.width > 500) {
                     // 线性布局 设置背景颜色
                     val drawable = it.itemView.background as GradientDrawable
-                    drawable.color = ContextCompat.getColorStateList(it.itemView.context, R.color.colorAccent)
+                    drawable.color = ContextCompat.getColorStateList(it.itemView.context, color.colorAccent)
                 } else {
                     // 网格布局 设置选中放大
                     ViewCompat.animate(it.itemView).setDuration(200).scaleX(1.3F).scaleY(1.3F).start()
@@ -140,7 +141,7 @@ class DragCallBack(adapter: DragAdapter, data: MutableList<String>) : ItemTouchH
             is LinearLayoutManager -> {
                 // 线性布局 设置背景颜色
                 val drawable = viewHolder.itemView.background as GradientDrawable
-                drawable.color = ContextCompat.getColorStateList(viewHolder.itemView.context, R.color.gray_e3e3e3)
+                drawable.color = ContextCompat.getColorStateList(viewHolder.itemView.context, com.example.lib_common.R.color.gray_e3e3e3)
             }
         }
         super.clearView(recyclerView, viewHolder)

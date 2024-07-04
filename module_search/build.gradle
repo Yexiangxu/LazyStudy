@@ -1,5 +1,9 @@
+apply from: "${rootDir.path}/buildModule.gradle"
+android {
+    namespace 'com.lazyxu.search'
+}
 dependencies {
-    compileOnly project(path: ':lib_network')
+    compileOnly project(path: ':lib:network')
     compileOnly project(path: ':lib_database')
 
     implementation project(path: ':lib_common')
