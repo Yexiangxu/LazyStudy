@@ -1,25 +1,8 @@
-apply plugin: 'com.alibaba.arouter'
-apply from: "${rootDir.path}/checkVersions.gradle"
-buildscript {//buildscript里是gradle脚本执行所需依赖，分别是对应的maven库和插件
-    ConfigUtils.init(gradle)
-    ConfigUtils.addRepos(repositories)
-    dependencies {
-        classpath "com.android.tools.build:gradle:4.1.1"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
-        classpath ArouterDeps.arouterRegisterPlugin
-        classpath GradleDeps.benmanesGradleVersionPlugin
-    }
-}
-allprojects { //allprojects里是项目本身需要的依赖
-    ConfigUtils.addRepos(repositories)
-    configurations.all {
-        //每隔xxx时间检查远程依赖是否存在更新
-        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-    }
-}
-
-task clean(type: Delete) {//可通过 gradlew clean 命令执行
-    delete rootProject.buildDir//删除 build 文件夹任务
+plugins {
+    id 'com.android.application' version '8.4.1' apply false
+    id 'com.android.library' version '8.4.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.24' apply false
+    id 'com.alibaba.arouter' version '1.0.2' apply false
 }
 
 

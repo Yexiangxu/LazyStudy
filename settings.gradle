@@ -1,18 +1,28 @@
-import groovy.json.JsonSlurper
-/**
- * include ':bulidSrc' 插件必须命名为bulidSrc，不能放在setting.gradle中
- * 在 config.json 中 根据 appConfig 和 pkgConfig 来 include 本地模块
- */
-def config = new JsonSlurper().parse(file("./config.json"))
-config.libConfig.forEach {
-    if (it.isApply){
-        def projectPath = ":${it.libPath.substring(1).replace(":", "_")}"
-        //重新命名引用lib或module名，lib为`lib_xxx`，module为`module_xxx`
-        include projectPath
-        project(projectPath).projectDir = file(it.libPath.substring(1).replace(":", "/"))
-        println("GLogTag include libPath=${it.libPath},projectPath=$projectPath,projectDir=${project(projectPath).projectDir}")
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
-
-
-//include ':lib_device'
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+rootProject.name = "LazyStudy"
+include ':app'
+include ':module_video'
+include ':module_search'
+include ':module_mine'
+include ':module_login'
+include ':module_function'
+include ':lib_res'
+include ':lib_music'
+include ':lib_database'
+include ':lib_common'
+include ':lib_base'
+include ':lib:network'

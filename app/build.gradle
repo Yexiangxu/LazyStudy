@@ -1,8 +1,11 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 apply from: "${rootDir.path}/buildCommon.gradle"// ./同级目录; ../上级目录; 上上级 ../../
 
 configSigning()
 android {
+    namespace 'com.lazyxu.lazystudy'
     defaultConfig {
         applicationId "com.lazyxu.lazystudy"
         versionCode BuildConfig.versionCode
@@ -50,7 +53,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 
     implementation project(path: ':lib_database')
-    implementation project(path: ':lib_network')
+    implementation project(path: ':lib:network')
     implementation CommonDeps.refreshLayout
     implementation CommonDeps.refreshHeader
     implementation CommonDeps.refreshFooter

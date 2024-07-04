@@ -9,10 +9,7 @@ android {
     defaultConfig {
         minSdkVersion BuildConfig.minSdkVersion
         targetSdkVersion BuildConfig.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
         resConfigs "zh"
-        multiDexEnabled true
         //(低于5.0手机使用会出现闪退)svg矢量图中可以使用 color.xml中资源文件，解决 Resource references will not work correctly in images generated for this vector icon for API < 24; check generated icon to make sure it looks acceptable
 //        vectorDrawables.useSupportLibrary = true//不能使用该属性，否则android7以下手机使用复杂矢量图会报错
         consumerProguardFiles 'proguard-rules.pro'
@@ -48,11 +45,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     lintOptions {
         abortOnError false//true:错误发生后停止gradle构建
@@ -68,7 +65,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])//一条依赖引入libs下所有的aar
-    implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-process:2.8.3'
 
     api ArouterDeps.arouterApi
     kapt ArouterDeps.arouterCompiler//将编译类路径与注释处理器类路径分开，从而提高构建性能
