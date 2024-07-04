@@ -1,6 +1,8 @@
-package com.lazyxu.network.manager
+package com.lazyxu.network
 
-import com.lazyxu.network.ApiService
+import com.lazyxu.network.manager.NetworkApi
+import com.lazyxu.network.service.ApiService
+
 
 /**
  * User:Lazy_xu

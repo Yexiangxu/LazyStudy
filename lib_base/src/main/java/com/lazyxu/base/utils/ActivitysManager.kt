@@ -8,7 +8,7 @@ import android.content.ContextWrapper
  * User:Lazy_xu
  * FIXME
  */
-object ActivitysManager  {
+object ActivitysManager {
     private var mActivities = mutableListOf<Activity>()
 
     fun addActivity(activity: Activity) {
@@ -20,18 +20,32 @@ object ActivitysManager  {
             mActivities.remove(activity)
         }
     }
+
     fun isActivityDestory(context: Context): Boolean {
         val activity = findActivity(context)
         return if (activity != null) {
             activity.isDestroyed || activity.isFinishing
         } else true
     }
+
     private fun findActivity(context: Context): Activity? {
         // 怎么判断context是不是Activity
         if (context is Activity) { // 这种方法不够严谨
             return context
         } else if (context is ContextWrapper) {
             return findActivity(context.baseContext)
+        }
+        return null
+    }
+
+    /**
+     * 获取指定类名的Activity
+     */
+    fun getActivity(cls: Class<*>): Activity? {
+        mActivities.forEach {
+            if (it.javaClass == cls) {
+                return it
+            }
         }
         return null
     }

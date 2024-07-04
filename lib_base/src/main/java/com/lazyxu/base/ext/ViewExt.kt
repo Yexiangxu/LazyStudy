@@ -37,6 +37,50 @@ fun View.setClipViewCornerRadius(radius: Int) {
     this.clipToOutline = true
 }
 
+/**
+ * 设置View顶部圆角
+ */
+fun View.setClipViewCornerTopRadius(radius: Int) {
+    if (radius > 0) {
+        outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View?, outline: Outline?) {
+                outline?.setRoundRect(
+                    0,
+                    0,
+                    view?.width ?: 0,
+                    view?.height?.plus(radius) ?: 0,
+                    radius.toFloat()
+                )
+            }
+        }
+        clipToOutline = true
+    } else {
+        clipToOutline = false
+    }
+}
+
+/**
+ * 设置View底部圆角
+ */
+fun View.setClipViewCornerBottomRadius(radius: Int) {
+    if (radius > 0) {
+        outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View?, outline: Outline?) {
+                outline?.setRoundRect(
+                    0,
+                    -radius,
+                    view?.width ?: 0,
+                    view?.height ?: 0,
+                    radius.toFloat()
+                )
+            }
+        }
+        clipToOutline = true
+    } else {
+        clipToOutline = false
+    }
+}
+
 
 private const val MIN_CLICK_DELAY_TIME = 1000
 private var lastClickTime = 0L
@@ -73,7 +117,6 @@ fun View.showKeyBoard() {
         this.context.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.showSoftInput(this, InputMethodManager.RESULT_UNCHANGED_SHOWN)
 }
-
 
 
 //fun View.showSnackbar(snackbarText: String, timeLength: Int) {

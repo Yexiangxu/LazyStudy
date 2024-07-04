@@ -12,12 +12,15 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.facebook.stetho.Stetho
 import com.lazyxu.base.BuildConfig
 import com.lazyxu.base.R
-import com.lazyxu.base.log.LogUtils
-import com.lazyxu.base.utils.*
+import com.lazyxu.base.utils.AudioPlayManager
+import com.lazyxu.base.utils.BuildConfigs
+import com.lazyxu.base.utils.DeviceUtil
+import com.lazyxu.base.utils.MyCrashHandler
+import com.lazyxu.base.utils.ProcessUtils
+import com.lazyxu.base.utils.SpUtils
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.squareup.leakcanary.LeakCanary
-import com.squareup.leakcanary.RefWatcher
 import com.tencent.bugly.crashreport.CrashReport
 
 
@@ -25,8 +28,8 @@ abstract class BaseApplication : Application() {
 
     companion object {
         lateinit var INSTANCE: Application
-//        var refWatcher: RefWatcher? = null
     }
+
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
@@ -43,7 +46,7 @@ abstract class BaseApplication : Application() {
     /**
      * 初始化项目里面需要的
      */
-    private fun initProject(){
+    private fun initProject() {
         AudioPlayManager.instance.init(this)
     }
 
@@ -100,6 +103,4 @@ abstract class BaseApplication : Application() {
         }
         ARouter.init(INSTANCE)
     }
-
-
 }

@@ -1,10 +1,9 @@
-//用来存放相同的gradle配置
-apply plugin: 'kotlin-android'//用于编译Android代码
-apply plugin: 'kotlin-kapt'//启用Kotlin注解处理工具
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'com.alibaba.arouter'//能减少arouter初始化时间
-
-
+plugins {
+    id 'org.jetbrains.kotlin.android'//用于编译Android代码
+    id 'kotlin-kapt'//启用Kotlin注解处理工具
+    id 'kotlin-parcelize'
+    id 'com.alibaba.arouter'//能减少arouter初始化时间
+}
 android {
     compileSdkVersion BuildConfig.compileSdkVersion
     defaultConfig {
@@ -70,7 +69,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])//一条依赖引入libs下所有的aar
     implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
-    testImplementation 'junit:junit:4.13.2'
+
     api ArouterDeps.arouterApi
     kapt ArouterDeps.arouterCompiler//将编译类路径与注释处理器类路径分开，从而提高构建性能
     //提供协程的基础API

@@ -1,4 +1,4 @@
-package com.lazyxu.network
+package com.lazyxu.network.service
 
 import com.example.lib_common.entity.SearchResult
 import com.lazyxu.network.entity.SearchRecommend
@@ -18,7 +18,7 @@ interface ApiService {
      * 搜索热词
      */
     @GET("hotkey/json")
-    suspend fun getSearchRecommend(): BaseResponse<MutableList<SearchRecommend>?>
+    suspend fun getSearchRecommend(): BaseResponse<MutableList<SearchRecommend>>
 
     /**
      * 搜索结果

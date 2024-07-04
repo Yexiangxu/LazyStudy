@@ -2,6 +2,7 @@
 <!--这里必须要嵌套一层，因为 include 中也要设置id，直接通过 findViewById<Toolbar>(R.id.tb_title)找会报错-->
 <com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -18,7 +19,8 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/app_name"
         app:titleMarginStart="@dimen/dp_30"
-        app:titleTextAppearance="@style/ToolBarTitle">
+        app:titleTextAppearance="@style/ToolBarTitle"
+        tools:ignore="RtlSymmetry">
 
     </androidx.appcompat.widget.Toolbar>
 

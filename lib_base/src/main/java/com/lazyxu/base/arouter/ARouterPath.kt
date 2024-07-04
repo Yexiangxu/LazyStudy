@@ -22,6 +22,13 @@ object ARouterPath {
         }
     }
 
+    class Video {
+        companion object {
+            private const val videoGroup = "/video"
+            const val PLAY = "$videoGroup/play"
+        }
+    }
+
     /**
      * 功能demo
      */

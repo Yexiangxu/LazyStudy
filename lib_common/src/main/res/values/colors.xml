@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAccent">#e36765</color>
-    <color name="nav_selected">@color/splash_color</color>
-    <color name="nav_unselected">#6b717c</color>
-    <color name="color_main_bg">#f7fafc</color>
-
-    <color name="white">#ffffffff</color>
-    <color name="black">#000000</color>
     <color name="black_333333">#333333</color>
-
     <color name="gray_666666">#666666</color>
-
-
-    <drawable name="default_image">#FFE0E0E0</drawable>
-
-
     <color name="splash_color">#FF1F1B</color>
-
-
-    <color name="toast_main">#b51d1a1a</color>
     <color name="test">#bc2a2a</color>
-
     <color name="gray_FFE8E8E8">#FFE8E8E8</color>
     <color name="gray_f6f6f6">#F6F6F6</color>
     <color name="gray_e3e3e3">#E3E3E3</color>
-
 
 </resources>

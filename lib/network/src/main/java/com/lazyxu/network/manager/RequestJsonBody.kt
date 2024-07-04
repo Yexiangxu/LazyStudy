@@ -1,4 +1,4 @@
-package com.lazyxu.network
+package com.lazyxu.network.manager
 
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
@@ -11,7 +11,6 @@ class RequestJsonBody {
 
     fun get(key: String): String {
         return jsonObject.optString(key, "")
-        ApiReuslt.Sucess
     }
 
     fun remove(key: String) {

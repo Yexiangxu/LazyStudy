@@ -2,7 +2,7 @@
 //
 //import com.lazyxu.login.entity.UserEntity
 //import com.lazyxu.login.http.LoginApiService
-//import com.lazyxu.network.RequestJsonBody
+//import com.lazyxu.network.manager.RequestJsonBody
 //import com.lazyxu.network.ResponseResult
 //import com.lazyxu.network.base.BaseResponse
 //import com.lazyxu.network.doFailure

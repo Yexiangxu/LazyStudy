@@ -18,6 +18,7 @@ abstract class BaseVbVmFragment<VB : ViewBinding, VM : ViewModel> : BaseVbFragme
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViewModel()
         super.onViewCreated(view, savedInstanceState)
+        createObserver()
     }
 
     private fun initViewModel() {
@@ -25,4 +26,6 @@ abstract class BaseVbVmFragment<VB : ViewBinding, VM : ViewModel> : BaseVbFragme
         val argument = (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments
         mViewModel = ViewModelProvider(this).get(argument[1].saveAsUnChecked())
     }
+
+    abstract fun createObserver()
 }

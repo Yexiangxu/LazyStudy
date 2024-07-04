@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#e36765</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#000000</color>
+    <drawable name="default_image">#FFE0E0E0</drawable>
+    <color name="nav_selected">@color/colorAccent</color>
+    <color name="nav_unselected">#6b717c</color>
+    <color name="toast_main">#b51d1a1a</color>
+    <color name="color_main_bg">#f7fafc</color>
+
+
+
+
+</resources>

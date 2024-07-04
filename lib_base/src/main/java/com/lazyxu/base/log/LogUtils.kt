@@ -32,9 +32,9 @@ object LogUtils {
     }
 
     @JvmStatic
-    fun e(msg: String) {
+    fun e(tag: String? = LogTag.COMMON, msg: String) {
         if (BuildConfigs.IS_DEV) {
-            Logger.t(LogTag.COMMON).e(msg)
+            Logger.t(tag).e(msg)
         }
     }
 }

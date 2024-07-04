@@ -27,7 +27,8 @@
     {
       "isApply": true,
       "libPath": ":module_search"
-    },{
+    },
+    {
       "isApply": true,
       "libPath": ":module_function"
     },
@@ -38,11 +39,14 @@
     {
       "isApply": true,
       "libPath": ":lib_music"
-    }
-  ,
+    },
     {
       "isApply": true,
       "libPath": ":lib_database"
+    },
+    {
+      "isApply": true,
+      "libPath": ":module_video"
     }
   ]
 }

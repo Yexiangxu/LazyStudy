@@ -1,9 +1,7 @@
 apply plugin: 'com.android.application'
 apply from: "${rootDir.path}/buildCommon.gradle"// ./同级目录; ../上级目录; 上上级 ../../
 
-//apply plugin: 'com.lazyxu.testplugin'
 configSigning()
-//configApkName()
 android {
     defaultConfig {
         applicationId "com.lazyxu.lazystudy"
@@ -49,6 +47,8 @@ android {
 }
 
 dependencies {
+    testImplementation 'junit:junit:4.13.2'
+
     implementation project(path: ':lib_database')
     implementation project(path: ':lib_network')
     implementation CommonDeps.refreshLayout
@@ -62,7 +62,7 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
 
     implementation project(':module_search')
-
+    implementation project(':module_video')
     implementation project(':lib_common')
     implementation project(':lib_music')
     implementation project(':module_mine')

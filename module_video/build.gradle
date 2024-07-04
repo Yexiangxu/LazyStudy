@@ -1,0 +1,14 @@
+dependencies {
+    compileOnly project(path: ':lib_network')
+    compileOnly project(path: ':lib_database')
+
+    implementation project(path: ':lib_common')
+
+    compileOnly CommonDeps.refreshLayout
+    compileOnly CommonDeps.refreshHeader
+    compileOnly CommonDeps.refreshFooter
+//    implementation CommonDeps.media3ExoPlayer
+//    implementation CommonDeps.media3Ui
+//    implementation CommonDeps.media3Session
+    implementation "com.google.android.exoplayer:exoplayer:2.18.5"
+}
