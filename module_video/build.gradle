@@ -12,8 +12,6 @@ dependencies {
     compileOnly CommonDeps.refreshLayout
     compileOnly CommonDeps.refreshHeader
     compileOnly CommonDeps.refreshFooter
-//    implementation CommonDeps.media3ExoPlayer
-//    implementation CommonDeps.media3Ui
-//    implementation CommonDeps.media3Session
-    implementation "com.google.android.exoplayer:exoplayer:2.18.5"
+    implementation CommonDeps.media3ExoPlayer
+    implementation CommonDeps.media3Ui
 }

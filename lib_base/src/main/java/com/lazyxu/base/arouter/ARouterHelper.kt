@@ -12,48 +12,37 @@ import com.lazyxu.base.utils.NetUtils
 import java.io.Serializable
 
 object ARouterHelper {
-    sealed class ParamWrapper {
-        data class StringParam(val value: String) : ParamWrapper()
-        data class IntParam(val value: Int) : ParamWrapper()
-        data class LongParam(val value: Long) : ParamWrapper()
-        data class DoubleParam(val value: Double) : ParamWrapper()
-        data class ShortParam(val value: Short) : ParamWrapper()
-        data class BundleParam(val value: Bundle) : ParamWrapper()
-        data class FloatParam(val value: Float) : ParamWrapper()
-        data class BooleanParam(val value: Boolean) : ParamWrapper()
-        data class SerializableParam(val value: Serializable) : ParamWrapper()
-        data class ParcelableParam(val value: Parcelable) : ParamWrapper()
-        data class StringListParam(val value: ArrayList<String>) : ParamWrapper()
-        data class ParcelableListParam(val value: ArrayList<Parcelable>) : ParamWrapper()
-    }
 
     private fun Postcard.getParams(params: Map<String, Any> = mapOf()) {
         if (params.isEmpty()) return
-        params.forEach { entry ->
-            when (val param = entry.value) {
-                is ParamWrapper.StringParam -> withString(entry.key, param.value)
-                is ParamWrapper.IntParam -> withInt(entry.key, param.value)
-                is ParamWrapper.LongParam -> withLong(entry.key, param.value)
-                is ParamWrapper.DoubleParam -> withDouble(entry.key, param.value)
-                is ParamWrapper.ShortParam -> withShort(entry.key, param.value)
-                is ParamWrapper.BundleParam -> withBundle(entry.key, param.value)
-                is ParamWrapper.FloatParam -> withFloat(entry.key, param.value)
-                is ParamWrapper.BooleanParam -> withBoolean(entry.key, param.value)
-                is ParamWrapper.SerializableParam -> withSerializable(
-                    entry.key,
-                    param.value
-                )
+        params.map {
+            when (it.value) {
+                is String -> withString(it.key, it.value as String)
+                is Int -> withInt(it.key, it.value as Int)
+                is Long -> withLong(it.key, it.value as Long)
+                is Double -> withDouble(it.key, it.value as Double)
+                is Short -> withShort(it.key, it.value as Short)
+                is Bundle -> withBundle(it.key, it.value as Bundle)
+                is Float -> withFloat(it.key, it.value as Float)
+                is Boolean -> withBoolean(it.key, it.value as Boolean)
+                is Serializable -> withSerializable(it.key, it.value as Serializable)
+                is Parcelable -> withParcelable(it.key, it.value as Parcelable)
+                is ArrayList<*> -> {
+                    when {
+                        it.value is ArrayList<*> && (it.value as ArrayList<*>).all { item -> item is String } ->
+                            withStringArrayList(it.key, it.value as ArrayList<String>)
 
-                is ParamWrapper.ParcelableParam -> withParcelable(entry.key, param.value)
-                is ParamWrapper.StringListParam -> withStringArrayList(
-                    entry.key,
-                    param.value
-                )
+                        it.value is ArrayList<*> && (it.value as ArrayList<*>).all { item -> item is Parcelable } ->
+                            withParcelableArrayList(it.key, it.value as ArrayList<Parcelable>)
 
-                is ParamWrapper.ParcelableListParam -> withParcelableArrayList(
-                    entry.key,
-                    param.value
-                )
+                        else -> {
+                        }
+                    }
+                }
+
+                else -> {
+
+                }
             }
         }
     }

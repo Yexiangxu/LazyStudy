@@ -60,9 +60,9 @@ object CommonDeps {
     const val refreshHeader = "io.github.scwang90:refresh-header-classics:2.1.0"
     const val refreshFooter = "io.github.scwang90:refresh-footer-classics:2.1.0"
 
-    const val media3ExoPlayer = "androidx.media3:media3-exoplayer:1.1.0"
-    const val media3Ui="androidx.media3:media3-ui:1.1.0"
-    const val media3Session="androidx.media3:media3-session:1.1.0"
+    const val media3ExoPlayer = "androidx.media3:media3-exoplayer:1.3.1"
+    const val media3Ui="androidx.media3:media3-ui:1.3.1"
+//    const val media3Session="androidx.media3:media3-session:1.3.1"
 
 }
 

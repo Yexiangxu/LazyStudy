@@ -27,6 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LogUtils.d("${javaClass.simpleName} onCreate")
+        ARouter.getInstance().inject(this)
 //        if (!isTaskRoot) { //防止首次安装按home键重新启动
 //            val intent = intent
 //            val action = intent.action
@@ -40,7 +41,6 @@ abstract class BaseActivity : AppCompatActivity() {
             setCommonTitle()
         }
         ActivitysManager.addActivity(this)
-        ARouter.getInstance().inject(this)
         initStatusbar()
         initView()
         initData()

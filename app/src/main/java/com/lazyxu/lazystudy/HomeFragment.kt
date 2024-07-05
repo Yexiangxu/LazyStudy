@@ -9,7 +9,6 @@ import com.lazyxu.base.ext.dp2px
 import com.lazyxu.base.utils.decoration.NormalItemDecoration
 import com.lazyxu.base.utils.snaphelper.StartSnapHelper
 import com.lazyxu.lazystudy.databinding.FragmentHomeBinding
-import com.lazyxu.lib_database.entity.VideoEntity
 
 
 class HomeFragment : BaseVbVmFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -45,7 +44,9 @@ class HomeFragment : BaseVbVmFragment<FragmentHomeBinding, HomeViewModel>() {
         rankAdapter.setOnItemClickListener { adapter, view, position ->
             ARouterHelper.goActivityNeedNet(
                 ARouterPath.Video.PLAY,
-                mapOf(Constants.KEY_VIDEO_PLAY_LIST to adapter.data as ArrayList<VideoEntity>)
+                mapOf(
+                    Constants.KEY_VIDEO_PLAY_LIST to adapter.data
+                )
             )
         }
     }

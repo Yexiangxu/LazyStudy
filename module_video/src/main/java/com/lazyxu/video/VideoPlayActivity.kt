@@ -2,35 +2,36 @@ package com.lazyxu.video
 
 import android.view.View
 import android.widget.FrameLayout
-
+import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
+import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.database.StandaloneDatabaseProvider
+import androidx.media3.datasource.DataSource
+import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.datasource.FileDataSource
+import androidx.media3.datasource.cache.Cache
+import androidx.media3.datasource.cache.CacheDataSink
+import androidx.media3.datasource.cache.CacheDataSource
+import androidx.media3.datasource.cache.LeastRecentlyUsedCacheEvictor
+import androidx.media3.datasource.cache.SimpleCache
+import androidx.media3.exoplayer.DefaultLoadControl
+import androidx.media3.exoplayer.DefaultRenderersFactory
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.RenderersFactory
+import androidx.media3.exoplayer.source.MediaSource
+import androidx.media3.exoplayer.source.ProgressiveMediaSource
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
+import androidx.media3.ui.AspectRatioFrameLayout
+import androidx.media3.ui.PlayerView
+import androidx.media3.ui.PlayerView.SHOW_BUFFERING_NEVER
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_common.constant.Constants
-import com.google.android.exoplayer2.DefaultLoadControl
-import com.google.android.exoplayer2.DefaultRenderersFactory
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.PlaybackException
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.RenderersFactory
-import com.google.android.exoplayer2.database.StandaloneDatabaseProvider
-import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.StyledPlayerView
-import com.google.android.exoplayer2.ui.StyledPlayerView.SHOW_BUFFERING_NEVER
-import com.google.android.exoplayer2.upstream.DataSource
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
-import com.google.android.exoplayer2.upstream.FileDataSource
-import com.google.android.exoplayer2.upstream.cache.Cache
-import com.google.android.exoplayer2.upstream.cache.CacheDataSink
-import com.google.android.exoplayer2.upstream.cache.CacheDataSource
-import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor
-import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.base.actvity.BaseVbVmActivity
+import com.lazyxu.base.base.head.HeadToolbar
 import com.lazyxu.base.log.LogTag
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.base.utils.layoutmanager.OnViewPagerListener
@@ -38,23 +39,27 @@ import com.lazyxu.base.utils.layoutmanager.PagerLayoutManager
 import com.lazyxu.lib_database.entity.VideoEntity
 import com.lazyxu.video.adapter.VideoAdapter
 import com.lazyxu.video.databinding.ActivityPlayVideoBinding
-import com.lazyxu.video.R
+
 /**
  * User:Lazy_xu
  * Date:2024/05/29
  * Description:仿抖音上下滑动播放页
  * FIXME
  */
+@UnstableApi
 @Route(path = ARouterPath.Video.PLAY)
 class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewModel>() {
     @Autowired(name = Constants.KEY_VIDEO_PLAY_LIST)
     @JvmField
     var mData: ArrayList<VideoEntity>? = null
+    override fun headToolbar() =
+        HeadToolbar.Builder().statusBarColor(com.lazyxu.base.R.color.black).build()
+
     private val videoAdapter by lazy {
         VideoAdapter()
     }
     private var mExoPlayer: ExoPlayer? = null
-    private var mPlayView: StyledPlayerView? = null
+    private var mPlayView: PlayerView? = null
 
     //缓存对象
     private lateinit var mCache: Cache
@@ -83,12 +88,9 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
             layoutManager = manager
             adapter = videoAdapter
         }
-        if (mData.isNullOrEmpty()) {
-            mViewBinding.refreshBest.isRefreshing = false
-        } else {
-            mViewBinding.refreshBest.isRefreshing = true
-        }
+        videoAdapter.setList(mData)
         mViewBinding.refreshBest.setOnRefreshListener {
+            mViewBinding.refreshBest.isRefreshing = false
         }
         mViewBinding.refreshBest.setColorSchemeResources(
             com.lazyxu.base.R.color.colorAccent,
@@ -159,6 +161,7 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
 
     //当前播放位置
     private var mPlayingPosition = -1
+
     private fun startPlay(isnext: Boolean, position: Int, view: View?) {
         if (view == null || position < 0 || position >= videoAdapter.data.size || position == mPlayingPosition) return
         mPlayingPosition = position
@@ -169,7 +172,8 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
         (mPlayView?.parent as? FrameLayout)?.removeAllViews()
         val frameLayout = view.findViewById<FrameLayout>(R.id.fl_play)
         frameLayout.addView(mPlayView)
-        val mediaSource: MediaSource = mMediaSource.createMediaSource(MediaItem.fromUri(item.play_url))
+        val mediaSource: MediaSource =
+            mMediaSource.createMediaSource(MediaItem.fromUri(item.play_url))
         //设置ExoPlayer需要播放的多媒体item
         mExoPlayer?.setMediaSource(mediaSource)
         mExoPlayer?.prepare()
@@ -186,12 +190,12 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
     }
 
     private fun initPlayer() {
+        mMediaSource = ProgressiveMediaSource.Factory(buildCacheDataSource())
         mPlayView = initPlayView()
         mExoPlayer = initExoPlayer()
         // 创建 MediaSource 媒体资源 加载的工厂类
         // 因为由它创建的 MediaSource 能够实现边缓冲边播放的效果,
         // 如果需要播放hls,m3u8 则需要创建DashMediaSource.Factory()
-        mMediaSource = ProgressiveMediaSource.Factory(buildCacheDataSource())
         //缓冲完成自动播放
         mExoPlayer?.playWhenReady = true
         mPlayView?.player = mExoPlayer
@@ -201,8 +205,8 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
     /**
      * 创建exoplayer播放器实例
      */
-    private fun initPlayView(): StyledPlayerView {
-        return StyledPlayerView(this).apply {
+    private fun initPlayView(): PlayerView {
+        return PlayerView(this).apply {
             controllerShowTimeoutMs = 10000
             setKeepContentOnPlayerReset(false)
             setShowBuffering(SHOW_BUFFERING_NEVER)//不展示缓冲view
@@ -212,9 +216,10 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
     }
 
     private fun initExoPlayer(): ExoPlayer {
-        val playerBuilder = ExoPlayer.Builder(this).setMediaSourceFactory(mMediaSource)
+        val playerBuilder = ExoPlayer.Builder(this)
         //视频每一帧的画面如何渲染,实现默认的实现类
         val renderersFactory: RenderersFactory = DefaultRenderersFactory(this)
+        playerBuilder.setMediaSourceFactory(mMediaSource)
         playerBuilder.setRenderersFactory(renderersFactory)
         //视频的音视频轨道如何加载,使用默认的轨道选择器
         playerBuilder.setTrackSelector(DefaultTrackSelector(this))
@@ -245,13 +250,17 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
     }
 
     private val playerListener = object : Player.Listener {
-        override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+        //        override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+//
+//        }
+        override fun onPlaybackStateChanged(playbackState: Int) {
+            super.onPlaybackStateChanged(playbackState)
             LogUtils.d(
                 LogTag.VIDEO,
-                "onPlayerStateChanged playWhenReady == $playWhenReady | playbackState:$playbackState"
+                "onPlayerStateChanged  playbackState:$playbackState"
             )
             //判断当前视屏是否已经准备好
-            val mIsPlaying = mExoPlayer?.bufferedPosition != 0L && playWhenReady
+            val mIsPlaying = mExoPlayer?.bufferedPosition != 0L
             when (playbackState) {
                 Player.STATE_IDLE -> {//播放错误
                 }
