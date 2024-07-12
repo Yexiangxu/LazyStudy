@@ -12,6 +12,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.facebook.stetho.Stetho
 import com.lazyxu.base.BuildConfig
 import com.lazyxu.base.R
+import com.lazyxu.base.log.LogTag
 import com.lazyxu.base.utils.AudioPlayManager
 import com.lazyxu.base.utils.BuildConfigs
 import com.lazyxu.base.utils.DeviceUtil
@@ -19,7 +20,9 @@ import com.lazyxu.base.utils.MyCrashHandler
 import com.lazyxu.base.utils.ProcessUtils
 import com.lazyxu.base.utils.SpUtils
 import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
+import com.orhanobut.logger.PrettyFormatStrategy
 import com.tencent.bugly.crashreport.CrashReport
 
 
@@ -54,7 +57,12 @@ abstract class BaseApplication : Application() {
      */
     private fun initSdk() {
         if (BuildConfigs.IS_DEV) {
-            Logger.addLogAdapter(AndroidLogAdapter())//用来查看log日志
+            val formatStrategy: FormatStrategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(false)// 隐藏线程信息
+                .methodCount(0)// 隐藏方法信息
+                .tag(LogTag.COMMON)
+                .build()
+            Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))//用来查看log日志
             Stetho.initializeWithDefaults(this)//用来调试查看数据库
             MyCrashHandler.getInstance().init(this)
 //            refWatcher = LeakCanary.install(this)

@@ -29,9 +29,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lib_common.constant.Constants
+import com.gyf.immersionbar.ImmersionBar
 import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.base.actvity.BaseVbVmActivity
-import com.lazyxu.base.base.head.HeadToolbar
 import com.lazyxu.base.log.LogTag
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.base.utils.layoutmanager.OnViewPagerListener
@@ -52,8 +52,12 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
     @Autowired(name = Constants.KEY_VIDEO_PLAY_LIST)
     @JvmField
     var mData: ArrayList<VideoEntity>? = null
-    override fun headToolbar() =
-        HeadToolbar.Builder().statusBarColor(com.lazyxu.base.R.color.black).build()
+    override fun initStatusbar() {
+        ImmersionBar.with(this)
+            .titleBarMarginTop(mViewBinding.tbTitle)
+            .navigationBarColor(com.lazyxu.base.R.color.black)
+            .init()
+    }
 
     private val videoAdapter by lazy {
         VideoAdapter()
@@ -145,16 +149,16 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
 
 
         override fun onPageRelease(isNext: Boolean, position: Int, view: View?) {
-            LogUtils.d("VideoTag", "onPageRelease===$isNext | $position")
+            LogUtils.d(LogTag.VIDEO, "onPageRelease===$isNext | $position")
         }
 
         override fun onPageSelected(isNext: Boolean, position: Int, view: View?) {
-            LogUtils.d("VideoTag", "onPageSelected===$position,isNext=$isNext")
+            LogUtils.d(LogTag.VIDEO, "onPageSelected===$position,isNext=$isNext")
             startPlay(isNext, position, view)
         }
 
         override fun onPreLoadMore(position: Int, view: View?) {
-            LogUtils.d("VideoTag", "onLoadMore===$position ")
+            LogUtils.d(LogTag.VIDEO, "onLoadMore===$position ")
             loadMore()
         }
     }
@@ -250,9 +254,7 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
     }
 
     private val playerListener = object : Player.Listener {
-        //        override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
-//
-//        }
+
         override fun onPlaybackStateChanged(playbackState: Int) {
             super.onPlaybackStateChanged(playbackState)
             LogUtils.d(

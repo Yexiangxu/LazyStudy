@@ -27,7 +27,7 @@ object LogUtils {
     @JvmStatic
     fun d(tag: String, msg: String) {
         if (BuildConfigs.IS_DEV) {
-            Logger.t(tag).d(msg)
+            Logger.t(tag).v(msg)
         }
     }
 
