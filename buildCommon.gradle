@@ -7,6 +7,7 @@ apply plugin: 'com.alibaba.arouter'//能减少arouter初始化时间
 
 android {
     compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion "30.0.3"
     defaultConfig {
         minSdkVersion BuildConfig.minSdkVersion
         targetSdkVersion BuildConfig.targetSdkVersion

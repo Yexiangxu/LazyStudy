@@ -17,7 +17,6 @@ object Versions {
     const val mmkvVersion = "1.2.10"
     const val stethoVerison = "1.6.0"
     const val multidex = "2.0.1"
-    const val brvah = "3.0.4"
     const val lifecycle = "2.3.1"
     const val okhttp = "4.9.0"
     const val retrofit = "2.9.0"
@@ -87,7 +86,7 @@ object CommonDeps {
 
 
     const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
-    const val brvah = "com.github.CymChad:BaseRecyclerViewAdapterHelper:${Versions.brvah}"
+    const val brvah = "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4"
     const val refreshLayout = "io.github.scwang90:refresh-layout-kernel:2.1.0"
     const val refreshHeader = "io.github.scwang90:refresh-header-classics:2.1.0"
     const val refreshFooter = "io.github.scwang90:refresh-footer-classics:2.1.0"

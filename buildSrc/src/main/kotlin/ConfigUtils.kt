@@ -18,7 +18,6 @@ object ConfigUtils {
         mavenCentral()//因JCenter仓库自2021.5.1关闭，谷歌推荐使用Maven Central仓库，并创建项目默认将jcenter()变成mavenCentral()
         maven { setUrl("https://jitpack.io") }//或 it.maven { url = URI("https://jitpack.io") } }
 
-        maven { setUrl("http://172.18.10.120:8081/repository/android-group/") }
     }
 
     private fun addCommonGradle(gradle: Gradle) {

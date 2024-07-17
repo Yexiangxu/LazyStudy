@@ -25,7 +25,8 @@ class MainActivity : BaseVbActivity<FunctionActivityMainBinding>() {
         mList = mutableListOf(
             getString(R.string.function_dragrecyclerview),
             getString(R.string.function_deleterecyclerview),
-            getString(R.string.function_dispatch)
+            getString(R.string.function_dispatch),
+            "自定义view",
         )
         mAdapter = MainAdapter(this, mList)
         mViewBinding.rvMain.adapter = mAdapter
@@ -46,6 +47,9 @@ class MainActivity : BaseVbActivity<FunctionActivityMainBinding>() {
                 2 -> {
                     startActivity(Intent(this, DispatchActivity::class.java))
 //                    ARouterHelper.goActivity(ARouterPath.Function.DISPATCH)
+                }
+                3->{
+                    ARouterHelper.goActivity(ARouterPath.Function.DELETEECYCLERVIEW)
                 }
             }
         }

@@ -54,6 +54,7 @@ dependencies {
     implementation CommonDeps.refreshLayout
     implementation CommonDeps.refreshHeader
     implementation CommonDeps.refreshFooter
+    implementation CommonDeps.brvah
 
 //    compileOnly GradleDeps.gradlePlugin//用来查看gradle jar的源码(在项目的External Libraries中)
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
