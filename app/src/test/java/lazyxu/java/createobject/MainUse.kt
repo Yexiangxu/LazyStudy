@@ -1,7 +1,7 @@
 package lazyxu.java.createobject
 
-import com.lazyxu.lazystudy.test.Person
-import com.lazyxu.lazystudy.test.Person1
+import lazyxu.entity.Person
+import lazyxu.entity.Person1
 import org.junit.Test
 
 /**

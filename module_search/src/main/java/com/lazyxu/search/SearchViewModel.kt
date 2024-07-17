@@ -8,10 +8,13 @@ import com.lazyxu.base.log.LogTag
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.lib_database.entity.SearchEntity
 import com.lazyxu.lib_database.manager.LazyListDaoManager
+import com.lazyxu.network.ApiManager
 import com.lazyxu.network.entity.SearchRecommend
-import com.lazyxu.network.manager.ApiManager
+import com.lazyxu.network.respose.ApiResponse
 import com.lazyxu.network.viewmodel.BaseViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -45,16 +48,17 @@ class SearchViewModel : BaseViewModel() {
         }
     }
 
-    private val _searchRecommendList = MutableLiveData<MutableList<SearchRecommend>?>()
-    var searchRecommendList: LiveData<MutableList<SearchRecommend>?> = _searchRecommendList
+    private val _searchRecommendList =
+        MutableStateFlow<ApiResponse<MutableList<SearchRecommend>>>(ApiResponse.Empty())
+    var searchRecommendList: StateFlow<ApiResponse<MutableList<SearchRecommend>>> =
+        _searchRecommendList
+
     fun getRecommendSearch() {
-        viewModelScope.launch {
-            runCatching {
-                ApiManager.apiService.getSearchRecommend()
-            }.onSuccess {
-                _searchRecommendList.postValue(it.data)
-            }
-        }
+        launchFlow(
+            requestBlock = { ApiManager.apiService.getSearchRecommend() },
+            responseBlock = {
+                _searchRecommendList.value = it
+            })
     }
 
     private val _searchResult = MutableLiveData<SearchResult?>()

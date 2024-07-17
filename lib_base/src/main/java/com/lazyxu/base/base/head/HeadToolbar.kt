@@ -1,6 +1,8 @@
 package com.lazyxu.base.base.head
 
-import androidx.annotation.*
+import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
+import androidx.annotation.DrawableRes
 import com.lazyxu.base.R
 
 class HeadToolbar(build: Builder) {
@@ -29,14 +31,13 @@ class HeadToolbar(build: Builder) {
     val isHideBack = build.isHideBack
 
 
-
     class Builder : IHeadBuilder {
         internal var toolbarTitle: Any? = null
         internal var toolbarTitleSize = -1
         internal var toolbarTitleColor = -1
         internal var toolbarBgColor = -1
         internal var backDrawable = -1
-        internal var backClick:  (() -> Unit)? = null
+        internal var backClick: (() -> Unit)? = null
         internal var statusBarColor = R.color.colorAccent
         internal var isHideBack = false
 

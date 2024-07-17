@@ -6,5 +6,6 @@ data class BaseResponse<T>(
     var errorCode: Int,
     var errorMsg: String
 ) {
-    fun isSuccess() = errorCode == 0
+    val isSuccess: Boolean
+        get() = errorCode == 0
 }

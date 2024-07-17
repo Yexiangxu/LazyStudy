@@ -1,21 +1,53 @@
 package com.lazyxu.lazystudy
 
-import com.lazyxu.base.base.fragment.BaseVbFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.lib_common.constant.Constants
 import com.lazyxu.base.arouter.ARouterHelper
 import com.lazyxu.base.arouter.ARouterPath
-import com.lazyxu.base.ext.setOnNoDoubleClickListener
+import com.lazyxu.base.base.fragment.BaseVbVmFragment
+import com.lazyxu.base.ext.dp2px
+import com.lazyxu.base.utils.decoration.NormalItemDecoration
+import com.lazyxu.base.utils.snaphelper.StartSnapHelper
 import com.lazyxu.lazystudy.databinding.FragmentHomeBinding
 
 
-class HomeFragment : BaseVbFragment<FragmentHomeBinding>() {
-    override fun initView() {
-
+class HomeFragment : BaseVbVmFragment<FragmentHomeBinding, HomeViewModel>() {
+    private val rankAdapter by lazy {
+        RankAdapter()
     }
 
-    override fun initClicks() {
-        mViewBinding.tvSearch.setOnNoDoubleClickListener {
-            ARouterHelper.goActivity(ARouterPath.Search.SEARCH)
+    override fun initView() {
+        mViewBinding.rvRank.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            addItemDecoration(NormalItemDecoration(LinearLayoutManager.HORIZONTAL).apply {
+                setBounds(left = 5.dp2px, right = 5.dp2px)
+                removeStartEndMargin(true)
+            })
+            adapter = rankAdapter
+        }
+        StartSnapHelper().attachToRecyclerView(mViewBinding.rvRank)
+    }
+
+    override fun initData() {
+        mViewModel.getVideoList(requireContext())
+    }
+
+    override fun createObserver() {
+        mViewModel.videoList.observe(this) {
+            rankAdapter.setList(it)
         }
     }
 
+
+    override fun initClicks() {
+        rankAdapter.setOnItemClickListener { adapter, view, position ->
+            ARouterHelper.goActivityNeedNet(
+                ARouterPath.Video.PLAY,
+                mapOf(
+                    Constants.KEY_VIDEO_PLAY_LIST to adapter.data
+                )
+            )
+        }
+    }
 }

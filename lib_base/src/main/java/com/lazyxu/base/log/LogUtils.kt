@@ -27,14 +27,14 @@ object LogUtils {
     @JvmStatic
     fun d(tag: String, msg: String) {
         if (BuildConfigs.IS_DEV) {
-            Logger.t(tag).d(msg)
+            Logger.t(tag).v(msg)
         }
     }
 
     @JvmStatic
-    fun e(msg: String) {
+    fun e(tag: String? = LogTag.COMMON, msg: String) {
         if (BuildConfigs.IS_DEV) {
-            Logger.t(LogTag.COMMON).e(msg)
+            Logger.t(tag).e(msg)
         }
     }
 }

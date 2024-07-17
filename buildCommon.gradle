@@ -2,7 +2,7 @@
 apply plugin: 'kotlin-android'//用于编译Android代码
 apply plugin: 'kotlin-kapt'//启用Kotlin注解处理工具
 apply plugin: 'kotlin-parcelize'
-apply plugin: 'com.alibaba.arouter'//能减少arouter初始化时间
+//apply plugin: 'com.alibaba.arouter'//能减少arouter初始化时间
 
 
 android {
@@ -11,20 +11,16 @@ android {
     defaultConfig {
         minSdkVersion BuildConfig.minSdkVersion
         targetSdkVersion BuildConfig.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
         resConfigs "zh"
-        multiDexEnabled true
         //(低于5.0手机使用会出现闪退)svg矢量图中可以使用 color.xml中资源文件，解决 Resource references will not work correctly in images generated for this vector icon for API < 24; check generated icon to make sure it looks acceptable
 //        vectorDrawables.useSupportLibrary = true//不能使用该属性，否则android7以下手机使用复杂矢量图会报错
-        consumerProguardFiles 'proguard-rules.pro'
+        consumerProguardFiles 'consumer-rules.pro'
         ndk {//需要添加ndk配置，否则so打不进去，选择要添加的对应cpu类型的.so库，armeabi-v7a、arm64-v8a这两个占据99%
             abiFilters 'arm64-v8a'//'armeabi', 'armeabi-v7a', 'arm64-v8a','x86'
         }
         kapt {
             arguments {//将参数传给注解处理器 arg("key",  "value")
                 arg("AROUTER_MODULE_NAME", project.getName())
-                arg("room.schemaLocation", "$projectDir/schemas")
             }
         }
 //    //警告: Schema export directory is not provided to the annotation processor so we cannot export the schema. You can either provide `room.schemaLocation` annotation processor argument OR set exportSchema to false.
@@ -45,38 +41,33 @@ android {
         }
 
         release {
-            minifyEnabled true
+            minifyEnabled true //代码混淆
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     lintOptions {
         abortOnError false//true:错误发生后停止gradle构建
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
     //注意：只是提示，用于隔离不同model的资源文件
     //Gradle构建系统会在编译资源之前检查所有资源名称(直接到module的string等查看即可)，以确保它们在项目中是唯一的。这有助于避免因为资源名称冲突而导致的编译错误或运行时错误
 //    resourcePrefix "${GUtils.getResourcePrefix(project.name)}_"
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])//一条依赖引入libs下所有的aar
-    implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
-    testImplementation 'junit:junit:4.13.2'
     api ArouterDeps.arouterApi
     kapt ArouterDeps.arouterCompiler//将编译类路径与注释处理器类路径分开，从而提高构建性能
-    //提供协程的基础API
-
-    //获取viewmodel用ViewModelProvider需要用到，提供一个Android主线程（类似于在使用RxJava时使用rxandroid）,如果是用于 Android 平台的话，可以只引用以下的 coroutines-android，当中已经包含了 coroutines-core
 }
 
 

@@ -1,8 +1,12 @@
+apply from: "${rootDir.path}/buildLib.gradle"
+android {
+    namespace 'com.lazyxu.lib_database'
+}
 android {
     defaultConfig {
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+        kapt {
+            arguments {//将参数传给注解处理器 arg("key",  "value")
+                arg("room.schemaLocation", "$projectDir/schemas")
             }
         }
     }
@@ -11,7 +15,6 @@ dependencies {
     compileOnly project(path: ':lib_base')
     compileOnly project(path: ':lib_common')
 
-    implementation DataDeps.roomRuntime
     implementation DataDeps.roomKtx
     kapt DataDeps.roomCompiler
 }

@@ -48,10 +48,20 @@ https://juejin.cn/post/7292416512333840438
 手写检测某个so来自哪个sdk
 https://juejin.cn/post/7287429638019448888
 
+注解使用详解
+@DslMarker
+属性委托操作符、内联属性、内联属性
 
+### 协程
 
-MainScope、suspend、viewModelScope
+#### 创建协程
+yield
 
+- `runBlocking` :仅供单元测试用，实际业务开发不会用，因为它是线程阻塞的
+
+MainScope、suspend、viewModelScope、CoroutineScope
+
+网络刚断开立即提示
 
 
 

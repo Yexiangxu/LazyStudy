@@ -1,4 +1,7 @@
-
+apply from: "${rootDir.path}/buildModule.gradle"
+android {
+    namespace 'com.lazyxu.function'
+}
 dependencies {
     api project(':lib_common')
 }

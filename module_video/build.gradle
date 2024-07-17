@@ -1,0 +1,17 @@
+apply from: "${rootDir.path}/buildModule.gradle"
+android {
+    namespace 'com.lazyxu.video'
+}
+
+dependencies {
+    compileOnly project(path: ':lib:network')
+    compileOnly project(path: ':lib_database')
+
+    implementation project(path: ':lib_common')
+
+    compileOnly CommonDeps.refreshLayout
+    compileOnly CommonDeps.refreshHeader
+    compileOnly CommonDeps.refreshFooter
+    implementation CommonDeps.media3ExoPlayer
+    implementation CommonDeps.media3Ui
+}

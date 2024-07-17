@@ -18,11 +18,14 @@ abstract class BaseVbVmFragment<VB : ViewBinding, VM : ViewModel> : BaseVbFragme
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViewModel()
         super.onViewCreated(view, savedInstanceState)
+        createObserver()
     }
 
     private fun initViewModel() {
         //actualTypeArguments[1]是通过反射获取 VM，因为在该类中 VM 是在第二个所以用[1]
         val argument = (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments
-        mViewModel = ViewModelProvider(this).get(argument[1].saveAsUnChecked())
+        mViewModel = ViewModelProvider(this).get(argument[1] as Class<VM>)
     }
+
+    abstract fun createObserver()
 }

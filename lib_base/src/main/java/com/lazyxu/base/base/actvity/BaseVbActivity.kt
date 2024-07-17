@@ -16,9 +16,9 @@ abstract class BaseVbActivity<VB : ViewBinding> : BaseActivity() {
     lateinit var mViewBinding: VB
     override fun initContentView() {
         //actualTypeArguments[0]是通过反射获取第一个，如果 VB是在第二个就是用[1]
-        val vbClass: Class<VB> = (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0].saveAsUnChecked()
+        val vbClass: Class<VB> = (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VB>
         val method = vbClass.getDeclaredMethod("inflate", LayoutInflater::class.java)//需要在混淆文件中添加免混淆
-        mViewBinding = method.invoke(this, layoutInflater)!!.saveAsUnChecked()
+        mViewBinding = method.invoke(this, layoutInflater) as VB
         setContentView(mViewBinding.root)
     }
 }

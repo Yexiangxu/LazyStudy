@@ -1,10 +1,9 @@
 package com.lazyxu.network.manager
 
 import com.google.gson.GsonBuilder
-import com.lazyxu.base.utils.BuildConfigs
+import com.lazyxu.network.interceptor.HttpRequestInterceptor
 import com.lazyxu.network.interceptor.PublicParamsInterceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -21,7 +20,7 @@ internal object NetworkApi : BaseNetworkApi() {
     override fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(PublicParamsInterceptor())
-            .addInterceptor(HttpLoggingInterceptor().setLevel(if (BuildConfigs.IS_DEV) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE))
+            .addInterceptor(HttpRequestInterceptor())
             //超时时间 连接、读、写
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)

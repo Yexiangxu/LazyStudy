@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+apply from: "${rootDir.path}/buildCommon.gradle"
+android {
+    defaultConfig {
+        kapt {
+            arguments {//将参数传给注解处理器 arg("key",  "value")
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    api ArouterDeps.arouterApi
+    kapt ArouterDeps.arouterCompiler//将编译类路径与注释处理器类路径分开，从而提高构建性能
+}
+
+
+

@@ -26,9 +26,9 @@ class DragAdapter(private val mContext: Context, private val mList: List<String>
         // 第一个固定菜单
         val drawable = holder.mItemTextView.background as GradientDrawable
         if (holder.layoutPosition == 0) {
-            drawable.color = ContextCompat.getColorStateList(mContext, R.color.black)
+            drawable.color = ContextCompat.getColorStateList(mContext, com.lazyxu.base.R.color.black)
         }else{
-            drawable.color = ContextCompat.getColorStateList(mContext, R.color.colorAccent)
+            drawable.color = ContextCompat.getColorStateList(mContext, com.lazyxu.base.R.color.colorAccent)
         }
 
         holder.mItemTextView.setOnClickListener {

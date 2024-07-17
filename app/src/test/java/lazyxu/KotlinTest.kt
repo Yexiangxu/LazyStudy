@@ -1,28 +1,17 @@
 package lazyxu
 
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.NonCancellable
-import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import lazyxu.entity.Student
 import org.junit.Test
-import java.util.concurrent.Executors
 import kotlin.properties.Delegates
 
+public class KotlinTest {
 
-class KotlinTest {
-
-
-
-
-    var user: String by Delegates.observable("ben") {
-            prop, old, new ->
+    var user: String by Delegates.observable("ben") { prop, old, new ->
         println("属性${prop.name}的值从: $old -> $new")
     }
     var Student.alias: String
@@ -33,60 +22,34 @@ class KotlinTest {
             name = value
             println("后来其直接将名字也改成了$value")
         }
+
     @Test
     fun main22() {
-        user="lazyxu"
-        println("My name is $user")
-        user="chenyingli"
+        user = "lazyxu"
+        log("My name is $user")
+        user = "chenyingli"
         println("My name is $user")
 
     }
 
     @Test
-    fun test111(){
-
-
-
-
-
-        val executors=Executors.newSingleThreadExecutor()
-        executors.execute {
-            println("")
-
+    fun main() = runBlocking {
+        launch(Dispatchers.IO) {
+            delay(100)
+            log("Task from runBlocking")
         }
-        executors.submit{
-
-        }
-
-
-    }
-
-
-    @Test
-    fun main() = runBlocking{
         coroutineScope {
-            println("开始 ${System.currentTimeMillis()}")
-            CoroutineScope(Dispatchers.IO).launch {
-
+            launch {
+                delay(500)
+                log("Task from nested launch")
             }
-            CoroutineScope(Dispatchers.IO).launch {
-                delay(1000)
-                println("bbb ${System.currentTimeMillis()}")
-            }
-            println("结束 ${System.currentTimeMillis()}")
-
-            delay(5000)
+            delay(50)
+            log("Task from coroutine scope")
         }
-
-    }
-    suspend fun test1(){
-        delay(1000)
-        println("aaa ${System.currentTimeMillis()}")
+        log("Coroutine scope is over")
     }
 
-
-
-
+    private fun log(msg: Any?) = println("[${Thread.currentThread().name}] $msg")
 }
 
 

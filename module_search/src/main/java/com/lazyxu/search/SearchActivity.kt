@@ -2,6 +2,7 @@ package com.lazyxu.search
 
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lazyxu.base.arouter.ARouterPath
@@ -11,7 +12,9 @@ import com.lazyxu.base.ext.visible
 import com.lazyxu.base.log.LogTag
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.network.entity.base.PageInfo
+import com.lazyxu.network.respose.collectIn
 import com.lazyxu.search.databinding.ActivitySearchBinding
+import kotlinx.coroutines.launch
 
 /**
  * User:Lazy_xu
@@ -37,12 +40,15 @@ class SearchActivity : BaseVbVmActivity<ActivitySearchBinding, SearchViewModel>(
                 mViewBinding.shvHistory.setHistoryData(it.map { it.keyTag })
             }
         }
-        mViewModel.searchRecommendList.observe(this) {
-            if (it.isNullOrEmpty()) {
-                mViewBinding.shvRecommend.gone()
-            } else {
-                mViewBinding.shvRecommend.visible()
-                mViewBinding.shvRecommend.setHistoryData(it.map { it.name })
+        lifecycleScope.launch {
+            mViewModel.searchRecommendList.collectIn(this@SearchActivity) {
+                onSuccess = {
+                    mViewBinding.shvRecommend.visible()
+                    mViewBinding.shvRecommend.setHistoryData(it.map { it.name })
+                }
+                onDataEmpty = {
+                    mViewBinding.shvRecommend.gone()
+                }
             }
         }
         mViewModel.searchResult.observe(this) {

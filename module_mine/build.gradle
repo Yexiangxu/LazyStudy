@@ -1,7 +1,10 @@
+apply from: "${rootDir.path}/buildModule.gradle"
+android {
+    namespace 'com.lazyxu.mine'
+}
 dependencies {
 
 
-
-    compileOnly project(path: ':lib_network')
+    compileOnly project(path: ':lib:network')
     api project(':lib_common')
 }

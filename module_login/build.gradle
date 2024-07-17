@@ -1,9 +1,12 @@
+apply from: "${rootDir.path}/buildModule.gradle"
+android {
+    namespace 'com.lazyxu.login'
+}
 
 dependencies {
-    compileOnly project(path: ':lib_network')
+    compileOnly project(path: ':lib:network')
 
 
     implementation project(':lib_common')
 
-//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 }

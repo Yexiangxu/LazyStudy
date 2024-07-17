@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.base.actvity.BaseVbActivity
 import com.lazyxu.base.log.LogUtils
-import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.lazystudy.CategoryFragment
 import com.lazyxu.lazystudy.HomeFragment
 import com.lazyxu.lazystudy.MineFragment
@@ -19,7 +19,9 @@ import kotlin.system.exitProcess
 @Route(path = ARouterPath.MAIN)
 class MainActivity : BaseVbActivity<ActivityMainBinding>() {
 
-    private var mFragments: MutableList<Fragment> = mutableListOf(HomeFragment(), CategoryFragment(),MineFragment())
+    private var mFragments: MutableList<Fragment> =
+        mutableListOf(HomeFragment(), CategoryFragment(), MineFragment())
+
     override fun initView() {
         mViewBinding.bnvMain.itemIconTintList = null//设置tab图标，注意使用 app:itemIconTint="@null"设置无效
         mViewBinding.bnvMain.setOnItemSelectedListener {
@@ -27,9 +29,11 @@ class MainActivity : BaseVbActivity<ActivityMainBinding>() {
                 R.id.menu_home -> {
                     setFragmentPosition(0)
                 }
+
                 R.id.menu_type -> {
                     setFragmentPosition(1)
                 }
+
                 R.id.menu_mine -> {
                     setFragmentPosition(2)
                 }

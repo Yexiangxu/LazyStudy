@@ -10,11 +10,11 @@ import com.lazyxu.base.R
 
 
 fun ImageView.load(url: Any?, @DrawableRes placeholder: Int = R.drawable.default_image) {
-    Glide.with(this)
+    Glide.with(context.validContext)
         .load(url)
         .error(placeholder)
         .placeholder(placeholder)
-        .centerCrop()
+        .transform(CenterCrop())
         .into(this)
 }
 
@@ -27,12 +27,11 @@ fun ImageView.loadRound(
     radius: Int = 5,
     @DrawableRes placeholder: Int = R.drawable.default_image
 ) {
-    Glide.with(this.context)
+    Glide.with(context.validContext)
         .load(url)
         .error(placeholder)
         .placeholder(placeholder)
-        .centerCrop()
-        .transform(RoundedCorners(radius.dp2px))
+        .transform(CenterCrop(), RoundedCorners(radius.dp2px))
         .into(this)
 }
 
@@ -43,10 +42,9 @@ fun ImageView.loadCircle(
     url: Any?,
     @DrawableRes placeholder: Int = R.drawable.default_image,
 ) {
-    Glide.with(this)
+    Glide.with(context.validContext)
         .load(url)
         .error(placeholder).placeholder(placeholder)
-        .centerCrop()
-        .transform(MultiTransformation(CenterCrop()))
+        .transform(CenterCrop(), MultiTransformation(CenterCrop()))
         .into(this)
 }

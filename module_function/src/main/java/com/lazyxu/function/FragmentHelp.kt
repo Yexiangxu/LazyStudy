@@ -129,7 +129,7 @@ fun FragmentActivity.showFragment(
 inline fun Fragment.requireParentFragmentManager(): FragmentManager{
     var fm = parentFragment?.requireFragmentManager()
     if(fm == null){
-        fm = requireActivity()?.supportFragmentManager
+        fm = requireActivity().supportFragmentManager
     }
     return fm
 }

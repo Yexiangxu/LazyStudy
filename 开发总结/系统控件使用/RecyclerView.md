@@ -1,5 +1,9 @@
 1. 基本属性使用
 2. [遇到问题](#problem)
+3. [实现一个带有顶部悬停效果的ItemDecoration](https://juejin.cn/post/6998924524548784141)
+4. SnapHelper使用详解
+    - SnapHelper是通过设置`OnScrollListener`和`OnFlingListener`来实现`RecyclerView`抛的动作和滚动监听
+5. layoutManager
 
 ------------------
 

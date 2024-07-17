@@ -7,6 +7,10 @@ package com.lazyxu.base.log
  * FIXME
  */
 object LogTag {
-    const val SEARCH = "SearchTag"
+    const val THREAD: String = "ThreadTag"
     const val COMMON = "CommonTag"
+    const val HTTP = "HttpTag"
+
+    const val SEARCH = "SearchTag"
+    const val VIDEO = "VideoTag"
 }

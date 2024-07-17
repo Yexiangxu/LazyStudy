@@ -1,3 +1,8 @@
+apply from: "${rootDir.path}/buildLib.gradle"
+android {
+    namespace 'com.lazyxu.base'
+}
+
 android {
     defaultConfig {
         buildConfigField("String", "CHANNEL_QID", CHANNEL_QID)
@@ -12,13 +17,19 @@ android {
     }
 }
 dependencies {
-//    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"//供查看kotlin源码
 
-    api project(':lib_res')
+    implementation 'com.google.code.gson:gson:2.10.1'
+//    api ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")//供查看kotlin源码
+//    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+
     //===========项目必须要==========
+    api CommonDeps.recyclerview
+    api CommonDeps.constraintlayout
+    api CommonDeps.appcompat
+    api CommonDeps.material
     api CommonDeps.brvah
     api CommonDeps.multidex
-    api 'androidx.core:core-ktx:1.6.0'//为Jetpack提供简洁的惯用Kotlin代码
+    api KotlinDeps.coreKtx
     //======================debug调试============================
     implementation DebugDeps.bugly
     implementation DebugDeps.stetho
@@ -26,38 +37,23 @@ dependencies {
     //数据库
     api DataDeps.mmkv
 
-
     api GlideDeps.glide
     kapt GlideDeps.glideCompiler
     //协程相关
     api LifeCycleDeps.runtimeKtx
     api LifeCycleDeps.viewmodelKtx
-
     //kotlin
-    api KotlinDeps.kotlinStdlib
     api KotlinDeps.kotlinReflect
-//    api "androidx.activity:activity-ktx:1.5.1"
-
-
-//    api 'com.google.android.material:material:1.2.1'
-//    api 'androidx.cardview:cardview:1.0.0'
-//    api 'androidx.viewpager2:viewpager2:1.0.0'
-
-
-    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
 
     //======================性能优化==========================
-    debugApi 'com.squareup.leakcanary:leakcanary-android:1.6.3'
-    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+
 
     // ==============   UI    ======================
-    api 'com.gyf.immersionbar:immersionbar:3.0.0'
     api 'uk.co.chrisjenx:calligraphy:2.3.0'
-    api 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'
+    api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+    api 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
 
     // ==============      ===================
 
-    //===============  jetpack    ===================
-    //================= rx =======================
 
 }

@@ -58,7 +58,7 @@
 -keepclassmembers class **.R$* {
     public static <fields>;
 }
-#表示不混淆枚举中的values()和valueOf()方法，枚举我用的非常少，这个就不评论了
+#表示不混淆枚举中的values()和valueOf()方法
 -keepclassmembers enum * {
     public static **[] values();
     public static ** valueOf(java.lang.String);
@@ -123,9 +123,11 @@
     public void *(android.view.View);
 }
 
+
 # 保留四大组件，自定义的Application,Fragment等这些类不被混淆
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Fragment
+-keep public class * extends androidx.fragment.app.Fragment
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver

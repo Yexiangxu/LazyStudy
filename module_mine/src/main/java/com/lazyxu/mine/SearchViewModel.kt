@@ -2,15 +2,13 @@ package com.lazyxu.mine
 
 import android.widget.SearchView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.lifecycle.viewModelScope
 import com.lazyxu.network.viewmodel.BaseViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class SearchViewModel : BaseViewModel() {
-//    private fun search(searchView: SearchView,textViewResult:AppCompatTextView) {
+    private fun search(searchView: SearchView,textViewResult:AppCompatTextView) {
 //        viewModelScope.launch {
 //            searchView.getQueryTextChangeStateFlow()
 //                .debounce(300)
@@ -34,7 +32,7 @@ class SearchViewModel : BaseViewModel() {
 //                    textViewResult.text = result
 //                }
 //        }
-//    }
+    }
     private fun dataFromNetwork(query: String): Flow<String> {
         return flow {
             delay(2000)

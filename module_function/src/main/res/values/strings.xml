@@ -5,6 +5,7 @@
     <string name="function_deleterecyclerview">DeleteRecyclerview</string>
 
 
+    <string name="res_cache">存储功能</string>
 
     <string name="function_dispatch">事件分发</string>
 </resources>
