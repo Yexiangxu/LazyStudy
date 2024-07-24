@@ -1,6 +1,8 @@
 package com.lazyxu.base.base.actvity
 
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -159,6 +161,24 @@ abstract class BaseActivity : AppCompatActivity() {
                     || event.y <= top || event.y >= bottom)
         }
         return false
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig.fontScale != 1f) {
+            resources
+        }
+    }
+
+    /**
+     * 禁止改变字体大小
+     */
+    override fun getResources(): Resources {
+        val res = super.getResources()
+        val config = Configuration()
+        config.setToDefaults()
+        res.updateConfiguration(config, res.displayMetrics)
+        return res
     }
 
     /**

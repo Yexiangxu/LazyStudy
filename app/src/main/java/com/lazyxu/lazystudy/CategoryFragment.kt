@@ -1,47 +1,38 @@
 package com.lazyxu.lazystudy
 
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
-import com.lazyxu.base.arouter.ARouterHelper
-import com.lazyxu.base.arouter.ARouterPath
+import android.widget.SeekBar
 import com.lazyxu.base.base.fragment.BaseVbVmFragment
-import com.lazyxu.base.ext.dp2px
-import com.lazyxu.base.utils.decoration.NormalItemDecoration
-import com.lazyxu.base.utils.snaphelper.StartSnapHelper
 import com.lazyxu.lazystudy.databinding.FragmentCategoryBinding
 
 
 class CategoryFragment : BaseVbVmFragment<FragmentCategoryBinding, HomeViewModel>() {
-    private val galleryAdapter by lazy {
-        GalleryAdapter()
-    }
 
     override fun createObserver() {
-        mViewModel.videoList.observe(this) {
-            galleryAdapter.setList(it)
-        }
+
     }
 
     override fun initData() {
-        mViewModel.getVideoList(requireContext())
     }
 
     override fun initView() {
+        mViewBinding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                // 更新 TextView 的文本内容和位置
+                updateThumbTextView(progress)
+            }
 
-        mViewBinding.tvHotEffect.setOnClickListener {
-            ARouterHelper.goActivity(ARouterPath.Search.SEARCH)
-        }
-        mViewBinding.rvGallery.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            addItemDecoration(NormalItemDecoration(LinearLayoutManager.HORIZONTAL).apply {
-                setBounds(left = 5.dp2px, right = 5.dp2px)
-                removeStartEndMargin(true)
-            })
-            adapter = galleryAdapter
-        }
-        LinearSnapHelper().attachToRecyclerView(mViewBinding.rvGallery)
-        val spacing = resources.getDimensionPixelSize(com.lazyxu.base.R.dimen.dp_50) // 定义间距大小
-        mViewBinding.rvGallery.addItemDecoration(CenterZoomItemDecoration(spacing))
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
+    }
+
+    private fun updateThumbTextView(progress: Int) {
+        mViewBinding.thumbTextView.text = "$progress%"
+        // 根据 SeekBar 的进度更新 TextView 的位置
+        val thumbPos =
+            (mViewBinding.seekBar.width - mViewBinding.seekBar.paddingLeft - mViewBinding.seekBar.paddingRight) * mViewBinding.seekBar.progress / mViewBinding.seekBar.max
+        mViewBinding.thumbTextView.x =
+            mViewBinding.seekBar.paddingLeft.toFloat() + thumbPos.toFloat() - mViewBinding.thumbTextView.width / 2
     }
 }

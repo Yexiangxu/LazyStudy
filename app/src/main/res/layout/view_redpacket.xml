@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_redpacket"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_close_redpacket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/svg_close_task" />
+
+    <com.lazyxu.lazystudy.widget.CircularProgressView
+        android:id="@+id/cpr_redpacket"
+        android:layout_width="@dimen/dp_52"
+        android:layout_height="@dimen/dp_52"
+        app:layout_constraintEnd_toStartOf="@+id/iv_close_redpacket"
+        app:layout_constraintTop_toBottomOf="@+id/iv_close_redpacket"
+        app:progress="0"
+        app:progressBackgroundAlphaEnabled="true"
+        app:progressBackgroundColor="#33333333"
+        app:progressBarColor="#FFF0A0"
+        app:progressBarThickness="@dimen/dp_1_5"
+        app:progressThumb="false"
+        app:shadow="true"
+        app:startingAngle="-90"
+        tools:progress="30" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

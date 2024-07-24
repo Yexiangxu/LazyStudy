@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/today_task_view_scrollview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="12dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:layout_marginEnd="12dp"-->
+<!--        android:layout_marginBottom="12dp"-->
+<!--        android:minHeight="60dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:scrollbars="none"-->
+<!--        app:layout_constraintEnd_toEndOf="0"-->
+<!--        app:layout_constraintStart_toStartOf="0">-->
+
+<!--&lt;!&ndash;        <com.lazyxu.lazystudy.taskview.TodayTaskView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/today_task_view"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:minHeight="60dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:layout_constraintEnd_toEndOf="0"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:layout_constraintStart_toStartOf="0" />&ndash;&gt;-->
+<!--    </HorizontalScrollView>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

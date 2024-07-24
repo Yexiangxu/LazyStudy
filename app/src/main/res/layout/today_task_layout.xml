@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/task_bubbles_layout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintStart_toStartOf="0"-->
+<!--        app:layout_constraintTop_toTopOf="0">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/task_bubbles_coin"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:background="@drawable/shape_today_task_bubbles"-->
+<!--            android:gravity="center"-->
+<!--            android:padding="6dp"-->
+<!--            android:singleLine="true"-->
+<!--            android:text="已攒0金币"-->
+<!--            android:textColor="#ff0055"-->
+<!--            android:textSize="10sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintStart_toStartOf="0"-->
+<!--            app:layout_constraintTop_toTopOf="0" />-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="8dp"-->
+<!--            android:layout_height="6dp"-->
+<!--            android:layout_marginTop="-1dp"-->
+<!--            android:scaleType="fitXY"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/task_bubbles_coin"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/task_bubbles_coin"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/task_bubbles_coin" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--        android:id="@+id/task_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="3dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/task_bubbles_layout" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>
