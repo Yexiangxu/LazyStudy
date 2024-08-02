@@ -54,6 +54,7 @@ dependencies {
     implementation CommonDeps.refreshLayout
     implementation CommonDeps.refreshHeader
     implementation CommonDeps.refreshFooter
+    implementation CommonDeps.brvah
 
     implementation 'androidx.lifecycle:lifecycle-process:2.8.3'
 

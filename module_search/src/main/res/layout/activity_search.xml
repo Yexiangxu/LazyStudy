@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_main_bg">
@@ -18,7 +19,8 @@
         app:layout_scrollFlags="enterAlways|scroll"
         app:navigationIcon="@drawable/svg_back_white"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:titleTextAppearance="@style/ToolBarTitle">
+        app:titleTextAppearance="@style/ToolBarTitle"
+        tools:ignore="RtlSymmetry">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_back"
@@ -61,7 +63,7 @@
             android:gravity="center_vertical"
             android:paddingStart="@dimen/dp_10"
             android:paddingEnd="@dimen/margin_main"
-            android:text="搜索"
+            android:text="@string/search"
             android:textColor="#303332"
             android:textSize="@dimen/sp_16"
             app:layout_constraintBottom_toBottomOf="parent"

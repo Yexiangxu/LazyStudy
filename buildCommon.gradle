@@ -7,6 +7,7 @@ apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion "30.0.3"
     defaultConfig {
         minSdkVersion BuildConfig.minSdkVersion
         targetSdkVersion BuildConfig.targetSdkVersion
