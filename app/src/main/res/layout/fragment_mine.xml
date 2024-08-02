@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <com.lazyxu.lazystudy.TaskProgressBar
+    <com.lazyxu.lazystudy.widget.TaskProgressBar
         android:id="@+id/custom_progress_bar"
         android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.lazyxu.lazystudy.widget.RedPacketView
         android:id="@+id/rpv_task"
@@ -23,89 +22,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.lazyxu.lazystudy.widget.signseekbar.SignSeekBar
+
+    <com.lazyxu.lazystudy.widget.taskprogress.TaskProgressView
+        android:id="@+id/view_task_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="@dimen/dp_40"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:ssb_max="500"
-        app:ssb_min="100.0"
-        app:ssb_progress="1"
-        app:ssb_second_track_color="#FA4040"
-        app:ssb_show_sign="true"
-        app:ssb_sign_arrow_autofloat="true"
-        app:ssb_sign_arrow_height="5dp"
-        app:ssb_sign_arrow_width="10dp"
-        app:ssb_sign_border_color="#FA4040"
-        app:ssb_sign_border_size="@dimen/dp_1"
-        app:ssb_sign_show_border="true"
-        app:ssb_track_color="#F5F5F5"
-        app:ssb_track_size="@dimen/dp_4" />
-
-    <HorizontalScrollView
-        android:id="@+id/hsv_progress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:minHeight="@dimen/dp_88"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/dp_20"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rpv_task">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp_88">
-
-
-            <com.lazyxu.lazystudy.widget.signseekbar.SignSeekBar
-                android:id="@+id/seekbar"
-                android:layout_width="@dimen/dp_0"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:ssb_anim_duration="10000"
-                app:ssb_max="100"
-                app:ssb_min="0"
-                app:ssb_progress="0"
-                app:ssb_second_track_color="#FA4040"
-                app:ssb_show_sign="true"
-                app:ssb_show_thumb_shadow="false"
-                app:ssb_show_thumb_text="false"
-                app:ssb_sign_arrow_autofloat="true"
-                app:ssb_sign_border_color="#FA4040"
-                app:ssb_sign_border_size="@dimen/dp_1"
-                app:ssb_sign_color="@color/white"
-                app:ssb_sign_round="@dimen/dp_10"
-                app:ssb_sign_show_border="true"
-                app:ssb_sign_text_color="#FA4040"
-                app:ssb_thumb_bg_alpha="0"
-                app:ssb_thumb_color="#FA4040"
-                app:ssb_thumb_radius="@dimen/dp_2"
-                app:ssb_thumb_radius_on_dragging="@dimen/dp_2"
-                app:ssb_touch_to_seek="false"
-                app:ssb_track_color="#F5F5F5"
-                app:ssb_track_size="@dimen/dp_4" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/dp_16"
-                android:scrollbars="none"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:itemCount="6"
-                tools:listitem="@layout/item_task_progress" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </HorizontalScrollView>
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.lazyxu.lazystudy
+package com.lazyxu.lazystudy.widget
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import com.lazyxu.lazystudy.R
 
 
 class TaskProgressBar @JvmOverloads constructor(

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@android:id/progress"
+        android:layout_width="@dimen/dp_245"
+        android:layout_height="@dimen/dp_4">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="180"
+                android:endColor="#F5F5F5"
+                android:startColor="#F5F5F5"
+                android:type="linear" />
+            <corners android:radius="@dimen/dp_6" />
+        </shape>
+    </item>
+
+</layer-list>

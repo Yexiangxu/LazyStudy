@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DashboardView">
+        <attr name="longTickLength" format="dimension" />
+        <attr name="shortTickLength" format="dimension" />
+        <attr name="longTickWidth" format="dimension" />
+        <attr name="shortTickWidth" format="dimension" />
+    </declare-styleable>
+
+</resources>

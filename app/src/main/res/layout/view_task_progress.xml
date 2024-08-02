@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/dp_10"
+    android:scrollbars="none"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_22"
+            android:background="@drawable/shape_task_progress"
+            android:gravity="center"
+            android:minWidth="@dimen/dp_68"
+            android:text="已攒0金币"
+            android:textColor="#FA4040"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-1.5dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_progress"
+            app:layout_constraintStart_toStartOf="@+id/tv_progress"
+            app:layout_constraintTop_toBottomOf="@+id/tv_progress"
+            app:srcCompat="@drawable/svg_task_down" />
+
+        <ProgressBar
+            android:id="@+id/pb_task"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_4"
+            android:layout_marginTop="@dimen/dp_10"
+            android:max="100"
+            android:progress="1"
+            android:progressDrawable="@drawable/progressbar_task"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_progress" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_progress"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_task_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_progress" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</HorizontalScrollView>

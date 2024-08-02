@@ -1,7 +1,7 @@
-package com.lazyxu.lazystudy
+package com.lazyxu.lazystudy.widget.taskprogress
 
-import android.graphics.Color
 import com.lazyxu.base.base.adapter.VBBaseQuickAdapter
+import com.lazyxu.lazystudy.ShortPlayYouXuanTask
 import com.lazyxu.lazystudy.databinding.ItemTaskProgressBinding
 
 

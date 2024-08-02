@@ -42,6 +42,8 @@ object ARouterPath {
 
             const val DISPATCH = "$functionGroup/dispatch"
             const val CACHE = "$functionGroup/cache"
+
+            const val CUSTOMVIEW1 = "$functionGroup/customview1"
         }
     }
 

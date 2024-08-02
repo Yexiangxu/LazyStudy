@@ -12,5 +12,6 @@
         <activity android:name="com.lazyxu.test.DispatchActivity" />
         <activity android:name=".cache.CacheActivity" />
         <activity android:name=".compress.PicCompressActivity" />
+        <activity android:name="com.lazyxu.customview.CustomView1Activity" />
     </application>
 </manifest>
