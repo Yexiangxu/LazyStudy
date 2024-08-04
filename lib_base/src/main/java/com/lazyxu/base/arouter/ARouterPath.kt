@@ -44,6 +44,11 @@ object ARouterPath {
             const val CACHE = "$functionGroup/cache"
 
             const val CUSTOMVIEW1 = "$functionGroup/customview1"
+
+            const val ANIMATION_MAIN = "$functionGroup/animation_main"
+            const val ANIMATION_FRAME = "$functionGroup/animation_frame"
+            const val ANIMATION_TWEEN = "$functionGroup/animation_tween"
+            const val ANIMATION_PROPERTY = "$functionGroup/animation_property"
         }
     }
 

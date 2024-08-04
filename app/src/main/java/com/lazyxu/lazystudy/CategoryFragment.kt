@@ -21,7 +21,7 @@ class CategoryFragment : BaseVbVmFragment<FragmentCategoryBinding, HomeViewModel
 
     override fun initClicks() {
         mViewBinding.tvCustomview.setOnClickListener {
-            ARouterHelper.goActivity(ARouterPath.Function.CUSTOMVIEW1)
+            ARouterHelper.goActivity(ARouterPath.Function.MAIN)
         }
     }
 

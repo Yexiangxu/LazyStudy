@@ -1,0 +1,31 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+	android:fillAfter="true">
+	<alpha
+		android:duration="2000"
+		android:fromAlpha="0.5"
+		android:toAlpha="0.9" />
+	<scale
+		android:startOffset="2000"
+		android:fromXScale="1"
+		android:toXScale="0.5"
+		android:fromYScale="1"
+		android:toYScale="0.5"
+		android:pivotX="50%"
+		android:pivotY="50%"
+		android:duration="2000" />
+	<translate
+		android:startOffset="4000"
+		android:duration="2000"
+		android:fromXDelta="0%"
+		android:toXDelta="0%"
+		android:fromYDelta="0%"
+		android:toYDelta="50%" />
+	<rotate
+		android:duration="2000"
+		android:fromDegrees="0"
+		android:pivotX="50%"
+		android:pivotY="50%"
+		android:startOffset="6000"
+		android:toDegrees="270" />
+	<!--startOffset:动画开始执行时间(其余属性上面都讲过)-->
+</set>

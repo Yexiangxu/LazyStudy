@@ -2,7 +2,6 @@
 <resources>
 
     <color name="gray_666666">#666666</color>
-    <color name="splash_color">#FF1F1B</color>
     <color name="test">#bc2a2a</color>
     <color name="gray_f6f6f6">#F6F6F6</color>
     <color name="gray_e3e3e3">#E3E3E3</color>
