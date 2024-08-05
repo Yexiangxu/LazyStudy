@@ -1,4 +1,8 @@
-1. [使用`buildSrc`全局管理依赖库](https://github.com/Yexiangxu/LazyStudy/blob/master/read/%E4%BD%BF%E7%94%A8buildSrc%E5%85%A8%E5%B1%80%E7%AE%A1%E7%90%86%E4%BE%9D%E8%B5%96%E5%BA%93.md)
+surfaceview使用
+
+
+
+2. [使用`buildSrc`全局管理依赖库](https://github.com/Yexiangxu/LazyStudy/blob/master/read/%E4%BD%BF%E7%94%A8buildSrc%E5%85%A8%E5%B1%80%E7%AE%A1%E7%90%86%E4%BE%9D%E8%B5%96%E5%BA%93.md)
 2. [统一管理gradle](https://github.com/Yexiangxu/LazyStudy/blob/master/read/%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86gradle.md)
 
 

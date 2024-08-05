@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/search_history"
-        android:textColor="@color/black_333333"
+        android:textColor="@color/txt_common"
         android:textSize="@dimen/sp_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

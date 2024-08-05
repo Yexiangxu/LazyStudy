@@ -48,7 +48,7 @@
             android:maxLength="20"
             android:paddingHorizontal="@dimen/dp_16"
             android:singleLine="true"
-            android:textColor="@color/black_333333"
+            android:textColor="@color/txt_common"
             android:textColorHint="@color/gray_666666"
             android:textSize="@dimen/sp_14"
             app:layout_constraintBottom_toBottomOf="parent"

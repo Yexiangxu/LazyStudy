@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 默认无限循环播放  oneshot = true播放一次结束，否则无限播放-->
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <!-- 依次放入图片（单位是ms）-->
+    <item
+        android:drawable="@drawable/anim_splash1"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/anim_splash2"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/anim_splash3"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/anim_splash4"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/anim_splash5"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/anim_splash6"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/anim_splash7"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/anim_splash8"
+        android:duration="200" />
+    <item
+        android:drawable="@drawable/anim_splash9"
+        android:duration="200" />
+</animation-list>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black_333333">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_tweenanimation"
+        android:layout_width="@dimen/dp_133"
+        android:layout_height="@dimen/dp_27"
+        android:scaleType="fitXY"
+        android:layout_centerInParent="true"
+        android:src="@drawable/splash_bottom" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_alphat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:alpha="0.99"
+                android:text="alphat" />
+            <Button
+                android:id="@+id/btn_xml_scale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:alpha="0.99"
+                android:text="xml scale" />
+            <Button
+                android:id="@+id/btn_scale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="scale" />
+
+            <Button
+                android:id="@+id/btn_translate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="translate" />
+
+            <Button
+                android:id="@+id/btn_rotate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="rotate" />
+
+            <Button
+                android:id="@+id/btn_xml_combine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Xml Combine" />
+            <Button
+                android:id="@+id/btn_kotlin_combine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Kotlin Combine" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </HorizontalScrollView>
+
+</RelativeLayout>

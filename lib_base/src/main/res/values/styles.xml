@@ -11,7 +11,7 @@
         <!--CheckBox，RadioButton等默认状态颜色-->
         <item name="android:colorControlNormal">@color/colorAccent</item>
         <item name="android:textSize">@dimen/sp_14</item>
-        <item name="android:textColor">@color/black_333333</item>
+        <item name="android:textColor">@color/txt_common</item>
         <item name="android:textAllCaps">false</item> <!--全部字母是否大些-->
         <item name="editTextColor">@android:color/black</item><!--EditText 输入框中字体的颜色-->
         <item name="android:divider">@android:color/darker_gray</item> <!--分割线颜色-->
@@ -40,7 +40,7 @@
     <style name="LineHorizontalStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dp_1</item>
-        <item name="android:background">@color/gray_FFE8E8E8</item>
+        <item name="android:background">@color/line_gray</item>
     </style>
     <!--横线-->
     <style name="LineHorizontalMaginStyle">
