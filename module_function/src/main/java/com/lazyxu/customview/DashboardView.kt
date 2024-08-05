@@ -57,10 +57,9 @@ class DashboardView @JvmOverloads constructor(
 
     init {
         // 获取自定义属性
-        context.theme.obtainStyledAttributes(
+        context.obtainStyledAttributes(
             attrs,
-            R.styleable.DashboardView,
-            0, 0
+            R.styleable.DashboardView
         ).apply {
             try {
                 longTickLength =
