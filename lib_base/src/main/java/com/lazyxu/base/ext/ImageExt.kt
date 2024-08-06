@@ -11,6 +11,7 @@ import com.lazyxu.base.R
 
 fun ImageView.load(url: Any?, @DrawableRes placeholder: Int = R.drawable.default_image) {
     Glide.with(context.validContext)
+        .asDrawable()//没有复杂操作使用drawable能更好的管理内存
         .load(url)
         .error(placeholder)
         .placeholder(placeholder)
@@ -28,6 +29,7 @@ fun ImageView.loadRound(
     @DrawableRes placeholder: Int = R.drawable.default_image
 ) {
     Glide.with(context.validContext)
+        .asDrawable()//没有复杂操作使用drawable能更好的管理内存
         .load(url)
         .error(placeholder)
         .placeholder(placeholder)
@@ -43,6 +45,7 @@ fun ImageView.loadCircle(
     @DrawableRes placeholder: Int = R.drawable.default_image,
 ) {
     Glide.with(context.validContext)
+        .asDrawable()//没有复杂操作使用drawable能更好的管理内存
         .load(url)
         .error(placeholder).placeholder(placeholder)
         .transform(CenterCrop(), MultiTransformation(CenterCrop()))

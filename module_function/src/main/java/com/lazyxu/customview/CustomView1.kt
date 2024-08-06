@@ -34,4 +34,11 @@ class CustomView1 @JvmOverloads constructor(
         canvas.drawCircle(50.dp2pxFloat, 100.dp2pxFloat, 50.dp2pxFloat, mPaint)
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+//        resolveSize(widthMeasureSpec,widthMeasureSpec)
+//        resolveSizeAndState(widthMeasureSpec,widthMeasureSpec)
+
+    }
+
 }
