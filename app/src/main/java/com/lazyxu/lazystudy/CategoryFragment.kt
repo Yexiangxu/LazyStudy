@@ -27,7 +27,9 @@ class CategoryFragment : BaseVbVmFragment<FragmentCategoryBinding, HomeViewModel
 
     override fun initClicks() {
         mViewBinding.tvCustomview.setOnClickListener {
-            ARouterHelper.goActivity(ARouterPath.Function.MAIN)
+            mViewBinding.tvCustomview.text="我点击了"
+            ARouterHelper.goActivity(ARouterPath.Mine.SETTING)
+//            ARouterHelper.goActivity(ARouterPath.Function.MAIN)
         }
     }
 

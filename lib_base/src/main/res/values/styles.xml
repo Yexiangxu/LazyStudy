@@ -18,7 +18,8 @@
         <item name="android:textColorHint">@android:color/darker_gray</item><!--hint 颜色-->
         <!--        <item name="android:typeface">@font/tvcommon</item>  &lt;!&ndash;字体样式设置&ndash;&gt;-->
         <item name="android:windowBackground">@color/white</item>
-        <item name="android:includeFontPadding">false</item><!--默认为 true，表示 TextView 的文本行高度将包括字体的推荐高度-->
+        <item name="android:includeFontPadding">false
+        </item><!--默认为 true，表示 TextView 的文本行高度将包括字体的推荐高度-->
         <item name="toolbarNavigationButtonStyle">@style/TbNavBtnStyle</item><!--设置toolbar通用样式-->
         <!--        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>&lt;!&ndash;之前遇到过不同手机页面跳转动画不一样，该设置可统一&ndash;&gt;-->
     </style>
@@ -49,20 +50,22 @@
         <item name="android:background">@drawable/line_magin</item>
     </style>
 
-    <style name="DialogCommon" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+    <style name="DialogCommonStyle" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="android:windowNoTitle">true</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowBackground">@android:color/transparent
         </item> <!--设置dialog的背景，此处为系统给定的透明值-->
-        <item name="android:windowIsFloating">false</item>            <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>            <!--是否浮现在activity之上-->
         <item name="android:windowContentOverlay">@null</item>       <!--是否有覆盖-->
         <item name="android:backgroundDimEnabled">true</item>       <!--是否背景遮罩效果（遮罩效果）-->
         <item name="android:windowIsTranslucent">true</item>         <!--是否半透明（透明度）-->
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
     </style>
 
-    <style name="DialogBottomStyle" parent="DialogCommon">
+    <style name="DialogBottomStyle" parent="DialogCommonStyle">
         <item name="android:windowAnimationStyle">@style/DialogBottomAnimation</item>
     </style>
 

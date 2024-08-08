@@ -48,8 +48,8 @@ fun View.setClipViewCornerTopRadius(radius: Int) {
                     0,
                     0,
                     view?.width ?: 0,
-                    view?.height?.plus(radius) ?: 0,
-                    radius.toFloat()
+                    view?.height?.plus(radius.dp2px) ?: 0,
+                    radius.dp2pxFloat
                 )
             }
         }

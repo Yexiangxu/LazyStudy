@@ -1,16 +1,17 @@
 package com.lazyxu.lazystudy.ui
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.lazyxu.base.arouter.ARouterHelper
 import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.base.actvity.BaseVbActivity
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.lazystudy.CategoryFragment
 import com.lazyxu.lazystudy.HomeFragment
-import com.lazyxu.lazystudy.MineFragment
 import com.lazyxu.lazystudy.R
 import com.lazyxu.lazystudy.databinding.ActivityMainBinding
 import kotlin.system.exitProcess
@@ -20,7 +21,18 @@ import kotlin.system.exitProcess
 class MainActivity : BaseVbActivity<ActivityMainBinding>() {
 
     private var mFragments: MutableList<Fragment> =
-        mutableListOf(HomeFragment(), CategoryFragment(), MineFragment())
+        mutableListOf(
+            HomeFragment(),
+            CategoryFragment(),
+            ARouterHelper.getFragment(ARouterPath.Mine.MAIN)
+        )
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            mViewBinding.bnvMain.selectedItemId = R.id.menu_home
+        }
+    }
 
     override fun initView() {
         mViewBinding.bnvMain.itemIconTintList = null//设置tab图标，注意使用 app:itemIconTint="@null"设置无效
@@ -42,7 +54,6 @@ class MainActivity : BaseVbActivity<ActivityMainBinding>() {
             }
             true
         }
-        mViewBinding.bnvMain.selectedItemId = R.id.menu_home
     }
 
     private var lastIndex = -1
@@ -57,8 +68,7 @@ class MainActivity : BaseVbActivity<ActivityMainBinding>() {
             }
             lastIndex = position
             if (!currentFragment.isAdded) {
-                supportFragmentManager.beginTransaction().remove(currentFragment)
-                    .commitAllowingStateLoss()
+                ft.remove(currentFragment)
                 ft.add(R.id.fragment_main, currentFragment)//,"mainmenu${position}"
             } else {
                 ft.show(currentFragment)

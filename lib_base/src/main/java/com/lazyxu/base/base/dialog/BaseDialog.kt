@@ -11,6 +11,6 @@ import com.lazyxu.base.R
  */
 class BaseDialog @JvmOverloads constructor(
     context: Context?,
-    themeResId: Int = R.style.DialogCommon
+    themeResId: Int = R.style.DialogCommonStyle
 ) {
 }

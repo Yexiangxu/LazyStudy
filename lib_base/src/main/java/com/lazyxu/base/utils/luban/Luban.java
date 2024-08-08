@@ -3,46 +3,54 @@ package com.lazyxu.base.utils.luban;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.lazyxu.base.utils.luban.io.ArrayPoolProvide;
+
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
 @SuppressWarnings("unused")
 public class Luban implements Handler.Callback {
     private static final String TAG = "Luban";
     private static final String DEFAULT_DISK_CACHE_DIR = "luban_disk_cache";
-
     private static final int MSG_COMPRESS_SUCCESS = 0;
     private static final int MSG_COMPRESS_START = 1;
     private static final int MSG_COMPRESS_ERROR = 2;
-
+    private static final String KEY_SOURCE = "source";
     private String mTargetDir;
     private boolean focusAlpha;
+    private boolean isUseIOBufferPool;
     private int mLeastCompressSize;
     private OnRenameListener mRenameListener;
     private OnCompressListener mCompressListener;
+    private OnNewCompressListener mNewCompressListener;
     private CompressionPredicate mCompressionPredicate;
     private List<InputStreamProvider> mStreamProviders;
-
+    private int mCompressQuality = 60; // 图片压缩质量，默认60，最大100
     private Handler mHandler;
 
     private Luban(Builder builder) {
         this.mTargetDir = builder.mTargetDir;
+        this.focusAlpha = builder.focusAlpha;
+        this.isUseIOBufferPool = builder.isUseBufferPool;
         this.mRenameListener = builder.mRenameListener;
         this.mStreamProviders = builder.mStreamProviders;
         this.mCompressListener = builder.mCompressListener;
+        this.mNewCompressListener = builder.mNewCompressListener;
         this.mLeastCompressSize = builder.mLeastCompressSize;
         this.mCompressionPredicate = builder.mCompressionPredicate;
+        this.mCompressQuality = builder.mCompressQuality;
         mHandler = new Handler(Looper.getMainLooper(), this);
     }
 
@@ -117,8 +125,14 @@ public class Luban implements Handler.Callback {
      * start asynchronous compress thread
      */
     private void launch(final Context context) {
-        if (mStreamProviders == null || mStreamProviders.size() == 0 && mCompressListener != null) {
-            mCompressListener.onError(new NullPointerException("image file cannot be null"));
+        if (mStreamProviders == null || mStreamProviders.size() == 0) {
+            if (mCompressListener != null) {
+                mCompressListener.onError(-1, new NullPointerException("image file cannot be null"));
+            }
+            if (mNewCompressListener != null) {
+                mNewCompressListener.onError("", new NullPointerException("image file cannot be null"));
+            }
+            return;
         }
 
         Iterator<InputStreamProvider> iterator = mStreamProviders.iterator();
@@ -131,12 +145,21 @@ public class Luban implements Handler.Callback {
                 public void run() {
                     try {
                         mHandler.sendMessage(mHandler.obtainMessage(MSG_COMPRESS_START));
-
                         File result = compress(context, path);
-
-                        mHandler.sendMessage(mHandler.obtainMessage(MSG_COMPRESS_SUCCESS, result));
-                    } catch (IOException e) {
-                        mHandler.sendMessage(mHandler.obtainMessage(MSG_COMPRESS_ERROR, e));
+                        Message message = mHandler.obtainMessage(MSG_COMPRESS_SUCCESS);
+                        message.arg1 = path.getIndex();
+                        message.obj = result;
+                        Bundle bundle = new Bundle();
+                        bundle.putString(KEY_SOURCE, path.getPath());
+                        message.setData(bundle);
+                        mHandler.sendMessage(message);
+                    } catch (Exception e) {
+                        Message message = mHandler.obtainMessage(MSG_COMPRESS_ERROR);
+                        message.arg1 = path.getIndex();
+                        Bundle bundle = new Bundle();
+                        bundle.putString(KEY_SOURCE, path.getPath());
+                        message.setData(bundle);
+                        mHandler.sendMessage(message);
                     }
                 }
             });
@@ -150,7 +173,8 @@ public class Luban implements Handler.Callback {
      */
     private File get(InputStreamProvider input, Context context) throws IOException {
         try {
-            return new Engine(input, getImageCacheFile(context, Checker.SINGLE.extSuffix(input)), focusAlpha).compress();
+            return new Engine(input, getImageCacheFile(context, Checker.SINGLE.extSuffix(input)), focusAlpha).setCompressQuality(mCompressQuality).compress();
+//            return new Engine(input, getImageCacheFile(context, Checker.SINGLE.extSuffix(input)), focusAlpha).compress();
         } finally {
             input.close();
         }
@@ -180,23 +204,29 @@ public class Luban implements Handler.Callback {
         File result;
 
         File outFile = getImageCacheFile(context, Checker.SINGLE.extSuffix(path));
-
+        String source = Checker.isContent(path.getPath()) ? LubanUtils.getPath(context, Uri.parse(path.getPath())) : path.getPath();
         if (mRenameListener != null) {
-            String filename = mRenameListener.rename(path.getPath());
+            String filename = mRenameListener.rename(source);
             outFile = getImageCustomFile(context, filename);
         }
 
         if (mCompressionPredicate != null) {
-            if (mCompressionPredicate.apply(path.getPath())
-                    && Checker.SINGLE.needCompress(mLeastCompressSize, path.getPath())) {
-                result = new Engine(path, outFile, focusAlpha).compress();
+            if (mCompressionPredicate.apply(source)
+                    && Checker.SINGLE.needCompress(mLeastCompressSize, source)) {
+                //              result = new Engine(path, outFile, focusAlpha).compress();
+                result = new Engine(path, outFile, focusAlpha).setCompressQuality(mCompressQuality).compress();
             } else {
-                result = new File(path.getPath());
+                // Ignore compression
+                result = new File(source);
             }
         } else {
-            result = Checker.SINGLE.needCompress(mLeastCompressSize, path.getPath()) ?
-                    new Engine(path, outFile, focusAlpha).compress() :
-                    new File(path.getPath());
+            if (Checker.SINGLE.needCompress(mLeastCompressSize, source)) {
+                //              result = new Engine(path, outFile, focusAlpha).compress();
+                result=new Engine(path, outFile, focusAlpha).setCompressQuality(mCompressQuality).compress();
+            } else {
+                // Ignore compression
+                result = new File(source);
+            }
         }
 
         return result;
@@ -204,17 +234,31 @@ public class Luban implements Handler.Callback {
 
     @Override
     public boolean handleMessage(Message msg) {
-        if (mCompressListener == null) return false;
 
         switch (msg.what) {
             case MSG_COMPRESS_START:
-                mCompressListener.onStart();
+                if (mCompressListener != null) {
+                    mCompressListener.onStart();
+                }
+                if (mNewCompressListener != null) {
+                    mNewCompressListener.onStart();
+                }
                 break;
             case MSG_COMPRESS_SUCCESS:
-                mCompressListener.onSuccess((File) msg.obj);
+                if (mCompressListener != null) {
+                    mCompressListener.onSuccess(msg.arg1, (File) msg.obj);
+                }
+                if (mNewCompressListener != null) {
+                    mNewCompressListener.onSuccess(msg.getData().getString(KEY_SOURCE), (File) msg.obj);
+                }
                 break;
             case MSG_COMPRESS_ERROR:
-                mCompressListener.onError((Throwable) msg.obj);
+                if (mCompressListener != null) {
+                    mCompressListener.onError(msg.arg1, (Throwable) msg.obj);
+                }
+                if (mNewCompressListener != null) {
+                    mNewCompressListener.onError(msg.getData().getString(KEY_SOURCE), (Throwable) msg.obj);
+                }
                 break;
         }
         return false;
@@ -224,11 +268,14 @@ public class Luban implements Handler.Callback {
         private Context context;
         private String mTargetDir;
         private boolean focusAlpha;
+        private boolean isUseBufferPool = true;
         private int mLeastCompressSize = 100;
         private OnRenameListener mRenameListener;
         private OnCompressListener mCompressListener;
+        private OnNewCompressListener mNewCompressListener;
         private CompressionPredicate mCompressionPredicate;
         private List<InputStreamProvider> mStreamProviders;
+        private int mCompressQuality = 60; //图片压缩质量
 
         Builder(Context context) {
             this.context = context;
@@ -244,11 +291,48 @@ public class Luban implements Handler.Callback {
             return this;
         }
 
+        public <T> Builder load(List<T> list) {
+            int index = -1;
+            for (T src : list) {
+                index++;
+                if (src instanceof String) {
+                    load((String) src, index);
+                } else if (src instanceof File) {
+                    load((File) src, index);
+                } else if (src instanceof Uri) {
+                    load((Uri) src, index);
+                } else {
+                    throw new IllegalArgumentException("Incoming data type exception, it must be String, File, Uri or Bitmap");
+                }
+            }
+            return this;
+        }
+
+        public Builder compressQuality(int quality) {
+            if (quality < 10) {
+                quality = 10;
+            } else if (quality > 100) {
+                quality = 100;
+            }
+            this.mCompressQuality = quality;
+            return this;
+        }
+
         public Builder load(final File file) {
+            load(file, 0);
+            return this;
+        }
+
+        private Builder load(final File file, int index) {
             mStreamProviders.add(new InputStreamAdapter() {
                 @Override
-                public InputStream openInternal() throws IOException {
-                    return new FileInputStream(file);
+                public InputStream openInternal() {
+                    return ArrayPoolProvide.getInstance().openInputStream(file.getAbsolutePath());
+                }
+
+                @Override
+                public int getIndex() {
+                    return index;
                 }
 
                 @Override
@@ -260,10 +344,20 @@ public class Luban implements Handler.Callback {
         }
 
         public Builder load(final String string) {
+            load(string, 0);
+            return this;
+        }
+
+        private Builder load(final String string, int index) {
             mStreamProviders.add(new InputStreamAdapter() {
                 @Override
-                public InputStream openInternal() throws IOException {
-                    return new FileInputStream(string);
+                public InputStream openInternal() {
+                    return ArrayPoolProvide.getInstance().openInputStream(string);
+                }
+
+                @Override
+                public int getIndex() {
+                    return index;
                 }
 
                 @Override
@@ -274,36 +368,35 @@ public class Luban implements Handler.Callback {
             return this;
         }
 
-        public <T> Builder load(List<T> list) {
-            for (T src : list) {
-                if (src instanceof String) {
-                    load((String) src);
-                } else if (src instanceof File) {
-                    load((File) src);
-                } else if (src instanceof Uri) {
-                    load((Uri) src);
-                } else {
-                    throw new IllegalArgumentException("Incoming data type exception, it must be String, File, Uri or Bitmap");
-                }
-            }
+        public Builder load(final Uri uri) {
+            load(uri, 0);
             return this;
         }
 
-        public Builder load(final Uri uri) {
+        private Builder load(final Uri uri, int index) {
             mStreamProviders.add(new InputStreamAdapter() {
                 @Override
                 public InputStream openInternal() throws IOException {
+                    if (isUseBufferPool) {
+                        return ArrayPoolProvide.getInstance().openInputStream(context.getContentResolver(), uri);
+                    }
                     return context.getContentResolver().openInputStream(uri);
                 }
 
                 @Override
+                public int getIndex() {
+                    return index;
+                }
+
+                @Override
                 public String getPath() {
-                    return uri.getPath();
+                    return Checker.isContent(uri.toString()) ? uri.toString() : uri.getPath();
                 }
             });
             return this;
         }
 
+        @Deprecated
         public Builder putGear(int gear) {
             return this;
         }
@@ -318,6 +411,11 @@ public class Luban implements Handler.Callback {
             return this;
         }
 
+        public Builder setCompressListener(OnNewCompressListener listener) {
+            this.mNewCompressListener = listener;
+            return this;
+        }
+
         public Builder setTargetDir(String targetDir) {
             this.mTargetDir = targetDir;
             return this;
@@ -329,8 +427,20 @@ public class Luban implements Handler.Callback {
          * @param focusAlpha <p> true - to keep alpha channel, the compress speed will be slow. </p>
          *                   <p> false - don't keep alpha channel, it might have a black background.</p>
          */
+        @Deprecated
         public Builder setFocusAlpha(boolean focusAlpha) {
             this.focusAlpha = focusAlpha;
+            return this;
+        }
+
+        /**
+         * getContentResolver().openInputStream(); open using buffer pool mode
+         *
+         * @param isUseBufferPool
+         * @return
+         */
+        public Builder isUseIOBufferPool(boolean isUseBufferPool) {
+            this.isUseBufferPool = isUseBufferPool;
             return this;
         }
 
@@ -363,10 +473,19 @@ public class Luban implements Handler.Callback {
         }
 
         public File get(final String path) throws IOException {
+            return get(path, 0);
+        }
+
+        public File get(final String path, int index) throws IOException {
             return build().get(new InputStreamAdapter() {
                 @Override
-                public InputStream openInternal() throws IOException {
-                    return new FileInputStream(path);
+                public InputStream openInternal() {
+                    return ArrayPoolProvide.getInstance().openInputStream(path);
+                }
+
+                @Override
+                public int getIndex() {
+                    return index;
                 }
 
                 @Override

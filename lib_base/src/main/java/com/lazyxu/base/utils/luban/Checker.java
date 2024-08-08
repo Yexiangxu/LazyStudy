@@ -1,6 +1,7 @@
 package com.lazyxu.base.utils.luban;
 
 import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
-enum Checker {
+public enum Checker {
     SINGLE;
 
     private static final String TAG = "Luban";
@@ -40,6 +41,19 @@ enum Checker {
         }
         byte[] signatureB = new byte[]{data[0], data[1], data[2]};
         return Arrays.equals(JPEG_SIGNATURE, signatureB);
+    }
+
+    /**
+     * is content://
+     *
+     * @param url
+     * @return
+     */
+    public static boolean isContent(String url) {
+        if (TextUtils.isEmpty(url)) {
+            return false;
+        }
+        return url.startsWith("content://");
     }
 
     private int getOrientation(byte[] jpeg) {

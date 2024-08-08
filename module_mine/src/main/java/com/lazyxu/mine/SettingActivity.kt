@@ -8,10 +8,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.snackbar.Snackbar
+import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.base.actvity.BaseVbActivity
 import com.lazyxu.base.base.head.HeadToolbar
 import com.lazyxu.base.constants.SpKey
-import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.utils.AudioPlayManager
 import com.lazyxu.base.utils.DeviceUtil
 import com.lazyxu.base.utils.SpUtils
@@ -25,6 +25,7 @@ class SettingActivity : BaseVbActivity<ActivitySettingBinding>() {
     override fun headToolbar() = HeadToolbar.Builder()
         .toolbarTitle(R.string.settings)
         .build()
+
 
     override fun initView() {
         mViewBinding.scShake.isChecked = SpUtils.getBoolean(SpKey.OPEN_VIBRATE)

@@ -67,6 +67,7 @@ object ARouterPath {
     class Mine {
         companion object {
             private const val mineGroup = "/mine"
+            const val MAIN = "$mineGroup/main"
             const val SETTING = "$mineGroup/setting"
         }
     }

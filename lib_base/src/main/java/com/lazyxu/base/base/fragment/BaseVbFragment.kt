@@ -18,8 +18,7 @@ abstract class BaseVbFragment<VB : ViewBinding> : BaseFragment() {
     lateinit var mViewBinding: VB
     override fun initContentView(inflater: LayoutInflater, container: ViewGroup?): View {
         //actualTypeArguments[0]是通过反射获取第一个，如果 VB是在第二个就是用[1]
-        val vbClass: Class<VB> =
-            (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VB>
+        val vbClass: Class<VB> = (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VB>
         val method = vbClass.getDeclaredMethod(
             "inflate",
             LayoutInflater::class.java,

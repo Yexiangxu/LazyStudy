@@ -20,6 +20,6 @@ object ActivityUtils {
     }
 
     fun isActivityAlive(activity: Activity?): Boolean {
-        return (activity != null && !activity.isFinishing && (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1 || !activity.isDestroyed))
+        return (activity != null && !activity.isFinishing && !activity.isDestroyed)
     }
 }

@@ -3,6 +3,7 @@ package com.lazyxu.base.arouter
 import android.app.Activity
 import android.os.Bundle
 import android.os.Parcelable
+import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.launcher.ARouter
 import com.lazyxu.base.R
@@ -53,6 +54,10 @@ object ARouterHelper {
         postcard.navigation()
     }
 
+    fun getFragment(path: String): Fragment {
+        return ARouter.getInstance().build(path).navigation() as Fragment
+    }
+
     /**
      * 刚进入页面就需要网络请求，优先判断是否链接网络优化用户体验
      */
@@ -68,4 +73,6 @@ object ARouterHelper {
         ARouter.getInstance().build(path).navigation()
         this.finish()
     }
+
+
 }

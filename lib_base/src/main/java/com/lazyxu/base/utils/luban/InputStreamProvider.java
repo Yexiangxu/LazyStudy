@@ -14,5 +14,7 @@ public interface InputStreamProvider {
 
     void close();
 
+    int getIndex();
+
     String getPath();
 }

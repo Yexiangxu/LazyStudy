@@ -87,13 +87,13 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected open fun initStatusbar() {
-        ImmersionBar.with(this)
-            .fitsSystemWindows(true)//解决布局顶部和状态栏重叠问题
-            .autoDarkModeEnable(true)//自动适配状态栏字体颜色
-            .statusBarColor(headToolbar()?.statusBarColor ?: R.color.color_main_bg)
-            .navigationBarColor(R.color.black)
-            .hideBar(BarHide.FLAG_SHOW_BAR)
-            .init()
+//        ImmersionBar.with(this)
+//            .fitsSystemWindows(true)//解决布局顶部和状态栏重叠问题
+//            .autoDarkModeEnable(true)//自动适配状态栏字体颜色
+//            .statusBarColor(headToolbar()?.statusBarColor ?: R.color.color_main_bg)
+//            .navigationBarColor(R.color.black)
+//            .hideBar(BarHide.FLAG_SHOW_BAR)
+//            .init()
     }
 
     override fun onBackPressed() {
