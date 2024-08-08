@@ -47,29 +47,31 @@ class MainActivity : BaseVbActivity<ActivityMainBinding>() {
             ARouterHelper.getFragment(ARouterPath.Mine.MAIN)
         )
     private var lastIndex = -1
+    private val fragmentTag
+        get() = "fragment$lastIndex"
+
     private fun setFragmentPosition(position: Int) {
         try {
             if (lastIndex == position) return
+            lastIndex = position
             val fragmentManager = supportFragmentManager
             val ft = fragmentManager.beginTransaction()
-            val currentFragment = mFragments[position]
+            val currentFragment = fragmentManager.findFragmentByTag(fragmentTag)
             //这里要用fragmentManager.fragments.filter，不能用mFragments.filter
-            fragmentManager.fragments.filter { it != currentFragment && it.isAdded }
+            fragmentManager.fragments.filter { it.tag != fragmentTag && it.isAdded }
                 .forEach {
-                    Log.d("FragmentManager","hide=${it}")
                     ft.hide(it)
                     ft.setMaxLifecycle(it, Lifecycle.State.STARTED)
                 }
-            if (!currentFragment.isAdded) {
-                Log.d("FragmentManager","add=${currentFragment}")
-                ft.add(R.id.fragment_main, currentFragment)
+            if (currentFragment == null) {//通过tag判断，当切换夜间模式等isAdded判断不准确
+                ft.add(R.id.fragment_main, mFragments[position], fragmentTag)
             } else {
-                Log.d("FragmentManager","add=${currentFragment}")
                 ft.show(currentFragment)
             }
-            ft.setMaxLifecycle(currentFragment, Lifecycle.State.RESUMED)
+            currentFragment?.let {
+                ft.setMaxLifecycle(currentFragment, Lifecycle.State.RESUMED)
+            }
             ft.commitAllowingStateLoss()
-            lastIndex = position
         } catch (e: Exception) {
             LogUtils.d("setFragmentPosition=${e}")
         }
