@@ -9,8 +9,8 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.lazyxu.base.R
-import com.lazyxu.base.transformation.CircleBorderTransform
-import com.lazyxu.base.transformation.CircleCropTransformation
+import com.lazyxu.base.utils.transformation.CircleBorderTransform
+import com.lazyxu.base.utils.transformation.CircleCropTransformation
 
 
 fun ImageView.load(url: Any?, @DrawableRes placeholder: Int = R.drawable.default_image) {

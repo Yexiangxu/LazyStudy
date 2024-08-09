@@ -22,7 +22,7 @@ import kotlin.system.exitProcess
 class MainActivity : BaseVbActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null) {//处理切换夜间模式等
             mViewBinding.bnvMain.selectedItemId = R.id.menu_home
         }
     }
@@ -34,7 +34,7 @@ class MainActivity : BaseVbActivity<ActivityMainBinding>() {
                 R.id.menu_home -> setFragmentPosition(0)
                 R.id.menu_type -> setFragmentPosition(1)
                 R.id.menu_mine -> setFragmentPosition(2)
-                else -> {}
+                else -> setFragmentPosition(0)
             }
             true
         }
@@ -60,6 +60,7 @@ class MainActivity : BaseVbActivity<ActivityMainBinding>() {
             //这里要用fragmentManager.fragments.filter，不能用mFragments.filter
             fragmentManager.fragments.filter { it.tag != fragmentTag && it.isAdded }
                 .forEach {
+                    Log.d("FragmentManager", "hide=$it")
                     ft.hide(it)
                     ft.setMaxLifecycle(it, Lifecycle.State.STARTED)
                 }

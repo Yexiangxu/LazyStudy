@@ -18,6 +18,7 @@
         app:navigationIcon="@drawable/svg_back_white"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/app_name"
+        app:titleTextColor="@color/white"
         app:titleMarginStart="@dimen/dp_30"
         app:titleTextAppearance="@style/ToolBarTitle"
         tools:ignore="RtlSymmetry">

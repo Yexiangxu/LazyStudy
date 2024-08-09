@@ -51,13 +51,13 @@ abstract class BaseFragment : Fragment() {
      * 设置撑满状态栏
      */
     open fun initStatusbar() {
-//        ImmersionBar.with(this)
-//            .autoDarkModeEnable(true)
-//            .statusBarDarkFont(true, 0.2f)
-//            .navigationBarColor(R.color.black)
-//            .navigationBarDarkIcon(true)
-//            .keyboardEnable(false)
-//            .init()
+        ImmersionBar.with(this)
+            .autoDarkModeEnable(true)
+            .statusBarDarkFont(true, 0.2f)
+            .navigationBarColor(R.color.black)
+            .navigationBarDarkIcon(true)
+            .keyboardEnable(false)
+            .init()
     }
 
 
