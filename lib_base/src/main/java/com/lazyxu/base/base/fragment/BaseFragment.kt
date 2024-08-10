@@ -1,5 +1,6 @@
 package com.lazyxu.base.base.fragment
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gyf.immersionbar.ImmersionBar
 import com.lazyxu.base.R
+import com.lazyxu.base.interfaces.OnBackPressedListener
 import com.lazyxu.base.log.LogUtils
 
 /**
@@ -16,7 +18,22 @@ import com.lazyxu.base.log.LogUtils
  * Description:
  * FIXME
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(), OnBackPressedListener {
+    private var mActivity: Activity? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        LogUtils.d("${javaClass.simpleName} onAttach")
+        if (context is Activity) {
+            mActivity = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        LogUtils.d("${javaClass.simpleName} onDetach")
+        mActivity = null
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,17 +78,15 @@ abstract class BaseFragment : Fragment() {
     }
 
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        LogUtils.d("${javaClass.simpleName} onAttach")
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LogUtils.d("${javaClass.simpleName} onCreate")
     }
 
-
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        LogUtils.d("${javaClass.simpleName} onViewStateRestored")
+    }
     override fun onStart() {
         super.onStart()
         LogUtils.d("${javaClass.simpleName} onStart")
@@ -85,6 +100,14 @@ abstract class BaseFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         LogUtils.d("${javaClass.simpleName} onPause")
+    }
+
+    /**
+     * onSaveInstanceState 不一定在 onPause 之后，但一定在 onStop 之前
+     */
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        LogUtils.d("${javaClass.simpleName} onSaveInstanceState")
     }
 
     override fun onStop() {
@@ -102,8 +125,11 @@ abstract class BaseFragment : Fragment() {
         LogUtils.d("${javaClass.simpleName} onDestroy")
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        LogUtils.d("${javaClass.simpleName} onDetach")
+    /**
+     * 默认为false交给activity处理
+     * 当需要重写处理返回键，重写处理逻辑，最后 return true
+     */
+    override fun onBackPressed(): Boolean {
+        return false
     }
 }

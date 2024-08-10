@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -11,13 +12,17 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 import com.lazyxu.base.R
+import com.lazyxu.base.base.fragment.BaseFragment
 import com.lazyxu.base.base.head.HeadToolbar
+import com.lazyxu.base.interfaces.OnBackPressedListener
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.base.utils.ActivitysManager
+
 
 /**
  * User:Lazy_xu
@@ -97,6 +102,12 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        for (f in supportFragmentManager.fragments) {
+            if (f is OnBackPressedListener &&f.isVisible&& f.onBackPressed()) {
+                /*在Fragment中处理返回事件*/
+                return
+            }
+        }
         if (headToolbar()?.backClick != null) {
             headToolbar()?.backClick?.invoke()
         } else {
@@ -189,12 +200,44 @@ abstract class BaseActivity : AppCompatActivity() {
         imm.hideSoftInputFromWindow(window.decorView.windowToken, 0)
     }
 
+    override fun onStart() {
+        super.onStart()
+        LogUtils.d("${javaClass.simpleName} onStart")
+    }
+
+    override fun onRestoreInstanceState(
+        savedInstanceState: Bundle?,
+        persistentState: PersistableBundle?
+    ) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState)
+        LogUtils.d("${javaClass.simpleName} onRestoreInstanceState")
+    }
+    override fun onResume() {
+        super.onResume()
+        LogUtils.d("${javaClass.simpleName} onResume")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        LogUtils.d("${javaClass.simpleName} onRestart")
+    }
+
     /**
      * 当前Activity的onPause方法执行结束后才会执行下一个Activity的onCreate 方法，所以在 onPause 方法中不适合做耗时较长的工作，这会影响到页面之间的跳 转效率
      */
     override fun onPause() {
         super.onPause()
         LogUtils.d("${javaClass.simpleName} onPause")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        LogUtils.d("${javaClass.simpleName} onSaveInstanceState")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        LogUtils.d("${javaClass.simpleName} onStop")
     }
 
     override fun onDestroy() {
