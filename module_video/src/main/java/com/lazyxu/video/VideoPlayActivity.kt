@@ -28,7 +28,6 @@ import androidx.media3.ui.PlayerView.SHOW_BUFFERING_NEVER
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.lib_common.constant.Constants
 import com.gyf.immersionbar.ImmersionBar
 import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.base.actvity.BaseVbVmActivity
@@ -36,6 +35,7 @@ import com.lazyxu.base.log.LogTag
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.base.utils.layoutmanager.OnViewPagerListener
 import com.lazyxu.base.utils.layoutmanager.PagerLayoutManager
+import com.lazyxu.lib_common.constant.Constants
 import com.lazyxu.lib_database.entity.VideoEntity
 import com.lazyxu.video.adapter.VideoAdapter
 import com.lazyxu.video.databinding.ActivityPlayVideoBinding
@@ -52,7 +52,11 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
     @Autowired(name = Constants.KEY_VIDEO_PLAY_LIST)
     @JvmField
     var mData: ArrayList<VideoEntity>? = null
-    override fun initStatusbar() {
+
+    @Autowired(name = Constants.KEY_VIDEO_PLAY_POS)
+    @JvmField
+    var position: Int = 0
+    override fun initStatusbar(color: Int) {
         ImmersionBar.with(this)
             .titleBarMarginTop(mViewBinding.tbTitle)
             .navigationBarColor(com.lazyxu.base.R.color.black)
@@ -93,6 +97,7 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
             adapter = videoAdapter
         }
         videoAdapter.setList(mData)
+        mViewBinding.rvPlay.scrollToPosition(position)
         mViewBinding.refreshBest.setOnRefreshListener {
             mViewBinding.refreshBest.isRefreshing = false
         }
@@ -146,7 +151,6 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
      * 滑动监听
      */
     private val onScrollPagerListener = object : OnViewPagerListener {
-
 
         override fun onPageRelease(isNext: Boolean, position: Int, view: View?) {
             LogUtils.d(LogTag.VIDEO, "onPageRelease===$isNext | $position")

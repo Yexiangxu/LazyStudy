@@ -23,7 +23,16 @@
         <item name="toolbarNavigationButtonStyle">@style/TbNavBtnStyle</item><!--设置toolbar通用样式-->
         <!--        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>&lt;!&ndash;之前遇到过不同手机页面跳转动画不一样，该设置可统一&ndash;&gt;-->
     </style>
-
+    <!-- 底部弹出页面专用主题（不用windowIsTranslucent会黑色闪一下），eg登录页面
+     设置目标 Activity(要启动的那个Activity)是透明的。很容易理解，两个Activity，A和B；在A中启动B，因为B是透明的，看到的背景仍是 A，这样就解决了这个短暂的黑屏问题-->
+    <style name="AppTheme.Translucent">
+        <item name="android:windowIsTranslucent">true</item><!--是否半透明（透明度）-->
+        <item name="android:windowAnimationStyle">@style/ActivityBottomAnimation</item>
+    </style>
+    <style name="ActivityBottomAnimation"  parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_bottom_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_bottom_out</item>
+    </style>
     <!--启动页主题-->
     <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_bg</item>
@@ -35,6 +44,14 @@
     <style name="ToolBarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">@dimen/sp_18</item>
         <item name="android:textColor">@color/white</item>
+        <!-- 设置Menu图标颜色 -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- 设置Menu文字颜色 -->
+        <item name="android:textColorSecondary">@color/white</item>
+        <!-- 适用于 Material Components -->
+        <item name="actionMenuTextColor">@color/white</item>
+        <!-- 对应 Overflow 图标颜色 -->
+        <item name="android:actionMenuTextColor">@color/white</item>
     </style>
 
     <!--横线-->

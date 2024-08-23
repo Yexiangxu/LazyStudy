@@ -2,18 +2,53 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/black_333333">
+    android:background="@color/black_333333"
+    android:orientation="vertical">
+    <!-- 卡片的正面 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_front"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="#FFCC00"
+        app:cardCornerRadius="16dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Front Side"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- 卡片的反面 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_back"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#FF5722"
+        app:cardCornerRadius="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Back Side"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+    </androidx.cardview.widget.CardView>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_tweenanimation"
         android:layout_width="@dimen/dp_133"
         android:layout_height="@dimen/dp_27"
-        android:scaleType="fitXY"
         android:layout_centerInParent="true"
+        android:scaleType="fitXY"
         android:src="@drawable/splash_bottom" />
 
     <HorizontalScrollView
@@ -27,6 +62,7 @@
             android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/btn_alphat"
                 android:layout_width="0dp"
@@ -34,6 +70,7 @@
                 android:layout_weight="1"
                 android:alpha="0.99"
                 android:text="alphat" />
+
             <Button
                 android:id="@+id/btn_xml_scale"
                 android:layout_width="0dp"
@@ -41,6 +78,7 @@
                 android:layout_weight="1"
                 android:alpha="0.99"
                 android:text="xml scale" />
+
             <Button
                 android:id="@+id/btn_scale"
                 android:layout_width="0dp"
@@ -68,12 +106,34 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Xml Combine" />
+
             <Button
                 android:id="@+id/btn_kotlin_combine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Kotlin Combine" />
+
+            <Button
+                android:id="@+id/btn_viewpropertyanimator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="单一动画ViewPropertyAnimator" />
+
+            <Button
+                android:id="@+id/btn_propertyvaluesholder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="组合动画PropertyValuesHolder" />
+
+            <Button
+                android:id="@+id/btn_valueanimator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ValueAnimator" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </HorizontalScrollView>

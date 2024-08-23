@@ -3,7 +3,7 @@ package com.lazyxu.lazystudy
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.lib_common.constant.Constants
+import com.lazyxu.lib_common.constant.Constants
 import com.lazyxu.base.ext.toBean
 import com.lazyxu.base.utils.AssetsUtils
 import com.lazyxu.lib_database.entity.VideoEntity

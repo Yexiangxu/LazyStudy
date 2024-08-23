@@ -49,6 +49,16 @@ object ARouterPath {
             const val ANIMATION_FRAME = "$functionGroup/animation_frame"
             const val ANIMATION_TWEEN = "$functionGroup/animation_tween"
             const val ANIMATION_PROPERTY = "$functionGroup/animation_property"
+            const val ANIMATION_CUSTOM = "$functionGroup/animation_custom"
+            const val ANIMATION_LAYOUT = "$functionGroup/animation_layout"
+            const val ANIMATION_TRANSITION = "$functionGroup/animation_transition"
+            const val ANIMATION_TRANSITION_DETAIL = "$functionGroup/animation_transition_detail"
+            const val ANIMATION_CONSTRAINTLAYOUT_MAIN = "$functionGroup/animation_constraintlayout_main"
+            const val ANIMATION_CONSTRAINTLAYOUT_DETAIL = "$functionGroup/animation_constraintlayout_detail"
+            const val ANIMATION_TOUCHFEEDBACK = "$functionGroup/animation_touchfeedback"
+            const val ANIMATION_SCENES = "$functionGroup/animation_scenes"
+            const val ANIMATION_SHAREELEMENTS = "$functionGroup/animation_shareelements"
+            const val ANIMATION_REVEAL = "$functionGroup/animation_reveal"
         }
     }
 

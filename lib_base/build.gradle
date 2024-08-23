@@ -52,7 +52,9 @@ dependencies {
     api 'uk.co.chrisjenx:calligraphy:2.3.0'
     api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
     api 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
-
+    //库很小，封装了一些系统transition库缺少的动画
+    api "com.andkulikov:transitionseverywhere:2.1.0"
+    api 'de.hdodenhof:circleimageview:3.1.0'
     // ==============      ===================
 
 

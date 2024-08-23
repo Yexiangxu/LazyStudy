@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_constrain1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ConstrainLayout margin" />
+
+    <Button
+        android:id="@+id/btn_constrain2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ConstrainLayout centerHorizontally" />
+
+    <Button
+        android:id="@+id/btn_constrain3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ConstrainLayout center" />
+
+    <Button
+        android:id="@+id/btn_constrain4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ConstrainLayout constrainWidth" />
+
+    <Button
+        android:id="@+id/btn_constrain5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ConstrainLayout connect" />
+
+    <Button
+        android:id="@+id/btn_constrain6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ConstrainLayout HorizontalChain" />
+</LinearLayout>

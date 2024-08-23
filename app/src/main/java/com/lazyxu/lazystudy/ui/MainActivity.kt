@@ -9,6 +9,7 @@ import androidx.lifecycle.Lifecycle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lazyxu.base.arouter.ARouterHelper
 import com.lazyxu.base.arouter.ARouterPath
+import com.lazyxu.base.base.BaseApplication
 import com.lazyxu.base.base.actvity.BaseVbActivity
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.lazystudy.CategoryFragment

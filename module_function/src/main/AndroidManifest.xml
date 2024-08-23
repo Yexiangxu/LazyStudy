@@ -13,8 +13,20 @@
         <activity android:name=".cache.CacheActivity" />
         <activity android:name=".compress.PicCompressActivity" />
         <activity android:name="com.lazyxu.customview.CustomView1Activity" />
-        <activity android:name="com.lazyxu.animation.FrameAnimationActivity" />
-        <activity android:name="com.lazyxu.animation.TweenAnimationActivity" />
-        <activity android:name="com.lazyxu.animation.AnimationMainActivity" />
+        <activity android:name=".animation.FrameAnimationActivity" />
+        <activity android:name=".animation.TweenAnimationActivity" />
+        <activity android:name=".animation.AnimationMainActivity" />
+        <activity android:name=".animation.PropertyAnimationActivity" />
+        <activity android:name="com.lazyxu.function.animation.CustomAnimationActivity" />
+        <activity android:name="com.lazyxu.function.animation.LayoutAnimationActivity" />
+        <activity android:name="com.lazyxu.function.animation.transition.TransitionAnimationMainActivity" />
+        <activity android:name="com.lazyxu.function.animation.transition.TransitionAnimationDetailViewActivity" />
+        <activity android:name="com.lazyxu.function.animation.transition.ImageTransformActivity" />
+        <activity android:name="com.lazyxu.function.animation.constraintlayout.ConstraintLayoutDetailAnimationActivity" />
+        <activity android:name="com.lazyxu.function.animation.constraintlayout.ConstraintLayoutMainAnimationActivity" />
+        <activity android:name="com.lazyxu.function.animation.TouchFeedbackActivity" />
+        <activity android:name="com.lazyxu.function.animation.transition.ScenesActivity" />
+        <activity android:name="com.lazyxu.function.animation.transition.ShareElementsActivity" />
+        <activity android:name="com.lazyxu.function.animation.RevealAnimationActivity" />
     </application>
 </manifest>

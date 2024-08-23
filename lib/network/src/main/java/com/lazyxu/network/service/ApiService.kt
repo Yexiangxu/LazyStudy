@@ -1,6 +1,6 @@
 package com.lazyxu.network.service
 
-import com.example.lib_common.entity.SearchResult
+import com.lazyxu.lib_common.entity.SearchResult
 import com.lazyxu.network.entity.SearchRecommend
 import com.lazyxu.network.entity.base.BaseResponse
 import retrofit2.http.Field

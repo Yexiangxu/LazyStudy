@@ -3,7 +3,7 @@ package com.lazyxu.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.lib_common.entity.SearchResult
+import com.lazyxu.lib_common.entity.SearchResult
 import com.lazyxu.base.log.LogTag
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.lib_database.entity.SearchEntity

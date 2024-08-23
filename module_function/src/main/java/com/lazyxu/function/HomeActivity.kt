@@ -9,7 +9,7 @@ import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.lib_common.CustomPopWindow
+//import com.lazyxu.lib_common.CustomPopWindow
 
 
 class HomeActivity : AppCompatActivity() {
@@ -29,12 +29,12 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showPopBottom(view: View) {
-        val popWindow: CustomPopWindow = CustomPopWindow.PopupWindowBuilder(this)
-            .setView(R.layout.pop_home)
-            .setFocusable(true)
-            .setOutsideTouchable(true)
-            .create()
-        popWindow.showAsDropDown(view, 0, 10)
+//        val popWindow: CustomPopWindow = CustomPopWindow.PopupWindowBuilder(this)
+//            .setView(R.layout.pop_home)
+//            .setFocusable(true)
+//            .setOutsideTouchable(true)
+//            .create()
+//        popWindow.showAsDropDown(view, 0, 10)
     }
 
     private fun translationYAnim(view: View) {

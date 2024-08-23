@@ -1,8 +1,11 @@
 package com.lazyxu.base.arouter
 
 import android.app.Activity
+import android.app.ActivityOptions
+import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.launcher.ARouter
@@ -48,10 +51,18 @@ object ARouterHelper {
         }
     }
 
-    fun goActivity(path: String, params: Map<String, Any> = mapOf()) {
+    fun goActivity(
+        path: String,
+        params: Map<String, Any> = mapOf(),
+        options: ActivityOptionsCompat? = null,
+        context: Context? = null,
+    ) {
         val postcard = ARouter.getInstance().build(path)
         postcard.getParams(params)
-        postcard.navigation()
+        if (options != null) {
+            postcard.withOptionsCompat(options)
+        }
+        postcard.navigation(context)
     }
 
     fun getFragment(path: String): Fragment {
@@ -61,9 +72,13 @@ object ARouterHelper {
     /**
      * 刚进入页面就需要网络请求，优先判断是否链接网络优化用户体验
      */
-    fun goActivityNeedNet(path: String, params: Map<String, Any> = mapOf()) {
+    fun goActivityNeedNet(
+        path: String,
+        params: Map<String, Any> = mapOf(),
+        activityOptionsCompat: ActivityOptionsCompat? = null
+    ) {
         if (NetUtils.isConnected(BaseApplication.INSTANCE)) {
-            goActivity(path, params)
+            goActivity(path, params, activityOptionsCompat)
         } else {
             AppToast.show(R.string.net_disconnect)
         }

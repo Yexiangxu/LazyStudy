@@ -14,11 +14,6 @@ data class Permission(
 ) {
     constructor(name: String, granted: Boolean) : this(name, granted, false)
 
-    constructor(permissions: List<Permission>) : this(
-        combineName(permissions),
-        combineGranted(permissions),
-        combineShouldShowRequestPermissionRationale(permissions)
-    )
 
     private companion object {
         fun combineName(permissions: List<Permission>): String {
@@ -30,19 +25,6 @@ data class Permission(
             }
         }
 
-        private fun combineGranted(permissions: List<Permission>): Boolean {
-            return runBlocking {
-                permissions.asFlow()
-                    .all { it.granted }
-            }
-        }
-
-        private fun combineShouldShowRequestPermissionRationale(permissions: List<Permission>): Boolean {
-            return runBlocking {
-                permissions.asFlow()
-                    .any { it.shouldShowRequestPermissionRationale }
-            }
-        }
     }
 
     override fun equals(other: Any?): Boolean {

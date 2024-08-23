@@ -13,6 +13,6 @@ object LogTag {
 
     const val SEARCH = "SearchTag"
     const val VIDEO = "VideoTag"
-
+    const val ANIMATION = "AnimationTag"
     const val CUSTOMVIEW = "CustomviewTag"
 }

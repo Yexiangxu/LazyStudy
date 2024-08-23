@@ -28,7 +28,7 @@ class MediaPlayActivity : BaseVbActivity<ActivityPlayBinding>() {
     private var timerTaskManager: TimerTaskManager? = null
     private var mediaPlayer: MediaPlayer? = null
 
-    override fun initStatusbar() {
+    override fun initStatusbar(color: Int) {
         ImmersionBar.with(this)
             .autoDarkModeEnable(true)
             .statusBarDarkFont(true, 0.2f)

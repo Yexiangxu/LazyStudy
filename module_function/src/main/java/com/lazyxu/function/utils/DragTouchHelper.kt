@@ -141,7 +141,7 @@ class DragCallBack(adapter: DragAdapter, data: MutableList<String>) : ItemTouchH
             is LinearLayoutManager -> {
                 // 线性布局 设置背景颜色
                 val drawable = viewHolder.itemView.background as GradientDrawable
-                drawable.color = ContextCompat.getColorStateList(viewHolder.itemView.context, com.example.lib_common.R.color.gray_e3e3e3)
+                drawable.color = ContextCompat.getColorStateList(viewHolder.itemView.context, com.lazyxu.lib_common.R.color.gray_e3e3e3)
             }
         }
         super.clearView(recyclerView, viewHolder)

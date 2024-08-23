@@ -1,7 +1,11 @@
 package com.lazyxu.lazystudy
 
+import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.lib_common.constant.Constants
+import com.lazyxu.lib_common.constant.Constants
 import com.lazyxu.base.arouter.ARouterHelper
 import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.base.fragment.BaseVbVmFragment
@@ -45,7 +49,8 @@ class HomeFragment : BaseVbVmFragment<FragmentHomeBinding, HomeViewModel>() {
             ARouterHelper.goActivityNeedNet(
                 ARouterPath.Video.PLAY,
                 mapOf(
-                    Constants.KEY_VIDEO_PLAY_LIST to adapter.data
+                    Constants.KEY_VIDEO_PLAY_LIST to adapter.data,
+                    Constants.KEY_VIDEO_PLAY_POS to position
                 )
             )
         }

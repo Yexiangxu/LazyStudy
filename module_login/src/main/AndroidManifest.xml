@@ -5,6 +5,8 @@
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application>
-        <activity android:name="com.lazyxu.login.ui.login.LoginActivity" />
+        <activity
+            android:name="com.lazyxu.login.ui.login.LoginActivity"
+            android:theme="@style/AppTheme.Translucent" />
     </application>
 </manifest>

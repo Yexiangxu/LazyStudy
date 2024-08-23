@@ -36,7 +36,7 @@ class SplashActivity : BaseVbActivity<ActivitySplashBinding>() {
         })
     }
 
-    override fun initStatusbar() {
+    override fun initStatusbar(color: Int) {
         ImmersionBar.with(this)
             .fitsSystemWindows(true)//解决布局顶部和状态栏重叠问题
             .hideBar(BarHide.FLAG_HIDE_BAR)

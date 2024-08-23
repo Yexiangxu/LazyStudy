@@ -12,12 +12,11 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
+import androidx.core.graphics.drawable.DrawableCompat
 import com.alibaba.android.arouter.launcher.ARouter
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 import com.lazyxu.base.R
-import com.lazyxu.base.base.fragment.BaseFragment
 import com.lazyxu.base.base.head.HeadToolbar
 import com.lazyxu.base.interfaces.OnBackPressedListener
 import com.lazyxu.base.log.LogUtils
@@ -44,9 +43,7 @@ abstract class BaseActivity : AppCompatActivity() {
 //            }
 //        }
         initContentView()
-        if (headToolbar() != null && headToolbar()?.toolbarTitle != null) {
-            setCommonTitle()
-        }
+        setCommonTitle()
         ActivitysManager.addActivity(this)
         initStatusbar()
         initView()
@@ -55,47 +52,53 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     private fun setCommonTitle() {
-        val tbTitle = findViewById<Toolbar>(R.id.tb_title)
+        if (headToolbar() == null || headToolbar()?.toolbarTitle == null)
+            return
         headToolbar()?.let { headToolbar ->
-            when (headToolbar.toolbarTitle) {
-                is String -> {
-                    tbTitle.title = headToolbar.toolbarTitle.toString()
+            val tbTitle = findViewById<Toolbar>(R.id.tb_title)
+            if (tbTitle != null) {
+                setSupportActionBar(tbTitle)//不设置使用menu无效，如果在单独页面设置需要重写setNavigationOnClickListener，否则setNavigationOnClickListener无效
+                val drawable = tbTitle.overflowIcon
+                drawable?.let {
+                    DrawableCompat.setTint(it, ContextCompat.getColor(this, R.color.white))
                 }
-
-                is Int -> {
-                    tbTitle.title = resources.getString(headToolbar.toolbarTitle as Int)
+                when (headToolbar.toolbarTitle) {
+                    is String -> tbTitle.title = headToolbar.toolbarTitle.toString()
+                    is Int -> tbTitle.title = resources.getString(headToolbar.toolbarTitle as Int)
                 }
-            }
-            if (headToolbar.toolbarTitleColor != -1) {
-                tbTitle.setTitleTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        headToolbar.toolbarTitleColor
+                if (headToolbar.toolbarTitleColor != -1) {
+                    tbTitle.setTitleTextColor(
+                        ContextCompat.getColor(
+                            this,
+                            headToolbar.toolbarTitleColor
+                        )
                     )
-                )
-            }
-            if (headToolbar.toolbarBgColor != -1) {
-                tbTitle.setBackgroundResource(headToolbar.toolbarBgColor)
-            }
-            if (headToolbar.backDrawable != -1) {
-                tbTitle.setNavigationIcon(headToolbar.backDrawable)
-            }
-            if (headToolbar.isHideBack) {
-                tbTitle.navigationIcon = null
-            } else {
-                //部分情况该点击事件并不是返回而是别的操作，此处设置可重写
-                tbTitle.setNavigationOnClickListener {
-                    onBackPressed()
+                }
+                if (headToolbar.toolbarBgColor != -1) {
+                    tbTitle.setBackgroundResource(headToolbar.toolbarBgColor)
+                }
+                if (headToolbar.backDrawable != -1) {
+                    tbTitle.setNavigationIcon(headToolbar.backDrawable)
+                }
+                if (headToolbar.isHideBack) {
+                    tbTitle.navigationIcon = null
+                } else {
+                    //部分情况该点击事件并不是返回而是别的操作，此处设置可重写
+                    tbTitle.setNavigationOnClickListener {
+                        onBackPressed()
+                    }
                 }
             }
         }
     }
 
-    protected open fun initStatusbar() {
+    protected open fun initStatusbar(
+        color: Int = headToolbar()?.statusBarColor ?: R.color.color_main_bg
+    ) {
         ImmersionBar.with(this)
             .fitsSystemWindows(true)//解决布局顶部和状态栏重叠问题
             .autoDarkModeEnable(true)//自动适配状态栏字体颜色
-            .statusBarColor(headToolbar()?.statusBarColor ?: R.color.color_main_bg)
+            .statusBarColor(color)
             .navigationBarColor(R.color.black)
             .hideBar(BarHide.FLAG_SHOW_BAR)
             .init()
@@ -103,7 +106,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         for (f in supportFragmentManager.fragments) {
-            if (f is OnBackPressedListener &&f.isVisible&& f.onBackPressed()) {
+            if (f is OnBackPressedListener && f.isVisible && f.onBackPressed()) {
                 /*在Fragment中处理返回事件*/
                 return
             }
@@ -114,7 +117,7 @@ abstract class BaseActivity : AppCompatActivity() {
             if (ActivitysManager.isActivityDestory(this)) {
                 return
             }
-            finish()
+            supportFinishAfterTransition()//If you use 'finish(); you will not get the animation effect
         }
     }
 
@@ -212,6 +215,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState, persistentState)
         LogUtils.d("${javaClass.simpleName} onRestoreInstanceState")
     }
+
     override fun onResume() {
         super.onResume()
         LogUtils.d("${javaClass.simpleName} onResume")

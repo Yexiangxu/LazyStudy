@@ -23,49 +23,30 @@ import kotlinx.coroutines.launch
  */
 @Route(path = ARouterPath.User.LOGIN)
 class LoginActivity : BaseVbVmActivity<ActivityLoginBinding, LoginViewModel>() {
-    lateinit var mRightOutSet: AnimatorSet
-    lateinit var mLeftInSet: AnimatorSet
+    override fun createObserver() {
+    }
+
     override fun headToolbar() = HeadToolbar.Builder().toolbarTitle(R.string.login).build()
 
-    @SuppressLint("ResourceType")
     override fun initView() {
-        isPackageExist(this, this.packageName)
 
     }
 
-    fun isPackageExist(context: Context, packageName: String): Boolean {
-        LogUtils.d("packageName=$packageName")
-        if (TextUtils.isEmpty(packageName)) return false
-        var isExist = false
-        try {
-//            isExist = null != context.packageManager.getApplicationInfo(packageName, MATCH_UNINSTALLED_PACKAGES) && null != context.packageManager.getPackageInfo(packageName, 0)
-        } catch (e: PackageManager.NameNotFoundException) {
-        } finally {
-            return isExist
-        }
-    }
 
     override fun initClicks() {
-
-
-        var hour = 6
-        var min = 7
         mViewBinding.btnLogin.setOnClickListener {
 //            mViewModel.login(mViewBinding.etPhone.toString().trim(),mViewBinding.etPassword.toString().trim())
 //            ARouterHelper.goActivity(ARouterPath.Mine.SETTING)
-
+            var hour = 6
+            var min = 7
             hour = hour + 1
             min = min + 1
             SystemSettingUtils.setSystemAlarmClock(this, "听圣经", hour, min)
         }
     }
 
-
-    override fun createObserver() {
-        mViewModel.loginLiveData.observe(this) {
-
-        }
-
+    override fun finishAfterTransition() {
+        super.finishAfterTransition()
+        overridePendingTransition(0, com.lazyxu.base.R.anim.slide_bottom_out)
     }
-
 }

@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--
+ifRoom  如果 ActionBar 上有足够的空间，则显示此项；否则，它会被放入溢出菜单中
+
+-->
+    <item
+        android:id="@+id/menu_animatelayoutchanges_add"
+        android:icon="@drawable/menu_add"
+        android:orderInCategory="100"
+        android:title="xml使用animateLayoutChanges"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_open_animate"
+        android:orderInCategory="100"
+        android:title="open"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_close_animate"
+        android:orderInCategory="100"
+        android:title="close"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_layouttransition"
+        android:orderInCategory="100"
+        android:title="kotlin使用animateLayoutChanges"
+        app:showAsAction="ifRoom" />
+</menu>

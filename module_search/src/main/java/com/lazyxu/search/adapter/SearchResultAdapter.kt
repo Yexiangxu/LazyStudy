@@ -2,7 +2,7 @@
 //
 //import com.chad.library.adapter.base.BaseQuickAdapter
 //import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
-//import com.example.lib_common.entity.ItemSearchResult
+//import com.lazyxu.lib_common.entity.ItemSearchResult
 //import com.lazyxu.search.R
 //import com.lazyxu.search.databinding.ItemSearchResultBinding
 //

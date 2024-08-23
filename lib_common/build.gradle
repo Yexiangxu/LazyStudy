@@ -1,6 +1,6 @@
 apply from: "${rootDir.path}/buildLib.gradle"
 android {
-    namespace 'com.example.lib_common'
+    namespace 'com.lazyxu.lib_common'
 }
 
 dependencies {

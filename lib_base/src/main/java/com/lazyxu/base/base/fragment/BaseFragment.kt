@@ -19,7 +19,7 @@ import com.lazyxu.base.log.LogUtils
  * FIXME
  */
 abstract class BaseFragment : Fragment(), OnBackPressedListener {
-    private var mActivity: Activity? = null
+    var mActivity: Activity? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
         LogUtils.d("${javaClass.simpleName} onAttach")
@@ -87,6 +87,7 @@ abstract class BaseFragment : Fragment(), OnBackPressedListener {
         super.onViewStateRestored(savedInstanceState)
         LogUtils.d("${javaClass.simpleName} onViewStateRestored")
     }
+
     override fun onStart() {
         super.onStart()
         LogUtils.d("${javaClass.simpleName} onStart")
