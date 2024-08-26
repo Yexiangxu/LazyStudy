@@ -45,6 +45,8 @@ object ARouterPath {
 
             const val CUSTOMVIEW1 = "$functionGroup/customview1"
 
+
+
             const val ANIMATION_MAIN = "$functionGroup/animation_main"
             const val ANIMATION_FRAME = "$functionGroup/animation_frame"
             const val ANIMATION_TWEEN = "$functionGroup/animation_tween"
@@ -59,6 +61,7 @@ object ARouterPath {
             const val ANIMATION_SCENES = "$functionGroup/animation_scenes"
             const val ANIMATION_SHAREELEMENTS = "$functionGroup/animation_shareelements"
             const val ANIMATION_REVEAL = "$functionGroup/animation_reveal"
+            const val ANIMATION_BEHAVIOR = "$functionGroup/animation_behavior"
         }
     }
 

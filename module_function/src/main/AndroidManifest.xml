@@ -28,5 +28,6 @@
         <activity android:name="com.lazyxu.function.animation.transition.ScenesActivity" />
         <activity android:name="com.lazyxu.function.animation.transition.ShareElementsActivity" />
         <activity android:name="com.lazyxu.function.animation.RevealAnimationActivity" />
+        <activity android:name="com.lazyxu.function.animation.behavior.BehaviorActivity" />
     </application>
 </manifest>

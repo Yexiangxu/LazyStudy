@@ -30,7 +30,8 @@ class AnimationMainActivity : BaseVbActivity<FunctionActivityMainBinding>() {
             "ConstraintLayout动画",
             "触摸反馈动画",
             "共享元素",
-            "CoordinatorLayout等滑动吸附效果"
+            "CoordinatorLayout等滑动吸附效果",
+            "自定义Behavior"
         )
         mAdapter = MainAdapter(this, mList)
         mViewBinding.rvMain.adapter = mAdapter
@@ -78,6 +79,9 @@ class AnimationMainActivity : BaseVbActivity<FunctionActivityMainBinding>() {
 
                 9 -> {
                     ARouterHelper.goActivity(ARouterPath.Function.ANIMATION_REVEAL)
+                }
+                10 -> {
+                    ARouterHelper.goActivity(ARouterPath.Function.ANIMATION_BEHAVIOR)
                 }
             }
         }
