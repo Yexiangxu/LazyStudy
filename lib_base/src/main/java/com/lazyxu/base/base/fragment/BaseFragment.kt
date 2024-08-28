@@ -45,6 +45,7 @@ abstract class BaseFragment : Fragment(), OnBackPressedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         LogUtils.d("${javaClass.simpleName} onViewCreated")
+        initStatusbar()
         initView()
         initData()
         initClicks()

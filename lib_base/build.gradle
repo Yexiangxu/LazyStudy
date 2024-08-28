@@ -57,5 +57,4 @@ dependencies {
     api 'de.hdodenhof:circleimageview:3.1.0'
     // ==============      ===================
 
-
 }
