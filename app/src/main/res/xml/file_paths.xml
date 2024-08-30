@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+
+    <!-- 内部存储 context.getFilesDir() -->
+    <files-path
+        name="downloaded_apk"
+        path="downloads/" />
+
+    <!-- 内部存储 context.getCacheDir() -->
+    <cache-path
+        name="internal_cache_temp"
+        path="temp/" />
+
+    <!-- 外部存储 Environment.getExternalStorageDirectory() -->
+    <external-path
+        name="external_files"
+        path="MyAppFiles/" />
+
+    <!-- 外部存储 context.getExternalFilesDir() -->
+    <external-files-path
+        name="external_private_documents"
+        path="documents/" />
+
+    <!-- 外部存储 context.getExternalCacheDir() -->
+    <external-cache-path
+        name="external_cache_logs"
+        path="logs/" />
+
+    <!-- 指向设备的根目录，不常使用。通常用在特殊情况下访问整个设备的文件系统，需谨慎使用 -->
+    <root-path
+        name="root_sdcard"
+        path="mnt/sdcard/" />
+
+    <!-- 指向外部存储中的 DCIM/、Pictures/、Movies/ 等标准媒体目录-->
+    <external-media-path
+        name="media_videos"
+        path="Videos/" />
+
+</paths>

@@ -26,7 +26,7 @@ class MainActivity : BaseVbActivity<FunctionActivityMainBinding>() {
             getString(R.string.function_deleterecyclerview),
             getString(R.string.function_dispatch),
             "自定义view",
-            "Android动画"
+            "Android动画特效"
         )
         mAdapter = MainAdapter(this, mList)
         mViewBinding.rvMain.adapter = mAdapter
