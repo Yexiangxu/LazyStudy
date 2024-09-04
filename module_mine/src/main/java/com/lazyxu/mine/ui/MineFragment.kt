@@ -9,6 +9,7 @@ import com.lazyxu.base.arouter.ARouterHelper
 import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.base.fragment.BaseVbFragment
 import com.lazyxu.base.ext.load
+import com.lazyxu.base.ext.px2dpFloat
 import com.lazyxu.base.log.LogTag
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.lib_common.UiUtils
@@ -19,17 +20,20 @@ class MineFragment : BaseVbFragment<FragmentMineBinding>() {
 
     private val maxImageSize by lazy { mViewBinding.ivHead.height }
     private val minImageSize by lazy { resources.getDimensionPixelSize(R.dimen.dp_30) }
+
     /**
      * [mViewBinding.tbTitle.height]获取到的不是实际的 tbTitle 高度
      */
     private val tbTitleHeight by lazy { resources.getDimensionPixelSize(R.dimen.dp_48) }
     override fun initStatusbar() {
-        ImmersionBar.with(this).titleBar(mViewBinding.tbTitle)
+        ImmersionBar.with(this)
+            .titleBar(mViewBinding.tbTitle)
+            .autoDarkModeEnable(true)//自动适配状态栏字体颜色
             .navigationBarColor(R.color.black).init()
     }
 
 
-    private val ivMaginTopSize by lazy {  mViewBinding.ivHead.height - (tbTitleHeight - minImageSize) / 2 }
+    private val ivMaginTopSize by lazy { mViewBinding.ivHead.height - (tbTitleHeight - minImageSize) / 2 }
 
     /**
      * TODO 替换 ImmersionBar库 有问题
@@ -72,14 +76,14 @@ class MineFragment : BaseVbFragment<FragmentMineBinding>() {
                     width = newSize
                     height = newSize
                     // 设置顶部边距，使其在 Toolbar 中垂直居中
-                    val maxTopMargin = (tbTitleHeight - newSize) / 2f+statusbarHeight
+                    val maxTopMargin = (tbTitleHeight - newSize) / 2f + statusbarHeight
                     // 设置 topMargin 使 ImageView 在滚动过程中保持垂直居中
                     topMargin = (maxTopMargin + (1 - percentage) * ivMaginTopSize).toInt()
                 }
 
             LogUtils.d(
                 LogTag.ANIMATION,
-                "verticalOffset=$verticalOffset，totalScrollRange=$totalScrollRange,percentage=$percentage"
+                "tbTitleHeight=$tbTitleHeight,dp=${tbTitleHeight.px2dpFloat},verticalOffset=$verticalOffset，totalScrollRange=$totalScrollRange,percentage=$percentage"
             )
         }
     }

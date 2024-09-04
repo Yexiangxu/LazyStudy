@@ -5,7 +5,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/dp_10"
-    android:id="@+id/mcd_rank"
     app:strokeColor="@android:color/transparent"
     app:strokeWidth="@dimen/dp_2"
     app:cardElevation="@dimen/dp_0">

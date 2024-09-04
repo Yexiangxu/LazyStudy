@@ -11,7 +11,7 @@ package com.lazyxu.base.arouter
  */
 object ARouterPath {
     const val MAIN = "/main/main"
-
+    const val PIC = "/main/pic"
     /**
      * 功能demo
      */

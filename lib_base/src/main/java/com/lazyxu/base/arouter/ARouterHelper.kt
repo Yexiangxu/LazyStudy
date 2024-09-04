@@ -1,8 +1,6 @@
 package com.lazyxu.base.arouter
 
 import android.app.Activity
-import android.app.ActivityOptions
-import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.core.app.ActivityOptionsCompat
@@ -55,14 +53,19 @@ object ARouterHelper {
         path: String,
         params: Map<String, Any> = mapOf(),
         options: ActivityOptionsCompat? = null,
-        context: Context? = null,
+        activity: Activity? = null,
+        requestCode: Int = 0
     ) {
         val postcard = ARouter.getInstance().build(path)
         postcard.getParams(params)
         if (options != null) {
             postcard.withOptionsCompat(options)
         }
-        postcard.navigation(context)
+        if (activity != null) {
+            postcard.navigation(activity, requestCode)
+        } else {
+            postcard.navigation()
+        }
     }
 
     fun getFragment(path: String): Fragment {

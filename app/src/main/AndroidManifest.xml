@@ -36,7 +36,8 @@
             android:name=".ui.MainActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transitions" />
         <activity
             android:name=".ui.WakeActivity"
             android:exported="true"
@@ -53,6 +54,11 @@
             </intent-filter>
 
         </activity>
+
+        <activity
+            android:name="com.lazyxu.lazystudy.ui.GalleryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Transitions" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -6,7 +6,7 @@
 6. [和 `ImageView` 的宽高的关系](#re_img)
 7. [BitmapFactory](#BitmapFactory)
 8. [图片压缩方案](#compress)
-    - inSampleSize(Luban压缩)
+    - inSampleSize(Luban压缩) —— 采样率
     - inTargetDensity
     - Bitmap.Config
 

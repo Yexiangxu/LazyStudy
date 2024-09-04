@@ -1,5 +1,6 @@
 package com.lazyxu.lazystudy.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -9,7 +10,6 @@ import androidx.lifecycle.Lifecycle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lazyxu.base.arouter.ARouterHelper
 import com.lazyxu.base.arouter.ARouterPath
-import com.lazyxu.base.base.BaseApplication
 import com.lazyxu.base.base.actvity.BaseVbActivity
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.lazystudy.CategoryFragment
@@ -105,4 +105,15 @@ class MainActivity : BaseVbActivity<ActivityMainBinding>() {
         mLastBackPressed = System.currentTimeMillis()
         return true
     }
+
+    /**
+     * 用于在共享元素过渡动画结束时重新进入到当前 Activity 时调用
+     */
+//    override fun onActivityReenter(resultCode: Int, data: Intent) {
+//        super.onActivityReenter(resultCode, data)
+//        LogUtils.d("resultCode=$resultCode,data=$data")
+//        if (mFragments[lastIndex] is HomeFragment) {
+//            (mFragments[lastIndex] as HomeFragment).onActivityReenter(resultCode, data)
+//        }
+//    }
 }

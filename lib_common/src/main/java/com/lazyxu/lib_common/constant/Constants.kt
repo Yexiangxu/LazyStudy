@@ -5,4 +5,5 @@ object Constants {
 
     const val KEY_VIDEO_PLAY_LIST = "video_play_list"
     const val KEY_VIDEO_PLAY_POS = "video_play_pos"
+    const val KEY_GALLERY_BACK_POS = "gallery_back_pos"
 }

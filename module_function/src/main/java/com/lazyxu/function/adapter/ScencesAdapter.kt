@@ -50,7 +50,7 @@ class ScencesAdapter(shareElementsEntity: List<ShareElementsEntity>? = null) :
             ARouterHelper.goActivity(
                 ARouterPath.Function.ANIMATION_SHAREELEMENTS,
                 options = activityOptionsCompat,
-                context = binding.root.context
+                activity = binding.root.context as Activity
             )
         }
 

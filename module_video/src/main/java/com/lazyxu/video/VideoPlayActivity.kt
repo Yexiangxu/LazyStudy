@@ -1,7 +1,9 @@
 package com.lazyxu.video
 
+import android.transition.TransitionInflater
 import android.view.View
 import android.widget.FrameLayout
+import androidx.core.app.ActivityOptionsCompat
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
@@ -301,4 +303,5 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
             )
         }
     }
+
 }
