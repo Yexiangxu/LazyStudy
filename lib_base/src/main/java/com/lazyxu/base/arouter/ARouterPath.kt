@@ -82,6 +82,7 @@ object ARouterPath {
             private const val mineGroup = "/mine"
             const val MAIN = "$mineGroup/main"
             const val SETTING = "$mineGroup/setting"
+            const val POSTNEWS = "$mineGroup/postnews"
         }
     }
 }

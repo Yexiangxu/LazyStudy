@@ -1,4 +1,4 @@
-package com.lazyxu.mine
+package com.lazyxu.mine.ui
 
 import android.Manifest
 import android.content.Intent
@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Gravity
 import android.view.View.OnClickListener
@@ -18,6 +17,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.snackbar.Snackbar
+import com.lazyxu.base.arouter.ARouterHelper
 import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.base.actvity.BaseVbActivity
 import com.lazyxu.base.base.head.HeadToolbar
@@ -27,8 +27,8 @@ import com.lazyxu.base.utils.DeviceUtil
 import com.lazyxu.base.utils.SpUtils
 import com.lazyxu.base.utils.VibrateUtils
 import com.lazyxu.base.utils.permission.RxPermissions
+import com.lazyxu.mine.R
 import com.lazyxu.mine.databinding.ActivitySettingBinding
-import com.lazyxu.mine.ui.PhotoChoseDialogFragment
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -84,6 +84,10 @@ class SettingActivity : BaseVbActivity<ActivitySettingBinding>() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
         }
+        mViewBinding.tvFeedback.setOnClickListener{
+            ARouterHelper.goActivity(ARouterPath.Mine.POSTNEWS)
+        }
+
         mViewBinding.btnExitLogin.setOnClickListener(click)
         mViewBinding.btnExitLogin.setOnClickListener {
             PhotoChoseDialogFragment(openCallback = {

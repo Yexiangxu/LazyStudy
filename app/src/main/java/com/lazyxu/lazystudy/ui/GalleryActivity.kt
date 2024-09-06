@@ -39,7 +39,7 @@ class GalleryActivity : BaseVbActivity<ActivityGalleryBinding>() {
 
     override fun initView() {
         mData = intent.getParcelableArrayListExtra(Constants.KEY_VIDEO_PLAY_LIST)
-        position = intent.getIntExtra(Constants.KEY_VIDEO_PLAY_POS, -1)
+        position = intent.getIntExtra(Constants.KEY_VIDEO_PLAY_POS, 0)
         val manager =
             PagerLayoutManager(this@GalleryActivity, LinearLayoutManager.HORIZONTAL, false)
         mViewBinding.rvGallery.apply {

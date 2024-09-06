@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include_title"
+        layout="@layout/layout_title" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_postnews"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_150"
+        android:background="@android:color/transparent"
+        android:gravity="top|start"
+        android:hint="@string/hint_post_news"
+        android:maxLength="500"
+        android:padding="@dimen/margin_main"
+        android:textColor="@color/black_333333"
+        android:textColorHint="@color/gray_999999"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvInputNumb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:text="0/500"
+        android:textColor="@color/gray_999999"
+        android:textSize="@dimen/sp_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_postnews" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_img"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvInputNumb"
+        app:spanCount="3"
+        tools:itemCount="6"
+        tools:listitem="@layout/item_post_news" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_post"
+        android:layout_width="@dimen/dp_180"
+        android:layout_height="@dimen/dp_50"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/dp_45"
+        android:backgroundTint="@color/colorAccent"
+        android:gravity="center"
+        android:text="@string/post"
+        android:textColor="@color/white"
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+        app:cornerRadius="@dimen/dp_25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

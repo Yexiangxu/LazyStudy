@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="settings">设置</string>
-
+    <string name="feedback">意见反馈</string>
+    <string name="hint_post_news">请输入您的意见～</string>
+    <string name="post">发布</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
