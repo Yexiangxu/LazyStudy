@@ -51,7 +51,6 @@ class HomeFragment : BaseVbVmFragment<FragmentHomeBinding, HomeViewModel>() {
             adapter = picAdapter
         }
         StartSnapHelper().attachToRecyclerView(mViewBinding.rvPic)
-
     }
 
     override fun initData() {
@@ -105,7 +104,6 @@ class HomeFragment : BaseVbVmFragment<FragmentHomeBinding, HomeViewModel>() {
                 position
             )
             resultLauncher.launch(intent, activityOptionsCompat)
-
         }
     }
 
