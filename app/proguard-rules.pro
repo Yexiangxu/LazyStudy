@@ -191,9 +191,14 @@
 
 
 #=========================项目配置begin========================
--keepclassmembers class * implements androidx.viewbinding.ViewBinding {
-    public static ** inflate(android.view.LayoutInflater);
+-keepclassmembers class * extends androidx.viewbinding.ViewBinding {
+    public static *** inflate(android.view.LayoutInflater);
+    public static *** inflate(android.view.LayoutInflater, android.view.ViewGroup, boolean);
+    public static *** inflate(android.view.LayoutInflater, android.view.ViewGroup);
 }
+
+# 保留所有生成的 ViewBinding 类不被混淆
+-keep class **ViewBinding { *; }
 
 #混淆字典 https://github.com/WrBug/FrenziedProguard/tree/master/proguard-creater
 #-packageobfuscationdictionary ./dictionary/packageDictionary.txt
