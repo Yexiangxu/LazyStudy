@@ -16,4 +16,7 @@ object LogTag {
     const val VIDEO = "VideoTag"
     const val ANIMATION = "AnimationTag"
     const val CUSTOMVIEW = "CustomviewTag"
+
+    const val PIC_SELECTOR = "pic_selector"
+
 }

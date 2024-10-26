@@ -29,6 +29,11 @@
         <item name="android:windowIsTranslucent">true</item><!--是否半透明（透明度）-->
         <item name="android:windowAnimationStyle">@style/ActivityBottomAnimation</item>
     </style>
+    <style name="AppTheme.Transitions">
+        <!--是在 Android 中启用窗口内容过渡动画的一个属性-->
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
     <style name="ActivityBottomAnimation"  parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/slide_bottom_in</item>
         <item name="android:activityCloseExitAnimation">@anim/slide_bottom_out</item>

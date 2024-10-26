@@ -1,5 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -7,7 +7,9 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".materialdesign.DragRecyclerViewActivity" android:screenOrientation="portrait" />
+        <activity
+            android:name=".materialdesign.DragRecyclerViewActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".materialdesign.DeleteRecyclerViewActivity" />
         <activity android:name="com.lazyxu.test.DispatchActivity" />
         <activity android:name=".cache.CacheActivity" />
@@ -25,8 +27,12 @@
         <activity android:name="com.lazyxu.function.animation.constraintlayout.ConstraintLayoutDetailAnimationActivity" />
         <activity android:name="com.lazyxu.function.animation.constraintlayout.ConstraintLayoutMainAnimationActivity" />
         <activity android:name="com.lazyxu.function.animation.TouchFeedbackActivity" />
-        <activity android:name="com.lazyxu.function.animation.transition.ScenesActivity" />
-        <activity android:name="com.lazyxu.function.animation.transition.ShareElementsActivity" />
+        <activity
+            android:name="com.lazyxu.function.animation.transition.ScenesActivity"
+            android:theme="@style/AppTheme.Transitions" />
+        <activity
+            android:name="com.lazyxu.function.animation.transition.ShareElementsActivity"
+            android:theme="@style/AppTheme.Transitions" />
         <activity android:name="com.lazyxu.function.animation.RevealAnimationActivity" />
         <activity android:name="com.lazyxu.function.animation.behavior.BehaviorActivity" />
     </application>

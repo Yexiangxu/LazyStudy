@@ -50,6 +50,25 @@ object ActivitysManager {
         return null
     }
 
+    /**
+     * 结束某个Activity之外的所有Activity
+     */
+    fun finishAllExceptFirst() {
+        if (mActivities.size > 1) {
+            for (i in mActivities.indices.reversed()) {
+                if (i != 0) {
+                    finishActivity(mActivities[i])
+                }
+            }
+        }
+    }
+
+    private fun finishActivity(activity: Activity) {
+        removeActivity(activity)
+        activity.finish()
+    }
+
+
 //    /**
 //     * 获取当前Activity (堆栈中最后一个添加的)
 //     */
@@ -69,14 +88,7 @@ object ActivitysManager {
 //    }
 //
 //
-//    fun finishActivity(activity: Activity) {
-//        with(activity) {
-//            if (!mActivities.isNullOrEmpty() && mActivities.contains(this)) {
-//                mActivities.remove(this)
-//                this.finish()
-//            }
-//        }
-//    }
+
 //
 //    /**
 //     * 结束指定类名的Activity

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
 import com.lazyxu.base.R
 import com.lazyxu.base.interfaces.OnBackPressedListener

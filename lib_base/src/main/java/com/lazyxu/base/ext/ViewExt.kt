@@ -5,12 +5,21 @@ import android.os.SystemClock
 import android.view.View
 import android.view.ViewOutlineProvider
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.PrecomputedTextCompat
 import androidx.core.widget.TextViewCompat
+import com.lazyxu.base.utils.SpanBuilder
 
+fun TextView.textSpan(init: SpanBuilder.() -> Unit) {
+    SpanBuilder.create().also {
+        it.tv = this
+        it.init()
+        text = it.builder
+    }
+}
 
 fun View.visible() {
     this.visibility = View.VISIBLE

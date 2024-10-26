@@ -10,16 +10,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewbinding.ViewBinding
 import com.lazyxu.base.R
+import com.lazyxu.base.log.LogUtils
 import com.lazyxu.base.utils.ActivityUtils
 import com.lazyxu.base.utils.MainLooper
 import java.lang.reflect.ParameterizedType
 
 
 abstract class BaseVbDialogFragment<VB : ViewBinding> : AppCompatDialogFragment() {
-    private var mActivity: FragmentActivity? = null
+    protected var mActivity: FragmentActivity? = null
     lateinit var mViewBinding: VB
     open fun gravity(): Int = Gravity.CENTER
-    abstract fun initView()
+    abstract fun initViews()
 
 
     override fun onCreateView(
@@ -27,6 +28,7 @@ abstract class BaseVbDialogFragment<VB : ViewBinding> : AppCompatDialogFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+        LogUtils.d("DialogFragmentLifecycleTag", "${this.javaClass.simpleName} onCreateView")
         val vbClass: Class<VB> =
             (this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VB>
         val method = vbClass.getDeclaredMethod(
@@ -41,9 +43,10 @@ abstract class BaseVbDialogFragment<VB : ViewBinding> : AppCompatDialogFragment(
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        dialog?.setCanceledOnTouchOutside(true)
-        dialog?.setCancelable(true)
-        initView()
+        LogUtils.d("DialogFragmentLifecycleTag", "${this.javaClass.simpleName} onViewCreated")
+        dialog?.setCanceledOnTouchOutside(false)
+        dialog?.setCancelable(false)
+        initViews()
     }
 
     private fun show(tag: String?) {
@@ -63,6 +66,7 @@ abstract class BaseVbDialogFragment<VB : ViewBinding> : AppCompatDialogFragment(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //必须要这里设置style()
+        LogUtils.d("DialogFragmentLifecycleTag", "${this.javaClass.simpleName} onCreate")
         setStyle(
             STYLE_NORMAL, when (gravity()) {
                 Gravity.BOTTOM -> R.style.DialogBottomStyle
@@ -73,6 +77,7 @@ abstract class BaseVbDialogFragment<VB : ViewBinding> : AppCompatDialogFragment(
 
     override fun onStart() {
         super.onStart()
+        LogUtils.d("DialogFragmentLifecycleTag", "${this.javaClass.simpleName} onStart")
         val window = dialog?.window
         if (window != null) {
             window.setLayout(
@@ -83,14 +88,36 @@ abstract class BaseVbDialogFragment<VB : ViewBinding> : AppCompatDialogFragment(
         }
     }
 
-    fun init(
-        context: FragmentActivity?,
-    ): BaseVbDialogFragment<VB> {
-        mActivity = context
-        return this
+    override fun onDestroyView() {
+        super.onDestroyView()
+        LogUtils.d("DialogFragmentLifecycleTag", "${this.javaClass.simpleName} onDestroyView")
     }
 
-    fun show() {
+    override fun onDestroy() {
+        super.onDestroy()
+        LogUtils.d("DialogFragmentLifecycleTag", "${this.javaClass.simpleName} onDestroy")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        LogUtils.d("DialogFragmentLifecycleTag", "${this.javaClass.simpleName} onResume")
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        LogUtils.d("DialogFragmentLifecycleTag", "${this.javaClass.simpleName} onPause")
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        LogUtils.d("DialogFragmentLifecycleTag", "${this.javaClass.simpleName} onStop")
+    }
+
+
+    fun show(context: FragmentActivity?) {
+        mActivity = context
         show(javaClass.simpleName)
     }
 }

@@ -11,7 +11,7 @@ package com.lazyxu.base.arouter
  */
 object ARouterPath {
     const val MAIN = "/main/main"
-
+    const val PIC = "/main/pic"
     /**
      * 功能demo
      */
@@ -82,6 +82,7 @@ object ARouterPath {
             private const val mineGroup = "/mine"
             const val MAIN = "$mineGroup/main"
             const val SETTING = "$mineGroup/setting"
+            const val POSTNEWS = "$mineGroup/postnews"
         }
     }
 }

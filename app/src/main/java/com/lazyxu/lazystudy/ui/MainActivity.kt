@@ -2,7 +2,6 @@ package com.lazyxu.lazystudy.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -10,14 +9,12 @@ import androidx.lifecycle.Lifecycle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lazyxu.base.arouter.ARouterHelper
 import com.lazyxu.base.arouter.ARouterPath
-
 import com.lazyxu.base.base.actvity.BaseVbActivity
 import com.lazyxu.base.log.LogUtils
 import com.lazyxu.lazystudy.CategoryFragment
 import com.lazyxu.lazystudy.HomeFragment
 import com.lazyxu.lazystudy.R
 import com.lazyxu.lazystudy.databinding.ActivityMainBinding
-import com.lazyxu.search.SearchViewModel
 import kotlin.system.exitProcess
 
 

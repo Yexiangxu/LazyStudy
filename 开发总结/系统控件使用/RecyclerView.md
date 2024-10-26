@@ -31,3 +31,17 @@ if (recyclerView.itemDecorationCount==0) {
 }
 ```
 
+使用 `recyclerview` 设置不同样式
+1. `recyclerview` 是 `GridLayoutManager` 形式，其中一个占两个位置（eg：星期1234567，分两行四列，7占最后两列）
+
+```agsl
+val spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+    override fun getSpanSize(position: Int): Int {
+        return when (position) {
+            6 -> 2 // 第二行最后一个项目占两个列
+            else -> 1
+        }
+    }
+}
+(mViewBindingDialog.rvSign.layoutManager as GridLayoutManager).spanSizeLookup = spanSizeLookup
+```

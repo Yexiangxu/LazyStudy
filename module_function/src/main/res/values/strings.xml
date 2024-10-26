@@ -9,9 +9,9 @@
 
     <string name="function_dispatch">事件分发</string>
 
-    <string name="share_element_imageview">share element imageview</string>
-    <string name="share_element_header">share element header</string>
-    <string name="share_element_tv_info">share element tv info</string>
+    <string name="share_element_imageview">share_element_imageview</string>
+    <string name="share_element_header">share_element_header</string>
+    <string name="share_element_tv_info">share_element_tv_info</string>
     <string name="text_no_love">无人与我立黄昏，无人问我粥可温。\n无人告我夜已深，无人与我把酒分。\n--------------\n黄昏将近粥可温，你我畅饮把酒分。\n家常琐事都可聊，不知不觉夜已深。</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"

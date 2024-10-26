@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:divider="@drawable/shape_divider_linear"
-    android:showDividers="middle"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:showDividers="middle">
 
     <include layout="@layout/layout_title" />
 
@@ -61,6 +61,7 @@
             android:thumb="@drawable/switch_thumb"
             app:track="@drawable/selector_switch_track" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
@@ -84,6 +85,18 @@
             android:thumb="@drawable/switch_thumb"
             app:track="@drawable/selector_switch_track" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:drawableEnd="@drawable/svg_next"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/dp_20"
+        android:text="意见反馈"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_exit_login"
         android:layout_width="@dimen/dp_180"
