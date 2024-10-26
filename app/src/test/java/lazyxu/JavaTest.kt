@@ -1,6 +1,5 @@
 package lazyxu
 
-import com.lazyxu.lazystudy.test.entity.Person
 import org.junit.Test
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.ThreadPoolExecutor
@@ -10,18 +9,18 @@ class JavaTest {
     @Test
     @Throws(Exception::class)
     fun main() {
-        val start=System.currentTimeMillis()
+        val start = System.currentTimeMillis()
         val hashMap = HashMap<Int, String>(16)
-        for (i in 0..1000){
+        for (i in 0..1000) {
             hashMap[i] = i.toString()
         }
-        println("time=${System.currentTimeMillis()-start},$hashMap")
-        val start2=System.currentTimeMillis()
+        println("time=${System.currentTimeMillis() - start},$hashMap")
+        val start2 = System.currentTimeMillis()
         val hashMap2 = HashMap<Int, String>(1000000)
-        for (i in 0..1000){
+        for (i in 0..1000) {
             hashMap2[i] = i.toString()
         }
-        println("time2=${System.currentTimeMillis()-start2},$hashMap2")
+        println("time2=${System.currentTimeMillis() - start2},$hashMap2")
 
     }
 

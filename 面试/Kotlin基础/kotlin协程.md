@@ -55,3 +55,14 @@ lifecycleScope.launch {}
 
 
 - `GlobalScope` 全局作用域
+
+
+### suspend函数（协程的核心）
+1. 作用：`suspend`函数让协程在执行挂起操作时，暂时“挂起”自己，释放执行资源而不会阻塞线程。能够暂停并在合适的时候恢复执行
+
+
+### Dispatchers调度器
+
+1. Dispatchers.Main：主线程
+2. Dispatchers.IO：子线程。用于 I/O 密集型任务（如文件读写、数据库操作、网络请求等）
+3. Dispatchers.Default：子线程。用于 CPU 密集型任务（如复杂的数学计算、数据处理、排序等）

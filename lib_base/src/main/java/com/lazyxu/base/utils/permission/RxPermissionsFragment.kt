@@ -99,11 +99,11 @@ internal class RxPermissionsFragment : Fragment() {
         mLogging = logging
     }
 
-    fun getSubjectByPermission(@NonNull permission: String): MutableSharedFlow<Permission>? {
+    fun getSubjectByPermission( permission: String): MutableSharedFlow<Permission>? {
         return mSubjects[permission]
     }
 
-    fun containsByPermission(@NonNull permission: String): Boolean {
+    fun containsByPermission( permission: String): Boolean {
         return mSubjects.containsKey(permission)
     }
 

@@ -24,7 +24,6 @@ object DeviceUtil {
     }
 
 
-
     /**
      * 是否深色主题
      * 切记 Context 不能用 Application
@@ -78,10 +77,14 @@ object DeviceUtil {
         }
     }
 
-    val VERSION_NAME: String by lazy {
+    val VERSION_NAME by lazy {
         try {
-            val packageInfo: PackageInfo = BaseApplication.INSTANCE.packageManager.getPackageInfo(BaseApplication.INSTANCE.packageName, 0)
-            packageInfo.versionName
+            val packageInfo: PackageInfo =
+                BaseApplication.INSTANCE.packageManager.getPackageInfo(
+                    BaseApplication.INSTANCE.packageName,
+                    0
+                )
+            packageInfo.versionName?:"1.0.0"
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             "1.0.0"

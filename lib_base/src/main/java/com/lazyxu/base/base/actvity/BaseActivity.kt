@@ -105,6 +105,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+//        super.onBackPressed()
         for (f in supportFragmentManager.fragments) {
             if (f is OnBackPressedListener && f.isVisible && f.onBackPressed()) {
                 /*在Fragment中处理返回事件*/
@@ -250,8 +251,9 @@ abstract class BaseActivity : AppCompatActivity() {
         ActivitysManager.removeActivity(this)
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         LogUtils.d("${javaClass.simpleName} onNewIntent")
+
     }
 }

@@ -57,7 +57,6 @@ class RxPermissions @JvmOverloads constructor(
     private fun requestImplementation(vararg permissions: String): Flow<Permission> = flow {
         val list = mutableListOf<Flow<Permission>>()
         val unrequestedPermissions = mutableListOf<String>()
-
         permissions.forEach { permission ->
             mRxPermissionsFragment.get().log("Requesting permission $permission")
             when {
@@ -95,96 +94,11 @@ class RxPermissions @JvmOverloads constructor(
         return Build.VERSION.SDK_INT >= 23
     }
 
-//
-//
-//
-//    fun ensure(vararg permissions: String): Flow<Boolean> = flow {
-//        val granted = request(*permissions).last()
-//        emit(granted)
-//    }
-//
-//    fun ensureEach(vararg permissions: String): Flow<Permission> {
-//        return request(*permissions)
-//    }
-//
-//    fun ensureEachCombined(vararg permissions: String): Flow<Permission> {
-//        return request(*permissions).combine { permissionsList ->
-//            Permission(permissionsList.toList())
-//        }
-//    }
-//
-//
-//    fun requestEach(vararg permissions: String): Flow<Permission> {
-//        return requestImplementation(*permissions)
-//    }
-//
-//    fun requestEachCombined(vararg permissions: String): Flow<Permission> {
-//        return requestImplementation(*permissions).combine { permissionsList ->
-//            Permission(permissionsList.toList())
-//        }
-//    }
-//
-//    private fun request(trigger: Flow<*>, vararg permissions: String): Flow<Permission> = flow {
-//        require(permissions.isNotEmpty()) { "RxPermissions.request/requestEach requires at least one input permission" }
-//        trigger.flatMapMerge {
-//            requestImplementation(*permissions)
-//        }.collect { permission ->
-//            emit(permission)
-//        }
-//    }
-//
-
-//
-//        if (unrequestedPermissions.isNotEmpty()) {
-//            requestPermissionsFromFragment(unrequestedPermissions.toTypedArray())
-//        }
-//
-//        emitAll(list.asFlow().flattenMerge())
-//    }
-//
-//    fun shouldShowRequestPermissionRationale(
-//        activity: Activity,
-//        vararg permissions: String
-//    ): Flow<Boolean> = flow {
-//        emit(
-//            if (isMarshmallow()) shouldShowRequestPermissionRationaleImplementation(
-//                activity,
-//                *permissions
-//            ) else false
-//        )
-//    }
-//
-//    @TargetApi(23)
-//    private fun shouldShowRequestPermissionRationaleImplementation(
-//        activity: Activity,
-//        vararg permissions: String
-//    ): Boolean {
-//        return permissions.all { permission ->
-//            isGranted(permission) || activity.shouldShowRequestPermissionRationale(permission)
-//        }
-//    }
-//
-//    @TargetApi(23)
-//    fun requestPermissionsFromFragment(permissions: Array<String>) {
-//        mRxPermissionsFragment.get()
-//            .log("requestPermissionsFromFragment ${TextUtils.join(", ", permissions)}")
-//        mRxPermissionsFragment.get().requestPermissions(*permissions)
-//    }
-//
-
-//
-
-//
-//    fun onRequestPermissionsResult(permissions: Array<String>, grantResults: IntArray) {
-//        mRxPermissionsFragment.get()
-//            .onRequestPermissionsResult(permissions, grantResults, BooleanArray(permissions.size))
-//    }
-
     interface Lazy<V> {
         fun get(): V
     }
 
     companion object {
-        val TAG = this::class.java.simpleName
+        val TAG: String = this::class.java.simpleName
     }
 }

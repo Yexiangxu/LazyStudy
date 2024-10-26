@@ -24,6 +24,16 @@ import kotlinx.coroutines.launch
  * FIXME
  */
 class SearchViewModel : BaseViewModel() {
+//    fun getHomeList(page: Int) {
+//        flowAsyncWorkOnViewModelScopeLaunch {
+//            repository.getHomeList(page).onEach {
+//                android.util.Log.e("MainViewModel", "one 111 ${it.data?.datas!![0].title}")
+//            }
+//        }
+//    }
+
+
+
 
     fun insertSearch(searchEntity: SearchEntity) {
         viewModelScope.launch(Dispatchers.IO) {

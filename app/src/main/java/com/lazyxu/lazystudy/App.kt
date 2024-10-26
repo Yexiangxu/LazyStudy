@@ -1,10 +1,10 @@
 package com.lazyxu.lazystudy
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.lazyxu.base.base.BaseApplication
+import com.lazyxu.base.log.LogTag
 import com.lazyxu.base.log.LogUtils
 
 class App : BaseApplication() {
@@ -17,18 +17,16 @@ class App : BaseApplication() {
         ProcessLifecycleOwner.get().lifecycle.addObserver(ForegroundChecker())
     }
 
-    inner class ForegroundChecker : LifecycleObserver {
+    inner class ForegroundChecker : DefaultLifecycleObserver {
         var backgroundStamp = 0L
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-        private fun onAppBackground() {
-            LogUtils.d("onAppBackground")
+        override fun onStop(owner: LifecycleOwner) {
+            super.onStop(owner)
+            LogUtils.d(LogTag.LIFECYCLE, "onAppBackground")
         }
 
-        @OnLifecycleEvent(Lifecycle.Event.ON_START)
-        private fun onAppForeground() {
-            LogUtils.d("onAppForeground")
-
+        override fun onStart(owner: LifecycleOwner) {
+            super.onStart(owner)
+            LogUtils.d(LogTag.LIFECYCLE, "onAppForeground")
         }
     }
 }
