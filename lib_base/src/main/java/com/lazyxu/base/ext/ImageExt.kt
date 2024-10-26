@@ -6,7 +6,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.lazyxu.base.R
 import com.lazyxu.base.utils.transformation.CircleBorderTransform
@@ -75,6 +74,6 @@ fun ImageView.loadCircleBorder(
         .placeholder(context.validContext.drawable(placeholder))
         .transform(CircleBorderTransform(borderWidth, context.validContext.color(borderColor)))
         .skipMemoryCache(false) //启用内存缓存
-        .diskCacheStrategy(DiskCacheStrategy.RESOURCE) //磁盘缓存策略
+        .diskCacheStrategy(DiskCacheStrategy.RESOURCE) //磁盘缓存策略，只缓存转换后的资源
         .into(this)
 }
