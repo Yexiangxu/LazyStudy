@@ -51,7 +51,7 @@ object GlideDeps {
 
 object CommonDeps {
     const val recyclerview = "androidx.recyclerview:recyclerview:1.3.2"
-    const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.0"
+    const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
     const val appcompat = "androidx.appcompat:appcompat:1.6.1"
     const val material = "com.google.android.material:material:1.12.0"
     const val multidex = "androidx.multidex:multidex:2.0.1"

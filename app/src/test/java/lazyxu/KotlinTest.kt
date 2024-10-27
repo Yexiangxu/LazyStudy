@@ -3,18 +3,12 @@ package lazyxu
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
-import lazyxu.entity.Student
 import org.junit.Test
-import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.Executors
-import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
-import kotlin.properties.Delegates
 
 public class KotlinTest {
     private fun log(msg: Any?) = println("========[${Thread.currentThread().name}] $msg")
@@ -88,7 +82,14 @@ public class KotlinTest {
     }
 }
 
-
+class MyClass {
+    fun method() {
+        synchronized(this) {}
+    }
+    fun method1() {
+        synchronized(MyClass::class) {}
+    }
+}
 
 
 

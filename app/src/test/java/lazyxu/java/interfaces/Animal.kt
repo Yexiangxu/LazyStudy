@@ -8,4 +8,7 @@ package lazyxu.java.interfaces
  */
 interface Animal {
     fun eat()
+    fun drink(){
+        println("")
+    }
 }
