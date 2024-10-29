@@ -7,5 +7,5 @@ package lazyxu.java.enums
  * FIXME
  */
 enum class Color {
-    GREEN,BLUE
+    GREEN,BLUE;
 }

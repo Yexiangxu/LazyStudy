@@ -6,38 +6,49 @@ package lazyxu.design.singleinstance
  * Description:
  * FIXME
  */
-object Singleton1 {
-    fun doSomeSing() {}
-}
 
-class Singleton2 constructor() {
-    companion object {
-        val singleton2 = Singleton2()
-    }
 
-    fun doSomeSing() {}
-}
-
-class Singleton3 constructor() {
+class Singleton36 constructor() {
     companion object {
         val singleton3 by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
-            Singleton3()
+            Singleton36()
         }
     }
 }
 
-enum class Singleton4 {
-    SINGLETON4;
 
-    fun doSomeSing() {}
-}
 
-class Singleton5 {
+object Singleton1{}
+
+class Singleton2{
     companion object{
-        val singleton5=SingletonHolder.holder
+        @Volatile
+        var instance:Singleton2?=null
+        fun getInstance():Singleton2{
+            if (instance==null){
+                synchronized(Singleton2::class.java){
+                    if (instance==null){
+                        instance= Singleton2()
+                    }
+                }
+            }
+            return instance!!
+        }
     }
-    private object SingletonHolder{
-        val holder=Singleton5()
+}
+class Singleton3{
+
+    companion object{
+        fun getInstance():Singleton3{
+            return Holder.HOLDER
+        }
     }
+    private object Holder{
+        val HOLDER=Singleton3()
+    }
+}
+enum class Singleton4{
+    INSTANCE;
+    fun doSomeThing(){}
 }
 

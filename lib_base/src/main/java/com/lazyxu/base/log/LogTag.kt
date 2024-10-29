@@ -10,6 +10,7 @@ object LogTag {
     const val THREAD: String = "ThreadTag"
     const val COMMON = "CommonTag"
     const val HTTP = "HttpTag"
+    const val LIFECYCLE = "LifecycleTag"
 
     const val SEARCH = "SearchTag"
     const val VIDEO = "VideoTag"

@@ -1,7 +1,7 @@
 object BuildConfig {
-    const val compileSdkVersion = 34
+    const val compileSdkVersion = 35
     const val minSdkVersion = 23
-    const val targetSdkVersion = 34
+    const val targetSdkVersion = 35
     const val versionCode = 101
     const val versionName = "1.0.1"
 }
@@ -14,7 +14,7 @@ object Versions {
     const val loggerVersion = "2.2.0"
     const val buglyVersion = "3.3.3"
     const val stethoVerison = "1.6.0"
-    const val lifecycle = "2.3.1"
+    const val lifecycle = "2.8.5"
     const val retrofit = "2.9.0"
     const val room = "2.6.1"
 }
@@ -27,7 +27,7 @@ object NetWorkDeps {
 
 object DataDeps {
     //腾讯mmkv轻量级存储取代SharedPreferences和datastore
-    const val mmkv = "com.tencent:mmkv-static:1.3.5"
+    const val mmkv = "com.tencent:mmkv-static:1.3.9"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
 
     //支持 Kotlin 协程、Kotlin 协程,里面包含了库 androidx.room:room-runtime
@@ -51,7 +51,7 @@ object GlideDeps {
 
 object CommonDeps {
     const val recyclerview = "androidx.recyclerview:recyclerview:1.3.2"
-    const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.0"
+    const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.4"
     const val appcompat = "androidx.appcompat:appcompat:1.6.1"
     const val material = "com.google.android.material:material:1.12.0"
     const val multidex = "androidx.multidex:multidex:2.0.1"
@@ -83,8 +83,7 @@ object KotlinDeps {
 
 object LifeCycleDeps {
     //lifecycleScope
-    const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:2.8.1"
-
+    const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     /**
      * viewModelScope需要用到，用了该依赖不需用已被弃用的 androidx.lifecycle:lifecycle-extensions:2.2.0
      * 内部包含以下三个依赖
@@ -92,5 +91,10 @@ object LifeCycleDeps {
      * org.jetbrains.kotlinx:kotlinx-coroutines-android
      * org.jetbrains.kotlin:kotlin-stdlib
      */
-    const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1"
+    const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val lifecycleProcess = "androidx.lifecycle:lifecycle-process:${Versions.lifecycle}"
+
+    const val activityKtx = "androidx.activity:activity-ktx:1.9.2"
+
+
 }

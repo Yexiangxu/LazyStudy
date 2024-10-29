@@ -42,6 +42,8 @@ dependencies {
     //协程相关
     api LifeCycleDeps.runtimeKtx
     api LifeCycleDeps.viewmodelKtx
+    api LifeCycleDeps.activityKtx
+    api LifeCycleDeps.lifecycleProcess
     //kotlin
     api KotlinDeps.kotlinReflect
 

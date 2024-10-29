@@ -49,15 +49,15 @@ android {
 dependencies {
     testImplementation 'junit:junit:4.13.2'
 
+    implementation project(path: ':lib_base')
+    implementation project(path: ':lib_common')
     implementation project(path: ':lib_database')
+
     implementation project(path: ':lib:network')
     implementation CommonDeps.refreshLayout
     implementation CommonDeps.refreshHeader
     implementation CommonDeps.refreshFooter
     implementation CommonDeps.brvah
-
-    implementation 'androidx.lifecycle:lifecycle-process:2.8.3'
-
 
     implementation project(':module_search')
     implementation project(':module_video')
@@ -66,12 +66,7 @@ dependencies {
     implementation project(':module_function')
     runtimeOnly project(':module_login')
 
-
-//    implementation 'magicx.device:device:1.5.5-SNAPSHOT'
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
-//    implementation "com.android.tools.build:gradle:4.1.1"
-
-
 }
 
 
@@ -116,22 +111,18 @@ static def buildApkTime() {
 
 
 task A {
-
-    println "configuration A.."
-
+    GLog.d("configuration A..")
     doFirst {
-        println "doLast A1.."
+        GLog.d "doLast A1.."
     }
-
 }
-
 task B {
-    println "configuration B.."
-
+    GLog.d "configuration B.."
     doFirst {
-        println "doLast B1.."
+        GLog.d "doLast B1.."
     }
 }
+
 
 
 String removeYinHao(String str) {

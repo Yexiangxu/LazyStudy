@@ -4,6 +4,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.lazyxu.base.base.BaseApplication
+import com.lazyxu.base.log.LogTag
 import com.lazyxu.base.log.LogUtils
 
 class App : BaseApplication() {
@@ -20,12 +21,12 @@ class App : BaseApplication() {
         var backgroundStamp = 0L
         override fun onStop(owner: LifecycleOwner) {
             super.onStop(owner)
-            LogUtils.d("onAppBackground")
+            LogUtils.d(LogTag.LIFECYCLE, "onAppBackground")
         }
 
         override fun onStart(owner: LifecycleOwner) {
             super.onStart(owner)
-            LogUtils.d("onAppForeground")
+            LogUtils.d(LogTag.LIFECYCLE, "onAppForeground")
         }
     }
 }

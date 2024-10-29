@@ -20,7 +20,7 @@ abstract class BaseVbDialogFragment<VB : ViewBinding> : AppCompatDialogFragment(
     protected var mActivity: FragmentActivity? = null
     lateinit var mViewBinding: VB
     open fun gravity(): Int = Gravity.CENTER
-    abstract fun initViews()
+    abstract fun initView()
 
 
     override fun onCreateView(
@@ -46,7 +46,7 @@ abstract class BaseVbDialogFragment<VB : ViewBinding> : AppCompatDialogFragment(
         LogUtils.d("DialogFragmentLifecycleTag", "${this.javaClass.simpleName} onViewCreated")
         dialog?.setCanceledOnTouchOutside(false)
         dialog?.setCancelable(false)
-        initViews()
+        initView()
     }
 
     private fun show(tag: String?) {

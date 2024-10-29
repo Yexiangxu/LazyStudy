@@ -1,7 +1,9 @@
 package com.lazyxu.search
 
 import android.view.inputmethod.EditorInfo
+import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -26,9 +28,10 @@ import kotlinx.coroutines.launch
 class SearchActivity : BaseVbVmActivity<ActivitySearchBinding, SearchViewModel>() {
     private var pageInfo = PageInfo()
     private var searchTag = ""
-//    private val searchResultAdapter: SearchResultAdapter by lazy {
-//        SearchResultAdapter()
-//    }
+
+    //    private val searchResultAdapter: SearchResultAdapter by lazy {
+    //        SearchResultAdapter()
+    //    }
 
     override fun createObserver() {
         mViewModel.searchHistoryList.observe(this) {
