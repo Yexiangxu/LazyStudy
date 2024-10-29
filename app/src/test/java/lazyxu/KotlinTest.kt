@@ -1,16 +1,27 @@
 package lazyxu
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import lazyxu.entity.Student
 import org.junit.Test
+import java.util.concurrent.Executors
 import kotlin.properties.Delegates
 
 public class KotlinTest {
-
+    fun useThreadPool() {
+        println("Using ThreadPool")
+        val threadPool = Executors.newFixedThreadPool(3) // 创建一个固定大小为3的线程池
+        for (i in 1..5) {
+            threadPool.submit {
+                task(i)
+            }
+        }
+        threadPool.shutdown() // 任务提交完后关闭线程池
+    }
     var user: String by Delegates.observable("ben") { prop, old, new ->
         println("属性${prop.name}的值从: $old -> $new")
     }
@@ -34,7 +45,7 @@ public class KotlinTest {
 
     @Test
     fun main() = runBlocking {
-        launch(Dispatchers.IO) {
+        GlobalScope.launch(Dispatchers.IO) {
             delay(100)
             log("Task from runBlocking")
         }

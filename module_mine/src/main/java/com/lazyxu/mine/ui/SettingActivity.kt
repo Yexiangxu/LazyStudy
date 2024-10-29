@@ -104,7 +104,7 @@ class SettingActivity : BaseVbActivity<ActivitySettingBinding>() {
                             }
                         }
                 }
-            }).init(this).show()
+            }).show(this)
         }
     }
 

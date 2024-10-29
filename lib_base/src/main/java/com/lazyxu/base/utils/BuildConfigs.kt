@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Environment
 import com.lazyxu.base.BuildConfig
 import com.lazyxu.base.base.BaseApplication
-import com.lazyxu.base.log.LogUtils
 import java.io.File
 
 /**
@@ -22,7 +21,7 @@ object BuildConfigs {
      *
      */
     val IS_DEV by lazy {
-       BuildConfig.DEBUG||isDebugEnvironment(BaseApplication.INSTANCE)
+        BuildConfig.DEBUG || isDebugEnvironment(BaseApplication.INSTANCE)
     }
 
     /**
