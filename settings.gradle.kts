@@ -8,6 +8,7 @@ pluginManagement {
         // plugins：只适用于 Plugin Portal 上的插件
         // apply plugin：对于未发布在 Plugin Portal 上或自定义的插件，可以使用 apply plugin: 'xxx' 方式，但必须先在 buildscript 块中添加插件的依赖（通过 classpath 声明）
         gradlePluginPortal()
+        maven { setUrl("https://jitpack.io") }
     }
 }
 dependencyResolutionManagement {
@@ -15,17 +16,18 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "LazyStudy"
-include ':app'
-include ':module_video'
-include ':module_search'
-include ':module_mine'
-include ':module_login'
-include ':module_function'
-include ':lib_database'
-include ':lib_common'
-include ':lib_base'
-include ':lib:network'
+include(":app")
+include(":module_video")
+include(":module_search")
+include(":module_mine")
+include(":module_login")
+include(":module_function")
+include(":lib_database")
+include(":lib_common")
+include(":lib_base")
+include(":lib:network")
+include(":lib_ad")
+

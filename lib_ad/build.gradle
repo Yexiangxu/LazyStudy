@@ -1,0 +1,60 @@
+//用来存放相同的gradle配置
+apply from: "${rootDir.path}/buildLib.gradle"
+android {
+    namespace 'com.lazyxu.lib_ad'
+}
+
+android {
+    namespace 'com.lazyxu.lib_ad'
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion "30.0.3"
+    defaultConfig {
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
+        resConfigs "zh"
+        //(低于5.0手机使用会出现闪退)svg矢量图中可以使用 color.xml中资源文件，解决 Resource references will not work correctly in images generated for this vector icon for API < 24; check generated icon to make sure it looks acceptable
+//        vectorDrawables.useSupportLibrary = true//不能使用该属性，否则android7以下手机使用复杂矢量图会报错
+        consumerProguardFiles 'consumer-rules.pro'
+        ndk {//需要添加ndk配置，否则so打不进去，选择要添加的对应cpu类型的.so库，armeabi-v7a、arm64-v8a这两个占据99%
+            abiFilters 'arm64-v8a', 'armeabi-v7a'//,'x86'//, 'armeabi-v7a'//,'armeabi', 'arm64-v8a','x86'
+        }
+
+
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            //proguard-android.txt和proguard-android-optimize.txt在 SDK\tools\proguard文件夹下，他们只是两套混淆规则文件，proguard-android-optimize.txt进一步压缩，但更耗时
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true //代码混淆
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    lintOptions {
+        abortOnError false//true:错误发生后停止gradle构建
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+    //注意：只是提示，用于隔离不同model的资源文件
+    //Gradle构建系统会在编译资源之前检查所有资源名称(直接到module的string等查看即可)，以确保它们在项目中是唯一的。这有助于避免因为资源名称冲突而导致的编译错误或运行时错误
+//    resourcePrefix "${GUtils.getResourcePrefix(project.name)}_"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])//一条依赖引入libs下所有的aar
+}
+
+

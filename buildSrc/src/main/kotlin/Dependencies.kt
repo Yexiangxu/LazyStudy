@@ -55,7 +55,7 @@ object CommonDeps {
     const val appcompat = "androidx.appcompat:appcompat:1.6.1"
     const val material = "com.google.android.material:material:1.12.0"
     const val multidex = "androidx.multidex:multidex:2.0.1"
-    const val brvah = "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4"
+    const val brvah = "io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4"
     const val refreshLayout = "io.github.scwang90:refresh-layout-kernel:2.1.0"
     const val refreshHeader = "io.github.scwang90:refresh-header-classics:2.1.0"
     const val refreshFooter = "io.github.scwang90:refresh-footer-classics:2.1.0"

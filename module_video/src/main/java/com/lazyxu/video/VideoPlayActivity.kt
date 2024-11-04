@@ -1,9 +1,7 @@
 package com.lazyxu.video
 
-import android.transition.TransitionInflater
 import android.view.View
 import android.widget.FrameLayout
-import androidx.core.app.ActivityOptionsCompat
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
@@ -98,7 +96,7 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
             layoutManager = manager
             adapter = videoAdapter
         }
-        videoAdapter.setList(mData)
+        videoAdapter.submitList(mData)
         mViewBinding.rvPlay.scrollToPosition(position)
         mViewBinding.refreshBest.setOnRefreshListener {
             mViewBinding.refreshBest.isRefreshing = false
@@ -173,10 +171,10 @@ class VideoPlayActivity : BaseVbVmActivity<ActivityPlayVideoBinding, VideoViewMo
     private var mPlayingPosition = -1
 
     private fun startPlay(isnext: Boolean, position: Int, view: View?) {
-        if (view == null || position < 0 || position >= videoAdapter.data.size || position == mPlayingPosition) return
+        if (view == null || position < 0 || position >= videoAdapter.itemCount || position == mPlayingPosition) return
         mPlayingPosition = position
         val item = videoAdapter.getItem(position)
-        if (item.play_url.isEmpty()) return
+        if (item?.play_url!!.isEmpty()) return
         //如果父容器不等于this,则把playView添加进去
         //parent如果不为空则是被添加到别的容器中了，需要移除
         (mPlayView?.parent as? FrameLayout)?.removeAllViews()

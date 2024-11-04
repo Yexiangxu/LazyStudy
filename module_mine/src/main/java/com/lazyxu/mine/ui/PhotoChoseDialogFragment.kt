@@ -11,7 +11,7 @@ class PhotoChoseDialogFragment(var openCallback: (() -> Unit)) :
         return Gravity.BOTTOM
     }
 
-    override fun initViews() {
+    override fun initView() {
         mViewBinding.llRoot.setClipViewCornerTopRadius(6)
         mViewBinding.tvCancel.setOnClickListener { dismissAllowingStateLoss() }
         mViewBinding.tvPhoto.setOnClickListener {

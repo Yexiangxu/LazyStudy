@@ -39,7 +39,7 @@ class TaskProgressView @JvmOverloads constructor(
     }
 
     private fun setList(list: List<ShortPlayYouXuanTask>) {
-        taskProgressAdapter.setList(list)
+        taskProgressAdapter.submitList(list)
     }
 
     private fun receivableCoins(
@@ -78,7 +78,7 @@ class TaskProgressView @JvmOverloads constructor(
         recyclerViewParams.width =
             (context.resources.getDimension(com.lazyxu.base.R.dimen.dp_70) * (list.size)).toInt()
         mViewBinding.rvProgress.layoutParams = recyclerViewParams
-        taskProgressAdapter.setList(list)
+        taskProgressAdapter.submitList(list)
         taskProgressAdapter.setChosePosition(receive_mins)
         val progressIndex=findMaxTaskIndex(today_mins,list)+1
         setProgress((mViewBinding.pbTask.max)/(list.size)*progressIndex, receivableCoins(list, today_mins))

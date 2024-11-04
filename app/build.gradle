@@ -48,7 +48,7 @@ android {
 
 dependencies {
     testImplementation 'junit:junit:4.13.2'
-
+    implementation project(path: ':lib_ad')
     implementation project(path: ':lib_base')
     implementation project(path: ':lib_common')
     implementation project(path: ':lib_database')

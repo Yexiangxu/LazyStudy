@@ -1,24 +1,22 @@
 package com.lazyxu.base.base.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.chad.library.adapter4.BaseQuickAdapter
 
 /**
  * Adapter基类
  */
-abstract class VBBaseQuickAdapter<T, VB : ViewBinding>(
-    private val inflate: (LayoutInflater, ViewGroup, Boolean) -> VB,
-    layoutResId: Int = 0
-) : BaseQuickAdapter<T, VBBaseQuickAdapter.VBBaseViewHolder<VB>>(layoutResId) {
+abstract class VBBaseQuickAdapter<T : Any, VB : ViewBinding>(
+    private val inflate: (LayoutInflater, ViewGroup, Boolean) -> VB
+) : BaseQuickAdapter<T, VBBaseQuickAdapter.VH<VB>>() {
+    override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): VH<VB> {
+        return VH(inflate(LayoutInflater.from(context), parent, false))
 
-    override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): VBBaseViewHolder<VB> {
-        val viewBinding = inflate(LayoutInflater.from(parent.context), parent, false)
-        return VBBaseViewHolder(viewBinding)
     }
 
-    class VBBaseViewHolder<VB : ViewBinding>(val binding: VB) : BaseViewHolder(binding.root)
-
+    class VH<VB : ViewBinding>(val binding: VB) : RecyclerView.ViewHolder(binding.root)
 }

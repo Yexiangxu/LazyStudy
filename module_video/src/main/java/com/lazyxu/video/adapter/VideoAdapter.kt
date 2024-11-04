@@ -8,9 +8,12 @@ import com.lazyxu.video.databinding.ItemVideoPlayBinding
 
 class VideoAdapter :
     VBBaseQuickAdapter<VideoEntity, ItemVideoPlayBinding>(ItemVideoPlayBinding::inflate) {
-    override fun convert(holder: VBBaseViewHolder<ItemVideoPlayBinding>, item: VideoEntity) {
+    override fun onBindViewHolder(
+        holder: VH<ItemVideoPlayBinding>,
+        position: Int, item: VideoEntity?
+    ) {
         LogUtils.d(LogTag.VIDEO, "convert===${holder.layoutPosition}")
-        holder.binding.tvMsg.text = item.desc
-        holder.binding.tvAuthor.text = "@${item.author_name}"
+        holder.binding.tvMsg.text = item?.desc
+        holder.binding.tvAuthor.text = "@${item?.author_name}"
     }
 }

@@ -47,7 +47,7 @@ class GalleryActivity : BaseVbActivity<ActivityGalleryBinding>() {
             layoutManager = manager
             adapter = galleryActivity
         }
-        galleryActivity.setList(mData)
+        galleryActivity.submitList(mData)
         mViewBinding.rvGallery.scrollToPosition(position)
     }
 

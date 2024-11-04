@@ -59,8 +59,8 @@ class HomeFragment : BaseVbVmFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun createObserver() {
         mViewModel.videoList.observe(this) {
-            rankAdapter.setList(it)
-            picAdapter.setList(it)
+            rankAdapter.submitList(it)
+            picAdapter.submitList(it)
         }
     }
 
@@ -70,7 +70,7 @@ class HomeFragment : BaseVbVmFragment<FragmentHomeBinding, HomeViewModel>() {
             ARouterHelper.goActivityNeedNet(
                 ARouterPath.Video.PLAY,
                 mapOf(
-                    Constants.KEY_VIDEO_PLAY_LIST to adapter.data,
+                    Constants.KEY_VIDEO_PLAY_LIST to adapter.items,
                     Constants.KEY_VIDEO_PLAY_POS to position
                 )
             )
@@ -97,7 +97,7 @@ class HomeFragment : BaseVbVmFragment<FragmentHomeBinding, HomeViewModel>() {
             val intent = Intent(requireContext(), GalleryActivity::class.java)
             intent.putParcelableArrayListExtra(
                 Constants.KEY_VIDEO_PLAY_LIST,
-                adapter.data as ArrayList<VideoEntity>
+                adapter.items as ArrayList<VideoEntity>
             )
             intent.putExtra(
                 Constants.KEY_VIDEO_PLAY_POS,
