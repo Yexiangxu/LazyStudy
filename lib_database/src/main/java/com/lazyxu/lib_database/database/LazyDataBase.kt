@@ -30,11 +30,12 @@ abstract class LazyDataBase() : RoomDatabase() {
     abstract fun videoListDao(): LazyListDao
 
     companion object {
-        private var dataBase: LazyDataBase? = null
+        @Volatile
+        private var INSTANCE: LazyDataBase? = null
 
         @Synchronized
         fun getInstance(): LazyDataBase {
-            return dataBase ?: Room.databaseBuilder(
+            return INSTANCE ?: Room.databaseBuilder(
                 BaseApplication.INSTANCE,
                 LazyDataBase::class.java,
                 "lazyxu_db"

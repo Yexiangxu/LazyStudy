@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
 }
 apply from: "${rootDir.path}/buildCommon.gradle"// ./同级目录; ../上级目录; 上上级 ../../
-
+apply from: 'build_trace.gradle'//用来追踪编译速度
 configSigning()
 android {
     namespace 'com.lazyxu.lazystudy'

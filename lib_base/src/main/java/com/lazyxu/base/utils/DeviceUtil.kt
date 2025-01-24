@@ -1,12 +1,15 @@
 package com.lazyxu.base.utils
 
+import android.Manifest
 import android.app.ActivityManager
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Build
+import android.text.TextUtils
 import com.lazyxu.base.base.BaseApplication
+import com.lazyxu.base.constants.SpKey
 import com.lazyxu.base.log.LogUtils
 
 object DeviceUtil {
@@ -90,4 +93,40 @@ object DeviceUtil {
             "1.0.0"
         }
     }
+
+//    fun getIMEI(): String? {
+//        var imei: String? = ""
+//        val old: String = SpUtils.getString(SpKey.CACHED_IMEI)
+//        if (Device.canAccessPrivacy() && magicx.device.Device.checkPermission(Manifest.permission.READ_PHONE_STATE) && !magicx.device.Device.HAS_IMEI) { //有读取隐私的能力就读
+//            magicx.device.Device.HAS_IMEI = true
+//            val telephonyManager =
+//                DevicePref.context.getSystemService(Context.TELEPHONY_SERVICE)
+//            try {
+//                try {
+//                    if (Build.VERSION.SDK_INT >= 26) {
+//                        imei = telephonyManager.imei
+//                    } else {
+//                        var deviceId = telephonyManager.deviceId
+//                        if (deviceId == null) {
+//                            //android.provider.Settings;
+//                            deviceId = magicx.device.Device.getAndroidId()
+//                        }
+//                        imei = deviceId
+//                    }
+//                } catch (e: SecurityException) {
+//                    e.printStackTrace()
+//                }
+//            } catch (e: Exception) {
+//            }
+//            imei = magicx.device.Device.returnNotNull(imei)
+//            DevicePref.save(DevicePref.CACHED_IMEI, imei)
+//        } else {
+//            imei = magicx.device.Device.returnNotNull(DevicePref.get(DevicePref.CACHED_IMEI))
+//        }
+//        if (!TextUtils.isEmpty(imei) && !TextUtils.equals(imei, old)) {
+//            magicx.device.Device.infoChangeCallBack(DeviceConstants.IMEI_TYPE, imei)
+//        }
+//        return imei
+//    }
+
 }

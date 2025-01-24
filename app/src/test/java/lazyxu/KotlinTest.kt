@@ -13,6 +13,14 @@ import java.util.concurrent.TimeUnit
 public class KotlinTest {
     private fun log(msg: Any?) = println("========[${Thread.currentThread().name}] $msg")
 
+    @Test
+    fun main112() {
+        var a=12
+        var b=5
+        var c: Double = a / b.toDouble()
+
+        log("end=$c")
+    }
 
     @Test
     fun main11() {

@@ -37,10 +37,10 @@ object SpUtils {
     /**
      * 查
      */
-    fun getString(key: String, defValue: String): String? =
-        mmkv.decodeString(key, defValue)
+    fun getString(key: String, defValue: String = ""): String =
+        mmkv.decodeString(key, defValue) ?: defValue
 
-    fun getInt(key: String, defValue: Int): Int = mmkv.decodeInt(key, defValue)
+    fun getInt(key: String, defValue: Int): Int = mmkv.decodeInt(key, defValue) ?: 0
 
     fun getLong(key: String, defValue: Long): Long = mmkv.decodeLong(key, defValue)
 
