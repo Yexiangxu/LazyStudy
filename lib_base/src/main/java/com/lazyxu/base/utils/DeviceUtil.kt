@@ -1,16 +1,19 @@
 package com.lazyxu.base.utils
 
-import android.Manifest
 import android.app.ActivityManager
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Build
-import android.text.TextUtils
+import android.os.Debug
+import android.provider.Settings
+import android.util.TypedValue
+import com.lazyxu.base.R
 import com.lazyxu.base.base.BaseApplication
-import com.lazyxu.base.constants.SpKey
 import com.lazyxu.base.log.LogUtils
+import com.lazyxu.base.utils.detection.lahm.DetectionUtils
 
 object DeviceUtil {
     fun printDeviceDetailInfo(context: Context) {
@@ -22,9 +25,15 @@ object DeviceUtil {
         val memoryClass = activityManager.memoryClass // 以MB为单位的内存限制
         val largeMemoryClass = activityManager.largeMemoryClass // 使用largeHeap时更高的内存限制
 
-        LogUtils.d("内存=$memoryClass},最大内存=${largeMemoryClass}")
 
+        LogUtils.d("内存=$memoryClass},最大内存=${largeMemoryClass}")
+        LogUtils.d("风控====isOpenUsb=${DetectionUtils.isOpenUsb(BaseApplication.INSTANCE)},isOpenVpn=${DetectionUtils.isOpenVpn(BaseApplication.INSTANCE)},isOpenProxy=${DetectionUtils.isOpenProxy()},isEmulatorDevice=${DetectionUtils.isEmulatorDevice(BaseApplication.INSTANCE)},isInVirtualEnvironment=${DetectionUtils.isInVirtualEnvironment(BaseApplication.INSTANCE)},isXposedInstalled=${DetectionUtils.isXposedInstalled()},isDeviceRooted=${DetectionUtils.isDeviceRooted()}，isOpenDev=${DetectionUtils.isOpenDev(BaseApplication.INSTANCE)}")
     }
+
+
+
+
+
 
 
     /**
@@ -87,7 +96,7 @@ object DeviceUtil {
                     BaseApplication.INSTANCE.packageName,
                     0
                 )
-            packageInfo.versionName?:"1.0.0"
+            packageInfo.versionName ?: "1.0.0"
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             "1.0.0"

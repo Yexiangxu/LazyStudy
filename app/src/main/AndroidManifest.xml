@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <queries>
+        <package android:name="com.tencent.mm" />
+    </queries>
     <!--
           allowBackup：指定应用程序是否允许备份，默认为true，当为 true，系统允许备份应用程序的数据(即将数据备份到云端)
                       优点：1.提升用户体验(当重置设备能快速恢复数据)；2数据保护(当手机丢失数据保存在云端)
@@ -70,5 +73,17 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <activity
+            android:name="com.hy.kxxsk.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.hy.kxxsk.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:taskAffinity="${applicationId}"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 </manifest>

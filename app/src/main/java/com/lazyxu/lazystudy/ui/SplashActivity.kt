@@ -4,11 +4,13 @@ import android.view.KeyEvent
 import androidx.lifecycle.lifecycleScope
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
-import com.lazyxu.base.base.actvity.BaseVbActivity
-import com.lazyxu.base.ext.countDownCoroutines
-import com.lazyxu.base.ext.setOnNoDoubleClickListener
+import com.hy.kxxsk.WxPayHelper
 import com.lazyxu.base.arouter.ARouterHelper.goActivityFinishCurrent
 import com.lazyxu.base.arouter.ARouterPath
+import com.lazyxu.base.base.actvity.BaseVbActivity
+import com.lazyxu.base.ext.setOnNoDoubleClickListener
+import com.lazyxu.base.log.LogUtils
+import com.lazyxu.base.utils.TimeCountDown
 import com.lazyxu.lazystudy.R
 import com.lazyxu.lazystudy.databinding.ActivitySplashBinding
 
@@ -18,21 +20,27 @@ import com.lazyxu.lazystudy.databinding.ActivitySplashBinding
  */
 class SplashActivity : BaseVbActivity<ActivitySplashBinding>() {
     companion object {
-        private const val DEFAULT_SHOW_TIME = 5
+        private const val DEFAULT_SHOW_TIME = 3
     }
 
     override fun initClicks() {
         mViewBinding.btnSkip.setOnNoDoubleClickListener {
-            jumpToMain()
+            WxPayHelper().pay()
+//            jumpToMain()
+            timeCountDown.cancel()
         }
     }
 
-
+    private var timeCountDown = TimeCountDown()
     override fun initView() {
-        countDownCoroutines(DEFAULT_SHOW_TIME,lifecycleScope, onTick = {
+        timeCountDown = TimeCountDown()
+        LogUtils.d("AdTag", "开始倒计时")
+        timeCountDown.start(DEFAULT_SHOW_TIME, lifecycleScope, onTick = {
+            LogUtils.d("AdTag", "倒计时 ${it}")
             mViewBinding.btnSkip.text = getString(R.string.splash_skip, it)
         }, onFinish = {
-            jumpToMain()
+            LogUtils.d("AdTag", "${Thread.currentThread().name}倒计时结束")
+//            jumpToMain()
         })
     }
 
@@ -46,6 +54,7 @@ class SplashActivity : BaseVbActivity<ActivitySplashBinding>() {
     private fun jumpToMain() {
         this.goActivityFinishCurrent(ARouterPath.MAIN)
     }
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         return if (keyCode == KeyEvent.KEYCODE_BACK) {
             true

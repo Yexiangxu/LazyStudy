@@ -7,7 +7,7 @@ configSigning()
 android {
     namespace 'com.lazyxu.lazystudy'
     defaultConfig {
-        applicationId "com.lazyxu.lazystudy"
+        applicationId "com.hy.kxxsk"
         versionCode BuildConfig.versionCode
         versionName BuildConfig.versionName
     }
@@ -67,6 +67,8 @@ dependencies {
     runtimeOnly project(':module_login')
 
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
+
+    api 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
 }
 
 
@@ -80,6 +82,12 @@ def configSigning() {
         Properties properties = new Properties()
         properties.load(new FileInputStream(signPropertiesFile))
         signingConfigs {
+            debug {
+                storeFile new File(signPropertiesFile.getParent(), properties['KEYSTORE_FILE'])
+                storePassword properties['KEYSTORE_PWD']
+                keyAlias properties['KEY_ALIAS']
+                keyPassword properties['KEY_PWD']
+            }
             release {
                 storeFile new File(signPropertiesFile.getParent(), properties['KEYSTORE_FILE'])
                 storePassword properties['KEYSTORE_PWD']
