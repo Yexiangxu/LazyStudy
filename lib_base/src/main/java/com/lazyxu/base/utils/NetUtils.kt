@@ -30,7 +30,7 @@ object NetUtils {
      */
     fun getNetworkType(context: Context): NetworkType {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        @Suppress("DEPRECATION") val isWiFi = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        val isWiFi = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val networkCapabilities = cm.getNetworkCapabilities(cm.activeNetwork)
             networkCapabilities?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true
         } else {

@@ -7,7 +7,7 @@ configSigning()
 android {
     namespace 'com.lazyxu.lazystudy'
     defaultConfig {
-        applicationId "com.hy.kxxsk"
+        applicationId "com.lazyxu.lazystudy"
         versionCode BuildConfig.versionCode
         versionName BuildConfig.versionName
     }
@@ -41,6 +41,11 @@ android {
         }
         yunkong {
             dimension "channel"
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']//将 .so 文件移动到默认目录 src/main/jniLibs/ 或设置该配置直接放在so
         }
     }
 

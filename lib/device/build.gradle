@@ -1,0 +1,9 @@
+apply from: "${rootDir.path}/buildLib.gradle"
+android {
+    namespace 'com.lazyxu.device'
+}
+
+dependencies {
+//    implementation 'com.github.gzu-liyujiang:Android_CN_OAID:4.2.12'
+}
+

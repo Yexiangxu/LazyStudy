@@ -4,7 +4,7 @@ import android.view.KeyEvent
 import androidx.lifecycle.lifecycleScope
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ImmersionBar
-import com.hy.kxxsk.WxPayHelper
+import com.lazyxu.lazystudy.WxPayHelper
 import com.lazyxu.base.arouter.ARouterHelper.goActivityFinishCurrent
 import com.lazyxu.base.arouter.ARouterPath
 import com.lazyxu.base.base.actvity.BaseVbActivity
@@ -25,9 +25,9 @@ class SplashActivity : BaseVbActivity<ActivitySplashBinding>() {
 
     override fun initClicks() {
         mViewBinding.btnSkip.setOnNoDoubleClickListener {
-            WxPayHelper().pay()
-//            jumpToMain()
-            timeCountDown.cancel()
+//            WxPayHelper().pay()
+            jumpToMain()
+//            timeCountDown.cancel()
         }
     }
 

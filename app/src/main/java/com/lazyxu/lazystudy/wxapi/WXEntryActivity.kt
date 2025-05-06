@@ -1,20 +1,21 @@
-package com.hy.kxxsk.wxapi
+package com.lazyxu.lazystudy.wxapi
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.hy.kxxsk.WxPayHelper
+import com.lazyxu.lazystudy.WxPayHelper
 import com.tencent.mm.opensdk.modelbase.BaseReq
 import com.tencent.mm.opensdk.modelbase.BaseResp
 import com.tencent.mm.opensdk.openapi.IWXAPI
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler
 
+
 /**
  * Created by zhang on 2018/12/11.
- * 微信支付
+ * 微信分享
  */
-class WXPayEntryActivity : Activity(), IWXAPIEventHandler {
+class WXEntryActivity : Activity(), IWXAPIEventHandler {
     lateinit var iwxapi: IWXAPI
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +23,26 @@ class WXPayEntryActivity : Activity(), IWXAPIEventHandler {
         iwxapi.handleIntent(intent, this)
     }
 
-
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        iwxapi.handleIntent(intent, this)
+    }
 
     override fun onResp(p0: BaseResp?) {
-        Log.d("WxShareTag", "onResp type1=${p0?.type},resp p0=${p0.toString()}")
+        Log.d("WxShareTag", "onResp type=${p0?.type}code=${p0?.errCode},resp p0=${p0.toString()}")
+        when (p0?.errCode) {
+            BaseResp.ErrCode.ERR_OK -> {
+
+            }
+
+
+        }
+        finish()
+
     }
 
     override fun onReq(p0: BaseReq?) {
-        Log.d("WxShareTag", "onReq type1=${p0?.type},resp p0=${p0.toString()}")
+        Log.d("WxShareTag", "onReq onReq=${p0.toString()}")
     }
 }

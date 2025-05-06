@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!--     从 Android 13 (API 33) 开始新增的权限。用于允许应用 发送通知-->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <!--这个权限用于显示 全屏通知（比如来电界面、闹钟界面等 不像 POST_NOTIFICATIONS 那样需要动态申请，它是普通权限，只需在清单中声明即可-->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <queries>
         <package android:name="com.tencent.mm" />
@@ -74,16 +79,24 @@
         </provider>
 
         <activity
-            android:name="com.hy.kxxsk.wxapi.WXPayEntryActivity"
+            android:name="com.lazyxu.lazystudy.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.Translucent" />
         <activity
-            android:name="com.hy.kxxsk.wxapi.WXEntryActivity"
+            android:name="com.lazyxu.lazystudy.wxapi.WXEntryActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:taskAffinity="${applicationId}"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- AndroidManifest.xml 注册广播接收器 -->
+        <receiver android:name=".UninstallReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

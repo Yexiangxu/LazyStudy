@@ -84,13 +84,13 @@ class SettingActivity : BaseVbActivity<ActivitySettingBinding>() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
         }
-        mViewBinding.tvFeedback.setOnClickListener{
+        mViewBinding.tvFeedback.setOnClickListener {
             ARouterHelper.goActivity(ARouterPath.Mine.POSTNEWS)
         }
 
         mViewBinding.btnExitLogin.setOnClickListener(click)
         mViewBinding.btnExitLogin.setOnClickListener {
-            PhotoChoseDialogFragment(openCallback = {
+            PhotoChoseDialogFragment().setOpenCallback {
                 lifecycleScope.launch {
                     RxPermissions(activity = this@SettingActivity)
                         .request(
@@ -104,7 +104,7 @@ class SettingActivity : BaseVbActivity<ActivitySettingBinding>() {
                             }
                         }
                 }
-            }).show(this)
+            }.show(this)
         }
     }
 
@@ -129,7 +129,10 @@ class SettingActivity : BaseVbActivity<ActivitySettingBinding>() {
                         Log.d("TestTag", "imagePath=$imagePath")
 //                        val bitmap=getBitmapFromPath(imagePath!!)
                         val bitmap = getBitmapFromUri(it)
-                        Log.d("TestTag", "bitmap=$bitmap,width=${bitmap?.width},heigt=${bitmap?.height},densityDpi=${resources.displayMetrics.densityDpi}")
+                        Log.d(
+                            "TestTag",
+                            "bitmap=$bitmap,width=${bitmap?.width},heigt=${bitmap?.height},densityDpi=${resources.displayMetrics.densityDpi}"
+                        )
                     }
                 }
             }
@@ -167,6 +170,7 @@ class SettingActivity : BaseVbActivity<ActivitySettingBinding>() {
             }
         }
     }
+
     private fun getBitmapFromPath(path: String): Bitmap? {
         return try {
             val file = File(path)
@@ -181,6 +185,7 @@ class SettingActivity : BaseVbActivity<ActivitySettingBinding>() {
             null
         }
     }
+
     private fun decodeSampledBitmap(filePath: String?): Bitmap? {
         val options = BitmapFactory.Options()
         options.inPreferredConfig = Bitmap.Config.ARGB_8888

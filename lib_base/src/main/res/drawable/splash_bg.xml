@@ -6,6 +6,8 @@
         android:gravity="fill" />
 
     <item
+        android:left="0dp"
+        android:top="0dp"
         android:bottom="@dimen/dp_30"
         android:drawable="@drawable/splash_bottom"
         android:gravity="bottom|center_horizontal" />

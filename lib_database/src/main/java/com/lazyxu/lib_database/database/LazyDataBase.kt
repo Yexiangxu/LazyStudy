@@ -28,24 +28,23 @@ abstract class LazyDataBase() : RoomDatabase() {
 
     //抽象方法或者抽象类标记
     abstract fun videoListDao(): LazyListDao
-
+//    abstract fun videoListDao1(): LazyListDao
     companion object {
         @Volatile
         private var INSTANCE: LazyDataBase? = null
-
-        @Synchronized
         fun getInstance(): LazyDataBase {
-            return INSTANCE ?: Room.databaseBuilder(
-                BaseApplication.INSTANCE,
-                LazyDataBase::class.java,
-                "lazyxu_db"
-            )
-                //是否允许在主线程查询，默认是false
-                .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()//当数据库版本号改变（例如从 1 到 2），而没有提供相应的迁移策略时，Room 将删除现有的数据库表并重新创建
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: Room.databaseBuilder(
+                    BaseApplication.INSTANCE,
+                    LazyDataBase::class.java,
+                    "lazyxu_db"
+                ) //是否允许在主线程查询，默认是false
+                    .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()//当数据库版本号改变（例如从 1 到 2），而没有提供相应的迁移策略时，Room 将删除现有的数据库表并重新创建
 //                .addTypeConverter(typeResponseConverter)
-                .build()
+                    .build()
+                    .also { INSTANCE = it } // 更新单例引用
+            }
         }
     }
-
 }

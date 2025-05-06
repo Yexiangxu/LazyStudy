@@ -13,6 +13,7 @@ import com.lazyxu.base.utils.transformation.CircleCropTransformation
 
 
 fun ImageView.load(url: Any?, @DrawableRes placeholder: Int = R.drawable.default_image) {
+    if (url is String)
     Glide.with(context.validContext)
         .asDrawable()//没有复杂操作使用drawable能更好的管理内存
         .load(url)
